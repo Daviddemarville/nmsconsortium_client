@@ -1,0 +1,20 @@
+{
+  // Force l'ouverture des fichiers .css en mode Tailwind
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
+  // Active l'autocomplétion des classes dans TSX/JSX
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+
+  // Indique qu'on utilise Tailwind v4 → ça supprime l'erreur @theme
+  "tailwindCSS.tailwindVersion": "4",
+
+  // Optionnel mais pratique : suggestions automatiques
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
+}

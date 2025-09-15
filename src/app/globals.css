@@ -1,15 +1,23 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-nms-gold: var(--nms-gold);
+  --color-nms-gray: var(--nms-gray);
+  --color-nms-dark: var(--nms-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --nms-gold: #ffd700;
+  --nms-gray: #2c2c2c;
+  --nms-dark: #1a1a1a;
+  --hero-arrival-duration: 2.8s;
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +27,151 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url("/images/fond1.jpg") right center / cover no-repeat fixed;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family:
+    var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 1024px) {
+  body {
+    background-position: 80% center;
+  } /* ajuste 70–90% selon le rendu */
+}
+
+::selection {
+  background: var(--nms-gold);
+  color: var(--nms-dark);
+}
+:focus-visible {
+  outline: 2px solid var(--nms-gold);
+  outline-offset: 2px;
+}
+
+@keyframes heroArrival {
+  0% {
+    opacity: 0;
+    transform: translateY(55vh) scale(0.65);
+    filter: blur(14px);
+  }
+  70% {
+    opacity: 0.98;
+    transform: translateY(-8px) scale(1.04);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroShrinkAndMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-38vw, -32vh) scale(0.35);
+  }
+}
+
+.hero-logo {
+  width: clamp(300px, 48vw, 720px);
+  height: clamp(300px, 48vw, 720px);
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: var(--background);
+  /*box-shadow: 0 20px 60px rgba(0,0,0,.35);*/
+  cursor: pointer;
+  position: relative;
+  /*overflow: hidden;*/
+  will-change: transform, opacity, filter;
+}
+
+.animate-hero-arrival {
+  animation: heroArrival var(--hero-arrival-duration)
+    cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-hero-leave {
+  animation: heroShrinkAndMove 1s ease-in both;
+}
+
+/* --- Apparition douce du contenu (après le timeout) --- */
+/* Fade-in du contenu après 3s */
+@keyframes contentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.hero-content-enter {
+  animation: contentFadeIn 0.7s ease-out both;
+}
+
+/* --- Hotspots: confort tactile & hover --- */
+.hotspot {
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .hotspot:hover {
+    transform: scale(1.5);
+  }
+}
+
+/* --- Respecte les préférences "réduire les animations" --- */
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-arrival,
+  .animate-hero-leave,
+  .hero-content-enter {
+    animation: none !important;
+  }
+}
+
+/* Tailles responsives des hotspots (logos) */
+.hero-logo .hotspot-size {
+  width: 26%;
+  height: 26%;
+} /* mobile */
+@media (min-width: 768px) {
+  .hero-logo .hotspot-size {
+    width: 24%;
+    height: 24%;
+  }
+} /* md */
+@media (min-width: 1024px) {
+  .hero-logo .hotspot-size {
+    width: 22.5%;
+    height: 22.5%;
+  }
+} /* lg+ */
