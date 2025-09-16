@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "pseudo": "Dems_DVT",
+    "discord": "Dems_DVT#1234",
+    "gameplay": ["Exploration", "Logistique"],
+    "bio": "Membre du Global Council depuis 2952.",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 2, "unit_id": 1, "primary": true,  "since": "2952-01-01" },
+      { "role_id": 3, "unit_id": 2, "primary": false, "since": "2953-06-01" }
+    ]
+  },
+  {
+    "id": 2,
+    "pseudo": "Amiral",
+    "discord": "Amiral#5678",
+    "gameplay": ["Combat", "Diplomatie"],
+    "bio": "Fondateur historique de la NMS.",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 1, "unit_id": 1, "primary": true }
+    ]
+  },
+  {
+    "id": 3,
+    "pseudo": "Nova",
+    "discord": "Nova#9999",
+    "gameplay": ["Commerce", "Industrie"],
+    "bio": "Actif sur la logistique.",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 5, "unit_id": 4, "primary": true }
+    ]
+  }
+]

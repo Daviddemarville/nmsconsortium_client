@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* =========================================================
+   THEME VARS (exposées à Tailwind)
+   ========================================================= */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -10,36 +13,44 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* =========================================================
+   CSS CUSTOM PROPERTIES
+   ========================================================= */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+    --foreground: #ededed;
+
   --nms-gold: #ffd700;
   --nms-gray: #2c2c2c;
   --nms-dark: #1a1a1a;
+
+  /* Durée d'arrivée du hero */
   --hero-arrival-duration: 2.8s;
-  color-scheme: light dark;
+
+  /* Sortie du hero (coin haut-gauche, sous header) */
+  --header-h: 64px;   /* hauteur du header (ajuste si besoin) */
+  --page-pad: 24px;   /* padding horizontal de la page */
+  --leave-scale: 0.22;/* taille finale du hero dans le coin */
+
+  /* Clone volant (logos corpos) */
+  --clone-scale: 1;   /* = taille d’origine pendant tout le vol */
+  --fly-x: 0px;       /* set par le JS (delta X) */
+  --fly-y: 0px;       /* set par le JS (delta Y) */
+
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
-html,
-body {
-  min-height: 100%;
-}
+*::after { box-sizing: border-box; }
+html, body { min-height: 100%; }
 
 body {
   background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.25)),
     url("/images/fond1.jpg") right center / cover no-repeat fixed;
   background-color: var(--background);
   color: var(--foreground);
@@ -51,49 +62,53 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 @media (min-width: 1024px) {
-  body {
-    background-position: 80% center;
-  } /* ajuste 70–90% selon le rendu */
+  body { background-position: 80% center; } /* ajuste 70–90% si besoin */
 }
 
-::selection {
-  background: var(--nms-gold);
-  color: var(--nms-dark);
-}
-:focus-visible {
-  outline: 2px solid var(--nms-gold);
-  outline-offset: 2px;
-}
+/* =========================================================
+   ACCESSIBILITÉ
+   ========================================================= */
+::selection { background: var(--nms-gold); color: var(--nms-dark); }
+:focus-visible { outline: 2px solid var(--nms-gold); outline-offset: 2px; }
 
+/* =========================================================
+   ANIMATIONS — HERO (entrée / sortie)
+   ========================================================= */
 @keyframes heroArrival {
-  0% {
-    opacity: 0;
-    transform: translateY(55vh) scale(0.65);
-    filter: blur(14px);
-  }
-  70% {
-    opacity: 0.98;
-    transform: translateY(-8px) scale(1.04);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
+  0%   { opacity: 0; transform: translateY(55vh) scale(0.65); filter: blur(14px); }
+  70%  { opacity: .98; transform: translateY(-8px) scale(1.04); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
+/* Sortie du hero vers coin haut-gauche (sous header) */
 @keyframes heroShrinkAndMove {
   0% {
     transform: translate(0, 0) scale(1);
+    opacity: 1;
   }
   100% {
-    transform: translate(-38vw, -32vh) scale(0.35);
+    transform:
+      translate(
+        calc(-50vw + var(--page-pad)),
+        calc(-50vh + var(--header-h) + var(--page-pad))
+      )
+      scale(var(--leave-scale));
+    opacity: .98;
   }
 }
 
+/* FLIP exact vers un dock ciblé (utilise --fly-x / --fly-y) */
+@keyframes heroFlyToDock {
+  to {
+    transform: translate(var(--fly-x), var(--fly-y)) scale(var(--leave-scale));
+    opacity: .98;
+  }
+}
+
+/* =========================================================
+   COMPOSANTS — HERO WRAPPER / CONTENT
+   ========================================================= */
 .hero-logo {
   width: clamp(300px, 48vw, 720px);
   height: clamp(300px, 48vw, 720px);
@@ -101,77 +116,82 @@ body {
   display: grid;
   place-items: center;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: .06em;
   background: transparent;
   color: var(--background);
-  /*box-shadow: 0 20px 60px rgba(0,0,0,.35);*/
   cursor: pointer;
   position: relative;
-  /*overflow: hidden;*/
   will-change: transform, opacity, filter;
+  transform-origin: center;
 }
 
 .animate-hero-arrival {
-  animation: heroArrival var(--hero-arrival-duration)
-    cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: heroArrival var(--hero-arrival-duration) cubic-bezier(.2,.8,.2,1) both;
 }
 
+/* Sortie “coin” générique (si tu l’utilises quelque part) */
 .animate-hero-leave {
-  animation: heroShrinkAndMove 1s ease-in both;
+  animation: heroShrinkAndMove 700ms cubic-bezier(.2,.7,.2,1) both;
 }
 
-/* --- Apparition douce du contenu (après le timeout) --- */
-/* Fade-in du contenu après 3s */
+/* Sortie vers dock exact (utilisée par ton Hero.tsx) */
+.animate-hero-leave-exact {
+  animation: heroFlyToDock 700ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+/* Contenu qui fade-in après 3s */
 @keyframes contentFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(6px);
-    filter: blur(6px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+  0%   { opacity: 0; transform: translateY(6px); filter: blur(6px); }
+  100% { opacity: 1; transform: translateY(0);   filter: blur(0); }
 }
-.hero-content-enter {
-  animation: contentFadeIn 0.7s ease-out both;
+.hero-content-enter { animation: contentFadeIn .7s ease-out both; }
+
+/* =========================================================
+   HOTSPOTS (logos autour du hero)
+   ========================================================= */
+.hotspot { pointer-events: auto; -webkit-tap-highlight-color: transparent; }
+@media (hover:hover) {
+  .hotspot:hover { transform: scale(2); }
 }
 
-/* --- Hotspots: confort tactile & hover --- */
-.hotspot {
-  pointer-events: auto;
-  -webkit-tap-highlight-color: transparent;
-}
-@media (hover: hover) {
-  .hotspot:hover {
-    transform: scale(1.5);
-  }
-}
+/* Tailles responsives des zones cliquables des logos (inchangé) */
+.hero-logo .hotspot-size { width: 40%; height: 40%; } /* mobile */
+@media (min-width: 768px) { .hero-logo .hotspot-size { width: 40%; height: 40%; } }
+@media (min-width: 1024px){ .hero-logo .hotspot-size { width: 40%; height: 40%; } }
 
-/* --- Respecte les préférences "réduire les animations" --- */
+/* =========================================================
+   RÉDUIRE LES ANIMATIONS (a11y)
+   ========================================================= */
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-arrival,
   .animate-hero-leave,
+  .animate-hero-leave-exact,
   .hero-content-enter {
     animation: none !important;
   }
 }
 
-/* Tailles responsives des hotspots (logos) */
-.hero-logo .hotspot-size {
-  width: 26%;
-  height: 26%;
-} /* mobile */
-@media (min-width: 768px) {
-  .hero-logo .hotspot-size {
-    width: 24%;
-    height: 24%;
+/* ===== CLONE VOLANT — logos corpos (même logique que le hero) ===== */
+:root {
+  --clone-scale: 1;          /* taille identique à l’original pendant tout le vol */
+  --fly-duration: 700ms;     /* même durée que le hero pour cohérence */
+}
+
+.fly-clone {
+  position: fixed;
+  z-index: 9999;             /* au-dessus de tout */
+  pointer-events: none;
+  will-change: transform;
+  transform: translate(0, 0) scale(var(--clone-scale, 1));
+  /* Pas d'opacité, pas de filtre ⇒ lisible, propre */
+}
+
+@keyframes flyToDock {
+  to {
+    transform: translate(var(--fly-x, 0px), var(--fly-y, 0px)) scale(var(--clone-scale, 5));
   }
-} /* md */
-@media (min-width: 1024px) {
-  .hero-logo .hotspot-size {
-    width: 22.5%;
-    height: 22.5%;
-  }
-} /* lg+ */
+}
+
+.fly-animate {
+  animation: flyToDock var(--fly-duration) cubic-bezier(.2,.7,.2,1) forwards;
+}

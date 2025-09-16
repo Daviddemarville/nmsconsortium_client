@@ -1,3 +1,11 @@
 export default function ConsortiumPage() {
-  return <h1 className="text-2xl font-semibold">Le Consortium</h1>;
+  return (
+    <section>
+      <img
+        src="/images/LOGOS-ORGAS-2_global.png"
+        alt="Logo de la CORE"
+        className=" mb-6 w-32 md:w-50"
+      />
+    </section>
+  );
 }
