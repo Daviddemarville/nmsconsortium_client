@@ -36,8 +36,8 @@ type Member = {
 };
 
 type Props = {
-  rolesUrl?: string;   // default: /data/roles.json
-  unitsUrl?: string;   // default: /data/units.json
+  rolesUrl?: string; // default: /data/roles.json
+  unitsUrl?: string; // default: /data/units.json
   membersUrl?: string; // default: /data/members.json
   /** Afficher une seule unité (ex: 1 = Consortium), sinon toutes */
   unitId?: number;
@@ -73,15 +73,22 @@ export default function OrgChart({
         if (!rRes.ok || !uRes.ok || !mRes.ok) {
           throw new Error("Impossible de charger les données JSON.");
         }
-        const [r, u, m] = await Promise.all([rRes.json(), uRes.json(), mRes.json()]);
+        const [r, u, m] = await Promise.all([
+          rRes.json(),
+          uRes.json(),
+          mRes.json(),
+        ]);
         if (!cancelled) {
           setRoles(r ?? []);
           setUnits(u ?? []);
           setMembers(m ?? []);
           setErr(null);
         }
-      } catch (e: any) {
-        if (!cancelled) setErr(e?.message ?? "Erreur de chargement");
+      } catch (e: unknown) {
+        if (!cancelled) {
+          const message = e instanceof Error ? e.message : String(e);
+          setErr(message);
+        }
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -93,13 +100,17 @@ export default function OrgChart({
 
   const roleById = useMemo(() => {
     const map = new Map<number, Role>();
-    roles.forEach((r) => map.set(r.id, r));
+    roles.forEach((r) => {
+      map.set(r.id, r);
+    });
     return map;
   }, [roles]);
 
   const unitById = useMemo(() => {
     const map = new Map<number, Unit>();
-    units.forEach((u) => map.set(u.id, u));
+    units.forEach((u) => {
+      map.set(u.id, u);
+    });
     return map;
   }, [units]);
 
@@ -119,24 +130,31 @@ export default function OrgChart({
       ordered.push(root);
       children
         .filter((c) => c.parent_id === root.id)
-        .forEach((c) => ordered.push(c));
+        .forEach((c) => {
+          ordered.push(c);
+        });
     });
     // plus tout ce qui n’est pas relié (rare)
     units
       .filter((u) => !ordered.some((x) => x.id === u.id))
-      .forEach((u) => ordered.push(u));
+      .forEach((u) => {
+        ordered.push(u);
+      });
     return ordered;
   }, [units, unitId]);
 
   // Membres filtrés opt-in si demandé
   const baseMembers = useMemo(
     () => (optInOnly ? members.filter((m) => m.opt_in) : members),
-    [members, optInOnly]
+    [members, optInOnly],
   );
 
   // Regroupe les membres par unit, calcule un "minLevel" pour trier
   const dataByUnit = useMemo(() => {
-    const result: Array<{ unit: Unit; members: Array<Member & { minLevel: number; rolesInUnit: Role[] }> }> = [];
+    const result: Array<{
+      unit: Unit;
+      members: Array<Member & { minLevel: number; rolesInUnit: Role[] }>;
+    }> = [];
     visibleUnits.forEach((unit) => {
       // membres qui ont au moins une assignment dans cette unit
       const ms = baseMembers
@@ -150,10 +168,14 @@ export default function OrgChart({
           const minLevel = Math.min(...rolesInUnit.map((r) => r.level));
           return { ...m, minLevel, rolesInUnit };
         })
-        .filter(Boolean) as Array<Member & { minLevel: number; rolesInUnit: Role[] }>;
+        .filter(Boolean) as Array<
+        Member & { minLevel: number; rolesInUnit: Role[] }
+      >;
 
       // tri: level asc (0 top), puis pseudo
-      ms.sort((a, b) => (a.minLevel - b.minLevel) || a.pseudo.localeCompare(b.pseudo));
+      ms.sort(
+        (a, b) => a.minLevel - b.minLevel || a.pseudo.localeCompare(b.pseudo),
+      );
       result.push({ unit, members: ms });
     });
     return result;
@@ -180,7 +202,9 @@ export default function OrgChart({
           </header>
 
           {members.length === 0 ? (
-            <p className="text-sm opacity-70">Aucun membre affichable pour cette unité.</p>
+            <p className="text-sm opacity-70">
+              Aucun membre affichable pour cette unité.
+            </p>
           ) : (
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {members.map((m) => (
@@ -190,7 +214,9 @@ export default function OrgChart({
                 >
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold">{m.pseudo}</h3>
-                    {m.discord && <span className="text-xs opacity-70">{m.discord}</span>}
+                    {m.discord && (
+                      <span className="text-xs opacity-70">{m.discord}</span>
+                    )}
                   </div>
 
                   {/* Badges de rôles (dans cette unité) */}
@@ -216,20 +242,22 @@ export default function OrgChart({
                   {/* Gameplay */}
                   {!!m.gameplay?.length && (
                     <div className="mt-3 flex flex-wrap gap-1.5">
-                      {m.gameplay.map((g, i) => (
+                      {m.gameplay.map((g) => (
                         <span
-                          key={i}
+                          key={`${m.id}-${g}`}
                           className="rounded-md border border-white/10 px-1.5 py-0.5 text-xs opacity-80"
                         >
                           {g}
                         </span>
                       ))}
-                  </div>
+                    </div>
                   )}
 
                   {/* Bio */}
                   {m.bio && (
-                    <p className="mt-3 text-sm opacity-80 line-clamp-3">{m.bio}</p>
+                    <p className="mt-3 text-sm opacity-80 line-clamp-3">
+                      {m.bio}
+                    </p>
                   )}
                 </li>
               ))}

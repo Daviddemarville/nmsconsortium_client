@@ -1,6 +1,6 @@
 "use client";
 
-import { FaDiscord, FaYoutube, FaFacebook, FaTiktok } from "react-icons/fa";
+import { FaDiscord, FaFacebook, FaTiktok, FaYoutube } from "react-icons/fa";
 
 const socials = [
   {

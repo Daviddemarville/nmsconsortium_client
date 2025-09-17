@@ -1,41 +1,45 @@
-// PATCH: rotation quotidienne à 00:01 Europe/Paris, ordre stable et timer auto
+// PATCH: rotation quotidienne à 00:01 Europe/Paris, ordre stable, timer auto, + MODALE RESTAURÉE
 
 "use client";
 
+import { Copy, Info, Link as LinkIcon } from "lucide-react";
 import {
-  AlertTriangle,
-  Clock,
-  Copy,
-  FileInput,
-  Gift,
-  HelpCircle,
-  Info,
-  Link as LinkIcon,
-  UserPlus,
-} from "lucide-react";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import ReferralInfoContent from "./ReferralInfoContent";
 
 type Member = { name?: string; referralCode?: string; active?: boolean };
-type Referral = { id?: number; owner?: string; code?: string; active?: boolean };
+type Referral = {
+  id?: number;
+  owner?: string;
+  code?: string;
+  active?: boolean;
+};
 
 type Props = {
   label?: string;
-  membersUrl?: string;                // ← /data/referrals.json par défaut
+  membersUrl?: string; // ← /data/referrals.json par défaut
   fallbackCode?: string;
   targetBlank?: boolean;
   modalTitle?: string;
   modalContent?: React.ReactNode;
   className?: string;
   /** Point de départ de la rotation (date locale Europe/Paris, inclusif). */
-  rotationStartISO?: string;          // ex: "2025-01-01"
+  rotationStartISO?: string; // ex: "2025-01-01"
   /** Fuseau utilisé pour le découpage du jour. */
-  timeZone?: string;                  // ex: "Europe/Paris"
+  timeZone?: string; // ex: "Europe/Paris"
 };
 
 function normalizeReferral(code: string) {
-  const trimmed = code.trim().toUpperCase();
+  const trimmed = (code ?? "").trim().toUpperCase();
   return trimmed.startsWith("STAR-") ? trimmed : `STAR-${trimmed}`;
 }
+
 function buildRsiLink(code: string) {
   const normalized = normalizeReferral(code);
   return `https://www.robertsspaceindustries.com/enlist?referral=${encodeURIComponent(
@@ -43,8 +47,8 @@ function buildRsiLink(code: string) {
   )}`;
 }
 
-/** Convertit une date (YYYY-MM-DD) en nombre de jours depuis l'époque en timezone donnée */
-function daysSince(dateISO: string, sinceISO: string, timeZone: string) {
+/** Diff de jours entre deux YYYY-MM-DD (UTC minuit vs UTC minuit) */
+function daysSince(dateISO: string, sinceISO: string) {
   const parts = (s: string) => {
     const [y, m, d] = s.split("-").map(Number);
     return { y, m, d };
@@ -52,26 +56,8 @@ function daysSince(dateISO: string, sinceISO: string, timeZone: string) {
   const mkUTC = ({ y, m, d }: { y: number; m: number; d: number }) =>
     Date.UTC(y, m - 1, d, 0, 0, 0, 0);
 
-  // Corrige en timezone: on formate en tz et on lit le jour/mois/année
-  const fmt = new Intl.DateTimeFormat("fr-FR", {
-    timeZone,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
-
-  const parseInTz = (d: Date) => {
-    const [{ value: jour }, , { value: mois }, , { value: an }] = fmt.formatToParts(d);
-    return { y: Number(an), m: Number(mois), d: Number(jour) };
-  };
-
-  const nowParts = parts(dateISO);
-  const startParts = parts(sinceISO);
-
-  // On retransforme en UTC « minuit tz » pour diff de jours propre
-  const nowUTC = mkUTC(nowParts);
-  const startUTC = mkUTC(startParts);
-
+  const nowUTC = mkUTC(parts(dateISO));
+  const startUTC = mkUTC(parts(sinceISO));
   return Math.floor((nowUTC - startUTC) / 86400000);
 }
 
@@ -84,9 +70,9 @@ function localYMD(timeZone: string, date = new Date()) {
     day: "2-digit",
   });
   const parts = fmt.formatToParts(date);
-  const y = parts.find((p) => p.type === "year")!.value;
-  const m = parts.find((p) => p.type === "month")!.value;
-  const d = parts.find((p) => p.type === "day")!.value;
+  const y = parts.find((p) => p.type === "year")?.value ?? "1970";
+  const m = parts.find((p) => p.type === "month")?.value ?? "01";
+  const d = parts.find((p) => p.type === "day")?.value ?? "01";
   return `${y}-${m}-${d}`;
 }
 
@@ -103,31 +89,27 @@ function msUntilNext0001(timeZone: string) {
     hour12: false,
   });
 
-  // composons le prochain 00:01 local
-  const parts = fmt.formatToParts(now).reduce<Record<string, string>>((acc, p) => {
-    if (p.type !== "literal") acc[p.type] = p.value;
-    return acc;
-  }, {});
+  const parts = fmt
+    .formatToParts(now)
+    .reduce<Record<string, string>>((acc, p) => {
+      if (p.type !== "literal") acc[p.type] = p.value;
+      return acc;
+    }, {});
   const y = Number(parts.year);
   const m = Number(parts.month);
   const d = Number(parts.day);
   const h = Number(parts.hour);
   const min = Number(parts.minute);
 
-  // si on est avant 00:01 → aujourd’hui 00:01, sinon → demain 00:01
-  const target = new Date(now);
-  target.setSeconds(0, 0);
-  // Remettre l'heure locale courante dans ce fuseau n'est pas trivial sans Temporal,
-  // on contourne: on crée une date locale par incrément
   const local = new Date(y, m - 1, d, h, min, 0, 0);
   const goal = new Date(local);
-  if (h < 0 || (h === 0 && min < 1)) {
-    goal.setHours(0, 1, 0, 0); // aujourd'hui 00:01
+  if (h === 0 && min < 1) {
+    goal.setHours(0, 1, 0, 0); // aujourd’hui 00:01
   } else {
     goal.setDate(goal.getDate() + 1);
     goal.setHours(0, 1, 0, 0); // demain 00:01
   }
-  return goal.getTime() - local.getTime();
+  return Math.max(1, goal.getTime() - local.getTime());
 }
 
 export default function ReferralCTA({
@@ -136,21 +118,18 @@ export default function ReferralCTA({
   fallbackCode = "STAR-B6BC-635Q",
   targetBlank = true,
   modalTitle = "Code de Parrainage - Referral Code",
-  modalContent,
+  modalContent = <ReferralInfoContent />, // ← défaut = nouveau composant
   className = "",
-  rotationStartISO = "2025-01-01",    // point zéro de la rotation (J0 = 1er code)
+  rotationStartISO = "2025-01-01", // point zéro de la rotation (J0 = 1er code)
   timeZone = "Europe/Paris",
 }: Props) {
   const [code, setCode] = useState<string>(fallbackCode);
-  const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState<null | "code" | "link">(null);
   const [list, setList] = useState<string[]>([]); // liste triée, active, normalisée
-
-  const dialogTitleId = useId();
-  const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const firstFocusableRef = useRef<HTMLButtonElement | null>(null);
-  const lastFocusableRef = useRef<HTMLButtonElement | null>(null);
+  const [open, setOpen] = useState(false); // ← modal
   const timerRef = useRef<number | null>(null);
+  const dialogTitleId = useId();
+  const dialogDescId = useId();
 
   // Charge referrals.json et normalise
   useEffect(() => {
@@ -170,7 +149,7 @@ export default function ReferralCTA({
         } else if (Array.isArray(raw?.members)) {
           // compat members.json
           const converted: Referral[] = raw.members
-            .filter((m: Member) => m?.referralCode && m?.referralCode.trim())
+            .filter((m: Member) => m?.referralCode?.trim())
             .map((m: Member, idx: number) => ({
               id: idx + 1,
               owner: m.name,
@@ -182,7 +161,7 @@ export default function ReferralCTA({
 
         // filtre actifs + normalise + ordre stable
         const activeCodes = items
-          .filter((r) => r?.code && r.active !== false)
+          .filter((r) => (r?.code ?? "").trim() && r.active !== false)
           .sort((a, b) => {
             const aid = a.id ?? Number.MAX_SAFE_INTEGER;
             const bid = b.id ?? Number.MAX_SAFE_INTEGER;
@@ -191,7 +170,7 @@ export default function ReferralCTA({
             if (ao !== 0) return ao;
             return (a.code ?? "").localeCompare(b.code ?? "");
           })
-          .map((r) => normalizeReferral(r.code!));
+          .map((r) => normalizeReferral(r.code ?? ""));
 
         if (!cancelled) {
           setList(activeCodes);
@@ -206,13 +185,17 @@ export default function ReferralCTA({
   }, [membersUrl]);
 
   // Calcule le code courant en fonction du jour local (Europe/Paris) et de la rotation
-  const computeCodeForToday = (codes: string[]) => {
-    if (!codes.length) return fallbackCode;
-    const today = localYMD(timeZone);
-    const n = daysSince(today, rotationStartISO, timeZone);
-    const idx = ((n % codes.length) + codes.length) % codes.length; // modulo safe
-    return codes[idx];
-  };
+  const computeCodeForToday = useCallback(
+    (codes: string[]) => {
+      const safeFallback = normalizeReferral(fallbackCode);
+      if (!codes.length) return safeFallback;
+      const today = localYMD(timeZone);
+      const n = daysSince(today, rotationStartISO);
+      const idx = ((n % codes.length) + codes.length) % codes.length; // modulo safe
+      return codes[idx] ?? safeFallback;
+    },
+    [rotationStartISO, timeZone, fallbackCode],
+  );
 
   // Applique immédiatement et programme le prochain switch à 00:01
   useEffect(() => {
@@ -221,9 +204,9 @@ export default function ReferralCTA({
       window.clearTimeout(timerRef.current);
       timerRef.current = null;
     }
-    // si pas de liste → fallback
+    // si pas de liste → fallback immédiat
     if (!list.length) {
-      setCode(fallbackCode);
+      setCode(normalizeReferral(fallbackCode));
       return;
     }
     // applique maintenant
@@ -235,7 +218,7 @@ export default function ReferralCTA({
       setCode(computeCodeForToday(list));
       // replanifie dans ~24h
       timerRef.current = window.setTimeout(tick, 24 * 60 * 60 * 1000);
-    }, Math.max(1, ms)); // garde >=1ms
+    }, ms);
 
     return () => {
       if (timerRef.current) {
@@ -243,14 +226,40 @@ export default function ReferralCTA({
         timerRef.current = null;
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [list, rotationStartISO, timeZone, fallbackCode]);
+  }, [list, timeZone, fallbackCode, computeCodeForToday]);
+
+  // Fermer la modale avec Echap
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // lock le scroll du body quand la modale est ouverte
+  useEffect(() => {
+    if (!open) return;
+    const { style } = document.documentElement;
+    const prev = style.overflow;
+    style.overflow = "hidden";
+    return () => {
+      style.overflow = prev;
+    };
+  }, [open]);
 
   const rsiLink = useMemo(() => buildRsiLink(code), [code]);
 
-  // ----------- (le reste de ton rendu/UX est inchangé) -----------
-  // ... (pour la brièveté, réutilise ton JSX existant : boutons, modale, etc.)
-  // ----------------------------------------------------------------
+  const copy = async (what: "code" | "link") => {
+    try {
+      await navigator.clipboard.writeText(what === "code" ? code : rsiLink);
+      setCopied(what);
+      window.setTimeout(() => setCopied(null), 1500);
+    } catch {
+      // ignore
+    }
+  };
 
   return (
     <div className={`inline-flex flex-col gap-3 ${className}`}>
@@ -259,7 +268,9 @@ export default function ReferralCTA({
           href={rsiLink}
           target={targetBlank ? "_blank" : undefined}
           rel={targetBlank ? "noopener noreferrer" : undefined}
-          aria-label={`Créer votre compte Star Citizen avec le code ${code}${targetBlank ? " (nouvel onglet)" : ""}`}
+          aria-label={`${label} avec le code ${code}${
+            targetBlank ? " (nouvel onglet)" : ""
+          }`}
           title="Créer votre compte avec ce code"
           className="group inline-flex items-center rounded-lg px-2 py-1.5 hover:bg-nms-gold hover:text-nms-dark transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nms-gold"
         >
@@ -269,11 +280,7 @@ export default function ReferralCTA({
         <button
           type="button"
           className="inline-grid h-8 w-8 place-items-center rounded-md border border-white/10 hover:bg-nms-gold hover:text-nms-dark transition"
-          onClick={async () => {
-            await navigator.clipboard.writeText(code);
-            setCopied("code");
-            setTimeout(() => setCopied(null), 1500);
-          }}
+          onClick={() => copy("code")}
           title="Copier le code"
           aria-label="Copier le code de parrainage"
         >
@@ -283,16 +290,28 @@ export default function ReferralCTA({
         <button
           type="button"
           className="inline-grid h-8 w-8 place-items-center rounded-md border border-white/10 hover:bg-nms-gold hover:text-nms-dark transition"
-          onClick={async () => {
-            await navigator.clipboard.writeText(rsiLink);
-            setCopied("link");
-            setTimeout(() => setCopied(null), 1500);
-          }}
+          onClick={() => copy("link")}
           title="Copier le lien"
           aria-label="Copier le lien d’inscription RSI"
         >
           <LinkIcon className="h-4 w-4" aria-hidden />
         </button>
+
+        {/* Bouton d'ouverture de la modale d'explication */}
+        {modalContent && (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="ml-1 inline-flex items-center gap-1 rounded-md border border-white/10 px-2 py-1 text-xs hover:bg-white/10 transition"
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            aria-controls="referral-info-dialog"
+            title="Plus d'informations"
+          >
+            <Info className="h-4 w-4" aria-hidden />
+            <span>Infos</span>
+          </button>
+        )}
 
         {copied && (
           <span className="ml-1 text-xs opacity-80">
@@ -301,7 +320,71 @@ export default function ReferralCTA({
         )}
       </div>
 
-      {/* Tu peux remettre ici la notice + la modale identiques à ta version */}
+      {/* MODALE */}
+      {modalContent && open && (
+        <div
+          id="referral-info-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={dialogTitleId}
+          aria-describedby={dialogDescId}
+          className="fixed inset-0 z-50 bg-black/60 p-4 sm:p-6"
+          onClick={() => setOpen(false)} // close on backdrop
+          onKeyDown={(e) => {
+            // fermer au clavier si l'événement vient du backdrop lui-même
+            if (
+              e.currentTarget === e.target &&
+              (e.key === "Enter" || e.key === " ")
+            ) {
+              e.preventDefault();
+              setOpen(false);
+            }
+          }}
+        >
+          <div
+            role="document"
+            tabIndex={-1}
+            className="mx-auto w-full max-w-lg max-h-[85dvh] overflow-y-auto overscroll-contain rounded-2xl border border-white/10 bg-background/95 p-4 shadow-xl backdrop-blur pb-[env(safe-area-inset-bottom)]"
+            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            onKeyDown={(e) => {
+              // empêcher que 'Espace/Entrée' à l'intérieur fasse remonter jusqu'au backdrop
+              if (e.key === "Enter" || e.key === " ") {
+                e.stopPropagation();
+              }
+            }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <h3 id={dialogTitleId} className="text-lg font-semibold">
+                {modalTitle}
+              </h3>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="inline-grid h-8 w-8 place-items-center rounded-md border border-white/10 hover:bg-white/10 transition"
+                aria-label="Fermer la fenêtre"
+                title="Fermer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* zone scrollable */}
+            <div id={dialogDescId} className="mt-3 text-sm opacity-80">
+              {modalContent}
+            </div>
+
+            <div className="mt-4 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="rounded-md border border-white/10 px-3 py-1.5 text-sm hover:bg-white/10 transition"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

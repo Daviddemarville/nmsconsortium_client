@@ -7,12 +7,48 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 // Positions autour du logo central
 const HOTSPOTS = [
-  { label: "ECLIPSE", href: "/corpos/eclipse", top: "10%", left: "50%", logo: "/images/corpos/eclipse.png" }, // N
-  { label: "PULSE",   href: "/corpos/pulse",   top: "25%", left: "90%", logo: "/images/corpos/pulse.png"   }, // NE
-  { label: "NASA",    href: "/corpos/nasa",    top: "66%", left: "90%", logo: "/images/corpos/nasa.png"    }, // SE
-  { label: "CORE",    href: "/corpos/core",    top: "85%", left: "50%", logo: "/images/corpos/core.png"    }, // S
-  { label: "RTT",     href: "/corpos/rtt",     top: "66%", left: "13%", logo: "/images/corpos/rtt.png"     }, // SW
-  { label: "NSF",     href: "/corpos/nsf",     top: "25%", left: "13%", logo: "/images/corpos/nsf.png"     }, // NW
+  {
+    label: "ECLIPSE",
+    href: "/corpos/eclipse",
+    top: "10%",
+    left: "50%",
+    logo: "/images/corpos/eclipse.png",
+  }, // N
+  {
+    label: "PULSE",
+    href: "/corpos/pulse",
+    top: "25%",
+    left: "90%",
+    logo: "/images/corpos/pulse.png",
+  }, // NE
+  {
+    label: "NASA",
+    href: "/corpos/nasa",
+    top: "66%",
+    left: "90%",
+    logo: "/images/corpos/nasa.png",
+  }, // SE
+  {
+    label: "CORE",
+    href: "/corpos/core",
+    top: "85%",
+    left: "50%",
+    logo: "/images/corpos/core.png",
+  }, // S
+  {
+    label: "RTT",
+    href: "/corpos/rtt",
+    top: "66%",
+    left: "13%",
+    logo: "/images/corpos/rtt.png",
+  }, // SW
+  {
+    label: "NSF",
+    href: "/corpos/nsf",
+    top: "25%",
+    left: "13%",
+    logo: "/images/corpos/nsf.png",
+  }, // NW
 ] as const;
 
 export default function Hero() {
@@ -60,7 +96,9 @@ export default function Hero() {
         return;
       }
 
-      const img = target.querySelector("img, picture, [data-img]") as HTMLElement | null;
+      const img = target.querySelector(
+        "img, picture, [data-img]",
+      ) as HTMLElement | null;
       const srcEl = img ?? target;
 
       const r = srcEl.getBoundingClientRect();
@@ -91,10 +129,10 @@ export default function Hero() {
           clone.remove();
           router.push(href);
         },
-        { once: true }
+        { once: true },
       );
     },
-    [router]
+    [router],
   );
 
   // Fin d’anim du logo central → route /consortium
@@ -175,7 +213,7 @@ export default function Hero() {
                 />
               </Link>
             ))}
-        </div>        
+        </div>
       </div>
     </section>
   );

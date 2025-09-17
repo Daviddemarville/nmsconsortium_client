@@ -36,8 +36,8 @@ type Member = {
 };
 
 type Props = {
-  rolesUrl?: string;   // default: /data/roles.json
-  unitsUrl?: string;   // default: /data/units.json
+  rolesUrl?: string; // default: /data/roles.json
+  unitsUrl?: string; // default: /data/units.json
   membersUrl?: string; // default: /data/members.json
   /** Afficher uniquement les membres opt-in */
   optInOnly?: boolean;
@@ -78,15 +78,22 @@ export default function MembersList({
         if (!rRes.ok || !uRes.ok || !mRes.ok) {
           throw new Error("Impossible de charger les données JSON.");
         }
-        const [r, u, m] = await Promise.all([rRes.json(), uRes.json(), mRes.json()]);
+        const [r, u, m] = await Promise.all([
+          rRes.json(),
+          uRes.json(),
+          mRes.json(),
+        ]);
         if (!cancelled) {
           setRoles(r ?? []);
           setUnits(u ?? []);
           setMembers(m ?? []);
           setErr(null);
         }
-      } catch (e: any) {
-        if (!cancelled) setErr(e?.message ?? "Erreur de chargement");
+      } catch (e: unknown) {
+        if (!cancelled) {
+          const message = e instanceof Error ? e.message : String(e);
+          setErr(message);
+        }
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -98,13 +105,17 @@ export default function MembersList({
 
   const roleById = useMemo(() => {
     const map = new Map<number, Role>();
-    roles.forEach((r) => map.set(r.id, r));
+    roles.forEach((r) => {
+      map.set(r.id, r);
+    });
     return map;
   }, [roles]);
 
   const unitById = useMemo(() => {
     const map = new Map<number, Unit>();
-    units.forEach((u) => map.set(u.id, u));
+    units.forEach((u) => {
+      map.set(u.id, u);
+    });
     return map;
   }, [units]);
 
@@ -113,12 +124,16 @@ export default function MembersList({
 
     // filtrage par unité
     if (unitFilter !== "") {
-      ms = ms.filter((m) => m.assignments?.some((a) => a.unit_id === unitFilter));
+      ms = ms.filter((m) =>
+        m.assignments?.some((a) => a.unit_id === unitFilter),
+      );
     }
 
     // filtrage par rôle
     if (roleFilter !== "") {
-      ms = ms.filter((m) => m.assignments?.some((a) => a.role_id === roleFilter));
+      ms = ms.filter((m) =>
+        m.assignments?.some((a) => a.role_id === roleFilter),
+      );
     }
 
     // recherche plein texte (pseudo, bio, discord)
@@ -146,7 +161,10 @@ export default function MembersList({
         const minLevel = rs.length ? Math.min(...rs.map((r) => r.level)) : 999;
         return { m, minLevel };
       })
-      .sort((a, b) => a.minLevel - b.minLevel || a.m.pseudo.localeCompare(b.m.pseudo))
+      .sort(
+        (a, b) =>
+          a.minLevel - b.minLevel || a.m.pseudo.localeCompare(b.m.pseudo),
+      )
       .map((x) => x.m);
 
     return ms;
@@ -164,8 +182,11 @@ export default function MembersList({
       {withControls && (
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="flex-1">
-            <label className="text-xs opacity-70">Recherche</label>
+            <label htmlFor="filterQuery" className="text-xs opacity-70">
+              Recherche
+            </label>
             <input
+              id="filterQuery"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               className="w-full rounded-lg border border-white/10 bg-background/70 px-3 py-2"
@@ -173,8 +194,11 @@ export default function MembersList({
             />
           </div>
           <div>
-            <label className="text-xs opacity-70">Unité</label>
+            <label htmlFor="filterUnit" className="text-xs opacity-70">
+              Unité
+            </label>
             <select
+              id="filterUnit"
               className="w-full rounded-lg border border-white/10 bg-background/70 px-3 py-2"
               value={unitFilter}
               onChange={(e) =>
@@ -190,8 +214,11 @@ export default function MembersList({
             </select>
           </div>
           <div>
-            <label className="text-xs opacity-70">Rôle</label>
+            <label htmlFor="filterRole" className="text-xs opacity-70">
+              Rôle
+            </label>
             <select
+              id="filterRole"
               className="w-full rounded-lg border border-white/10 bg-background/70 px-3 py-2"
               value={roleFilter}
               onChange={(e) =>
@@ -201,7 +228,9 @@ export default function MembersList({
               <option value="">Tous</option>
               {roles
                 .slice()
-                .sort((a, b) => a.level - b.level || a.label.localeCompare(b.label))
+                .sort(
+                  (a, b) => a.level - b.level || a.label.localeCompare(b.label),
+                )
                 .map((r) => (
                   <option key={r.id} value={r.id}>
                     {r.label}
@@ -213,14 +242,18 @@ export default function MembersList({
       )}
 
       {filtered.length === 0 ? (
-        <p className="text-sm opacity-70">Aucun membre ne correspond aux filtres.</p>
+        <p className="text-sm opacity-70">
+          Aucun membre ne correspond aux filtres.
+        </p>
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((m) => {
             const rolesAll = (m.assignments ?? [])
               .map((a) => roleById.get(a.role_id))
               .filter(Boolean) as Role[];
-            rolesAll.sort((a, b) => a.level - b.level || a.label.localeCompare(b.label));
+            rolesAll.sort(
+              (a, b) => a.level - b.level || a.label.localeCompare(b.label),
+            );
 
             return (
               <li
@@ -263,9 +296,9 @@ export default function MembersList({
                 {/* Gameplay */}
                 {!!m.gameplay?.length && (
                   <div className="mt-3 flex flex-wrap gap-1.5">
-                    {m.gameplay.map((g, i) => (
+                    {m.gameplay.map((g) => (
                       <span
-                        key={i}
+                        key={`${m.id}-${g}`}
                         className="rounded-md border border-white/10 px-1.5 py-0.5 text-xs opacity-80"
                       >
                         {g}

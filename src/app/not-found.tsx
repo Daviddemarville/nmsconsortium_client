@@ -24,19 +24,20 @@ export default function NotFound() {
 
         <div className="mt-6 flex justify-end">
           <button
+            type="button"
             onClick={() => router.push("/")}
             className="px-6 py-1.5 border border-[#2563eb] text-[#60a5fa] hover:bg-[#1e3a8a] hover:text-white transition font-semibold"
           >
             OK
           </button>
         </div>
-
       </div>
-        {/* Clin d’œil humoristique */}
-        <p className="mt-16 text-center text-sm text-gray-400 italic">
-          Non, on déconne 😉 c’est juste une erreur 404.<br />
-          La page que tu cherches n’existe pas (ou plus)!
-        </p>
+      {/* Clin d’œil humoristique */}
+      <p className="mt-16 text-center text-sm text-gray-400 italic">
+        Non, on déconne 😉 c’est juste une erreur 404.
+        <br />
+        La page que tu cherches n’existe pas (ou plus)!
+      </p>
     </main>
   );
 }

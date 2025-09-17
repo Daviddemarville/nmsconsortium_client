@@ -2,35 +2,76 @@
   {
     "id": 1,
     "pseudo": "Dems_DVT",
-    "discord": "Dems_DVT#1234",
-    "gameplay": ["Exploration", "Logistique"],
-    "bio": "Membre du Global Council depuis 2952.",
+    "discord": "[NMS]Dems_DVT",
+    "gameplay": ["Trading", "Minage", "Médical"],
+    "bio": "Venu d'une famille décimé par une attaque Vandull, recueilli par de Banu avec qui il vécu jusqu'a son retour dans l'UEE. En arrivant a la NMS, je prend vite du gallon et je deviens membre du GC, directeur de la publication du Nemesis Global News, medecin chez de l'AIOn et fondateur de la RTT.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 2, "unit_id": 1, "primary": true,  "since": "2952-01-01" },
-      { "role_id": 3, "unit_id": 2, "primary": false, "since": "2953-06-01" }
+      { "role_id": 2, "unit_id": 1, "primary": true },
+      { "role_id": 3, "unit_id": 2, "primary": false },
+      { "role_id": 4, "unit_id": 4, "primary": false },
+      { "role_id": 3, "unit_id": 6, "primary": false }
     ]
   },
   {
     "id": 2,
-    "pseudo": "Amiral",
-    "discord": "Amiral#5678",
-    "gameplay": ["Combat", "Diplomatie"],
-    "bio": "Fondateur historique de la NMS.",
+    "pseudo": "Artémis GURNEY",
+    "discord": "Amiral Artémis GURNEY",
+    "gameplay": ["Minage", "Hauling", "Refueling"],
+    "bio": "Né sur Arémis, système Vega, bordure Vanduuls, fils de Martha ZILON Politicienne, et Thomas GURNEY général de l'UEE, Gurn fait de brillantes études à l'académie militaire. il gravit tous les échelons jusqu'au grade d'Amiral, puis se lance dans une carrière politique faite d'intrigues et de pouvoir,, jusqu'à sa retraite d'Amiral où il crée alors Nemesis logistics qui deviendra plus tard Nemesis Consortium, formée de multiples micro entreprises dans tous les secteurs d'activité.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 1, "unit_id": 1, "primary": true }
+      { "role_id": 1, "unit_id": 1, "primary": true },
+      { "role_id": 2, "unit_id": 1, "primary": false },
+      { "role_id": 4, "unit_id": 5, "primary": false }
     ]
   },
   {
     "id": 3,
-    "pseudo": "Nova",
-    "discord": "Nova#9999",
-    "gameplay": ["Commerce", "Industrie"],
-    "bio": "Actif sur la logistique.",
+    "pseudo": "Talsedrin",
+    "discord": "",
+    "gameplay": ["Combat", "Industrie", "Commerce"],
+    "bio": "Joueur dans la trentaine, tant pilote d'escorte (niveau bleusaille) que vieux briscard du minage/salvage.",
+    "opt_in": true,
+    "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
+  },
+  {
+    "id": 4,
+    "pseudo": "Astral Orison",
+    "discord": "Astral Orison",
+    "gameplay": ["Combat FPS", "Industrie", "Transport XL/XXL de minerais"],
+    "bio": "Salut j'ai toujours étais farmeur, allez cherche de quoi fournir les construction et équipement c'est mon dada. Ensuite je ramène tout ca a bon port pour prendre mon fusil puis allé tapé du pirate.",
+    "opt_in": true,
+    "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
+  },
+  {
+    "id": 5,
+    "pseudo": "mavrick21206",
+    "discord": "mavrick21206",
+    "gameplay": ["Exploration", "Logistique", "Industrie"],
+    "bio": "",
+    "opt_in": true,
+    "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
+  },
+  {
+    "id": 6,
+    "pseudo": "Craysus",
+    "discord": "",
+    "gameplay": ["Argent", "Argent", "Argent"],
+    "bio": "Responsable de la Nemesis Intergalactic Business Bank (NI2B), j'aime l'argent sous toute ses formes. Je traque chaque début de mois vos cotisations, mais je me noie dans l'alcool dès que je doit dépenser le moindre crédit.",
+    "opt_in": true,
+    "assignments": [{ "role_id": 3, "unit_id": 3, "primary": true }]
+  },
+  {
+    "id": 7,
+    "pseudo": "Superbigou",
+    "discord": "Superbigou",
+    "gameplay": ["Industrie" ],
+    "bio": "Superbigou est le fondateur et dirigeant de la Happy Scrap Collectons (HSC), créée en 2954. À la tête de cette compagnie de salvage, il met son expertise et sa rigueur au service de la récupération et de la valorisation des épaves spatiales.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 5, "unit_id": 4, "primary": true }
+      { "role_id": 3, "unit_id": 7, "primary": false },
+      { "role_id": 2, "unit_id": 1, "primary": true }
     ]
   }
 ]

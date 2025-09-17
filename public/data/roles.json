@@ -1,8 +1,50 @@
 [
-  { "id": 1, "key": "founder",        "label": "Fondateur",        "level": 0, "parent_role_id": null, "color": "#f1c40f" },
-  { "id": 2, "key": "global_council", "label": "Global Council",   "level": 1, "parent_role_id": 1,    "color": "#e67e22" },
-  { "id": 3, "key": "director",       "label": "Directeur",        "level": 2, "parent_role_id": 2,    "color": "#9b59b6" },
-  { "id": 4, "key": "officer",        "label": "Officier",         "level": 3, "parent_role_id": 3,    "color": "#3498db" },
-  { "id": 5, "key": "member",         "label": "Membre",           "level": 4, "parent_role_id": 4,    "color": "#2ecc71" },
-  { "id": 6, "key": "recruit",        "label": "Recrue",           "level": 5, "parent_role_id": 5,    "color": "#95a5a6" }
+  {
+    "id": 1,
+    "key": "founder",
+    "label": "Fondateur",
+    "level": 0,
+    "parent_role_id": null,
+    "color": "#f1c40f"
+  },
+  {
+    "id": 2,
+    "key": "global_council",
+    "label": "Global Council",
+    "level": 1,
+    "parent_role_id": 1,
+    "color": "#e67e22"
+  },
+  {
+    "id": 3,
+    "key": "director",
+    "label": "Directeur",
+    "level": 2,
+    "parent_role_id": 2,
+    "color": "#9b59b6"
+  },
+  {
+    "id": 4,
+    "key": "officer",
+    "label": "Officier",
+    "level": 3,
+    "parent_role_id": 3,
+    "color": "#3498db"
+  },
+  {
+    "id": 5,
+    "key": "member",
+    "label": "Membre",
+    "level": 4,
+    "parent_role_id": 4,
+    "color": "#2ecc71"
+  },
+  {
+    "id": 6,
+    "key": "recruit",
+    "label": "Recrue",
+    "level": 5,
+    "parent_role_id": 5,
+    "color": "#95a5a6"
+  }
 ]

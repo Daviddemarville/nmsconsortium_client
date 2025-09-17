@@ -1,12 +1,17 @@
 [
-  { "id": 1, "key": "consortium", "label": "NMS Consortium",      "parent_id": null },
-  { "id": 2, "key": "ngn",        "label": "Nemesis Global News", "parent_id": 1 },
-  { "id": 3, "key": "ni2b",       "label": "NI2B",                "parent_id": 1 },
-  { "id": 4, "key": "aion",       "label": "AION",                "parent_id": 1 },
-  { "id": 5, "key": "nsf",        "label": "NSF",                 "parent_id": 1 },
-  { "id": 6, "key": "rtt",        "label": "RTT",                 "parent_id": 1 },
-  { "id": 7, "key": "core",       "label": "CORE",                "parent_id": 1 },
-  { "id": 8, "key": "nasa",       "label": "NASA",                "parent_id": 1 },
-  { "id": 9, "key": "pulse",      "label": "PULSE",               "parent_id": 1 },
-  { "id":10, "key": "eclipse",    "label": "ECLIPSE",             "parent_id": 1 }
+  {
+    "id": 1,
+    "key": "consortium",
+    "label": "NMS Consortium",
+    "parent_id": null
+  },
+  { "id": 2, "key": "ngn", "label": "Nemesis Global News", "parent_id": 1 },
+  { "id": 3, "key": "ni2b", "label": "NI2B", "parent_id": 1 },
+  { "id": 4, "key": "aion", "label": "AION", "parent_id": 1 },
+  { "id": 5, "key": "nsf", "label": "NSF", "parent_id": 1 },
+  { "id": 6, "key": "rtt", "label": "RTT", "parent_id": 1 },
+  { "id": 7, "key": "core", "label": "CORE", "parent_id": 1 },
+  { "id": 8, "key": "nasa", "label": "NASA", "parent_id": 1 },
+  { "id": 9, "key": "pulse", "label": "PULSE", "parent_id": 1 },
+  { "id": 10, "key": "eclipse", "label": "ECLIPSE", "parent_id": 1 }
 ]
