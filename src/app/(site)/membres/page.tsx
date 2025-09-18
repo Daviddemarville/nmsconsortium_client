@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import IntegrationSection from "@/components/sections/IntegrationSection";
 import MembersList from "@/components/sections/MembersList";
 
@@ -12,6 +12,7 @@ export default function MembresPage() {
     <main className="container mx-auto px-4 py-8">
       {/* Section membres */}
       <section
+        id="membres"
         aria-label="Membres du consortium Némésis"
         className="bg-black/30 p-6 rounded-lg"
       >
@@ -20,13 +21,22 @@ export default function MembresPage() {
         <p className="text-sm opacity-70">
           Résultats filtrés : {counts.filtered}
         </p>
-        <MembersList
-          className="mt-2"
-          withControls
-          pageSize={6}
-          onCounts={setCounts} // ← récupère { total, filtered }
-          showFilteredCountInControls={false} // ← masque "X résultat(s)" à droite si tu préfères
-        />
+        {/* ⬇️ Important: Suspense autour du composant qui utilise useSearchParams */}
+        <Suspense
+          fallback={
+            <div className="mt-4 rounded-lg bg-white/5 p-4 text-sm opacity-70">
+              Chargement des membres…
+            </div>
+          }
+        >
+          <MembersList
+            className="mt-2"
+            withControls
+            pageSize={6}
+            onCounts={setCounts} // ← récupère { total, filtered }
+            showFilteredCountInControls={false} // ← masque "X résultat(s)" à droite si tu préfères
+          />
+        </Suspense>
       </section>
 
       {/* Parcours d’intégration */}
