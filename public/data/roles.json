@@ -9,8 +9,8 @@
   },
   {
     "id": 2,
-    "key": "global_council",
-    "label": "Global Council",
+    "key": "conseiller",
+    "label": "Conseiller",
     "level": 1,
     "parent_role_id": 1,
     "color": "#e67e22"
@@ -24,27 +24,107 @@
     "color": "#9b59b6"
   },
   {
+    "id": 14,
+    "key": "amiral",
+    "label": "Amiral",
+    "level": 2,
+    "parent_role_id": 2,
+    "color": "#0b2242"
+  },
+  {
     "id": 4,
-    "key": "officer",
-    "label": "Officier",
+    "key": "medecin_chef",
+    "label": "Médecin Chef",
+    "level": 2,
+    "parent_role_id": 2,
+    "color": "#16a085"
+  },
+  {
+    "id": 12,
+    "key": "medecin",
+    "label": "Médecin",
+    "level": 4,
+    "parent_role_id": 4,
+    "color": "#1abc9c"
+  },
+  {
+    "id": 13,
+    "key": "interne",
+    "label": "Interne",
+    "level": 5,
+    "parent_role_id": 12,
+    "color": "#48c9b0"
+  },
+  {
+    "id": 7,
+    "key": "colonel",
+    "label": "Colonel",
     "level": 3,
-    "parent_role_id": 3,
+    "parent_role_id": 14,
+    "color": "#1f3a93"
+  },
+  {
+    "id": 8,
+    "key": "capitaine",
+    "label": "Capitaine",
+    "level": 4,
+    "parent_role_id": 7,
+    "color": "#2c82c9"
+  },
+  {
+    "id": 9,
+    "key": "lieutenant",
+    "label": "Lieutenant",
+    "level": 5,
+    "parent_role_id": 8,
     "color": "#3498db"
+  },
+  {
+    "id": 10,
+    "key": "sergent",
+    "label": "Sergent",
+    "level": 6,
+    "parent_role_id": 9,
+    "color": "#5dade2"
+  },
+  {
+    "id": 11,
+    "key": "reserve",
+    "label": "Troupe de réserve",
+    "level": 7,
+    "parent_role_id": 10,
+    "color": "#95a5a6"
   },
   {
     "id": 5,
     "key": "member",
     "label": "Membre",
-    "level": 4,
-    "parent_role_id": 4,
+    "level": 6,
+    "parent_role_id": 3,
     "color": "#2ecc71"
   },
   {
     "id": 6,
     "key": "recruit",
     "label": "Recrue",
-    "level": 5,
+    "level": 7,
     "parent_role_id": 5,
     "color": "#95a5a6"
+  },
+  {
+    "id": 15,
+    "key": "freelance",
+    "label": "Freelance",
+    "level": 3,
+    "parent_role_id": 3,
+    "color": "#7f8c8d"
+  },
+  {
+    "id": 16,
+    "key": "salarie",
+    "label": "Salarié",
+    "level": 3,
+    "parent_role_id": 3,
+    "color": "#27ae60"
   }
 ]

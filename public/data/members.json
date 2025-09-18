@@ -7,7 +7,7 @@
     "bio": "Venu d'une famille décimé par une attaque Vandull, recueilli par de Banu avec qui il vécu jusqu'a son retour dans l'UEE. En arrivant a la NMS, je prend vite du gallon et je deviens membre du GC, directeur de la publication du Nemesis Global News, medecin chez de l'AIOn et fondateur de la RTT.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 2, "unit_id": 1, "primary": true },
+      { "role_id": 2, "unit_id": 11, "primary": true },
       { "role_id": 3, "unit_id": 2, "primary": false },
       { "role_id": 4, "unit_id": 4, "primary": false },
       { "role_id": 3, "unit_id": 6, "primary": false }
@@ -22,8 +22,8 @@
     "opt_in": true,
     "assignments": [
       { "role_id": 1, "unit_id": 1, "primary": true },
-      { "role_id": 2, "unit_id": 1, "primary": false },
-      { "role_id": 4, "unit_id": 5, "primary": false }
+      { "role_id": 2, "unit_id": 11, "primary": false },
+      { "role_id": 14, "unit_id": 5, "primary": false }
     ]
   },
   {
@@ -66,12 +66,45 @@
     "id": 7,
     "pseudo": "Superbigou",
     "discord": "Superbigou",
-    "gameplay": ["Industrie" ],
+    "gameplay": ["Industrie"],
     "bio": "Superbigou est le fondateur et dirigeant de la Happy Scrap Collectons (HSC), créée en 2954. À la tête de cette compagnie de salvage, il met son expertise et sa rigueur au service de la récupération et de la valorisation des épaves spatiales.",
     "opt_in": true,
     "assignments": [
       { "role_id": 3, "unit_id": 7, "primary": false },
-      { "role_id": 2, "unit_id": 1, "primary": true }
+      { "role_id": 2, "unit_id": 11, "primary": true }
     ]
+  },
+  {
+    "id": 8,
+    "pseudo": "Mamie_Lapoudre",
+    "discord": "Mamie_Lapoudre",
+    "gameplay": ["Combat", "Logistique", "Ingénierie"],
+    "bio": "Bonjour, je me présente Mamie, nom de jeune fille Lapoudre. Ayant grandi dans des chambres à Dilithium et autres conduits thermiques, j'éprouve une forte connexion avec les vaisseaux et leurs composent, allant jusqu'à les humaniser. J'aimerai beaucoup intégrer la Guilde des Ingénieurs et ainsi permettre aux vaisseaux de la flotte Nemesis une pérennité dans le temps et l'espace.",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 8, "unit_id": 5, "primary": false },
+      { "role_id": 2, "unit_id": 11, "primary": true }
+    ]
+  },
+  {
+    "id": 9,
+    "pseudo": "junzu",
+    "discord": "junzu",
+    "gameplay": ["Exploration", "Combat", "Logistique"],
+    "bio": "Né sur MicroTech d’un père ouvrier de Hurston, il a juré de combattre l’injustice et l’esclavage moderne. Ancien militaire devenu mercenaire stratège, il dirige aujourd’hui sa propre flotte de soutien, bâtissant un empire privé au service de la liberté.",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 9, "unit_id": 5, "primary": false },
+      { "role_id": 5, "unit_id": 1, "primary": true }
+    ]
+  },
+  {
+    "id": 10,
+    "pseudo": "BASTIEN08",
+    "discord": "BASTIEN08",
+    "gameplay": ["Combat", "Salvage", "Commerce"],
+    "bio": "Joueur depuis environ 3 ans je suis axé sur l'industriel (salvage en premier choix et minage en second) mais aussi en transport et commerce. Bon tireur pour du combat j'aime me joindre à la corpo qui est très dynamique dans toutes les missions organisées.",
+    "opt_in": true,
+    "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
   }
 ]

@@ -11,7 +11,7 @@ type Corpo = {
 
 const CORPOS: Corpo[] = [
   { name: "NASA", slug: "nasa", logo: "/images/corpos/nasa.png" },
-  { name: "CORS", slug: "cors", logo: "/images/corpos/cors.png" },
+  { name: "CORS", slug: "cors", logo: "/images/corpos/core.png" },
   { name: "NSF", slug: "nsf", logo: "/images/corpos/nsf.png" },
   { name: "PULSE", slug: "pulse", logo: "/images/corpos/pulse.png" },
   { name: "RTT", slug: "rtt", logo: "/images/corpos/rtt.png" },
@@ -31,7 +31,7 @@ export default function CorpoLogoGrid({
             <Link
               href={`/corpos/${c.slug}`}
               className="
-                group block rounded-2xl border border-white/10 bg-background/70 backdrop-blur
+                group block rounded-2xl border border-white/10  backdrop-blur
                 p-4 text-center transition hover:border-nms-gold/60 hover:shadow-lg
               "
             >

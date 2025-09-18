@@ -13,5 +13,11 @@
   { "id": 7, "key": "core", "label": "CORE", "parent_id": 1 },
   { "id": 8, "key": "nasa", "label": "NASA", "parent_id": 1 },
   { "id": 9, "key": "pulse", "label": "PULSE", "parent_id": 1 },
-  { "id": 10, "key": "eclipse", "label": "ECLIPSE", "parent_id": 1 }
+  { "id": 10, "key": "eclipse", "label": "ECLIPSE", "parent_id": 1 },
+  {
+    "id": 11,
+    "key": "global-council",
+    "label": "Global Council",
+    "parent_id": 1
+  }
 ]

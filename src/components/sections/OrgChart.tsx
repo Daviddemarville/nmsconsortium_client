@@ -50,7 +50,7 @@ export default function OrgChart({
   rolesUrl = "/data/roles.json",
   unitsUrl = "/data/units.json",
   membersUrl = "/data/members.json",
-  unitId,
+  unitId: _unitId, // gardé pour compat, non utilisé dans l’ordre custom
   optInOnly = true,
   className = "",
 }: Props) {
@@ -114,34 +114,19 @@ export default function OrgChart({
     return map;
   }, [units]);
 
-  // Unités à afficher (une ou toutes)
+  // --- NOUVEL ORDRE D’UNITÉS ---
+  // 11 d’abord, puis toutes les autres par id croissant, en excluant 1
   const visibleUnits = useMemo(() => {
     if (!units.length) return [];
-    if (unitId) {
-      const u = units.find((x) => x.id === unitId);
-      return u ? [u] : [];
-    }
-    // Regrouper par hiérarchie simple: parent d’abord (parent_id=null), puis enfants
-    const roots = units.filter((u) => u.parent_id === null);
-    const children = units.filter((u) => u.parent_id !== null);
-    // ordre: root puis ses enfants (ordre simple)
-    const ordered: Unit[] = [];
-    roots.forEach((root) => {
-      ordered.push(root);
-      children
-        .filter((c) => c.parent_id === root.id)
-        .forEach((c) => {
-          ordered.push(c);
-        });
+    const list = units.filter((u) => u.id !== 1);
+    list.sort((a, b) => {
+      const ka = a.id === 11 ? 0 : a.id;
+      const kb = b.id === 11 ? 0 : b.id;
+      return ka - kb;
     });
-    // plus tout ce qui n’est pas relié (rare)
-    units
-      .filter((u) => !ordered.some((x) => x.id === u.id))
-      .forEach((u) => {
-        ordered.push(u);
-      });
-    return ordered;
-  }, [units, unitId]);
+    return list;
+  }, [units]);
+  // ------------------------------
 
   // Membres filtrés opt-in si demandé
   const baseMembers = useMemo(
@@ -214,18 +199,15 @@ export default function OrgChart({
                 >
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold">{m.pseudo}</h3>
-                    {m.discord && (
-                      <span className="text-xs opacity-70">{m.discord}</span>
-                    )}
                   </div>
 
                   {/* Badges de rôles (dans cette unité) */}
                   <div className="mt-2 flex flex-wrap gap-2">
                     {m.rolesInUnit
                       .sort((a, b) => a.level - b.level)
-                      .map((r) => (
+                      .map((r, i) => (
                         <span
-                          key={r.id}
+                          key={`role-${r.id}-${i}`}
                           title={`Niveau ${r.level}`}
                           className="inline-flex items-center rounded-full px-2 py-0.5 text-xs ring-1"
                           style={{
@@ -238,27 +220,6 @@ export default function OrgChart({
                         </span>
                       ))}
                   </div>
-
-                  {/* Gameplay */}
-                  {!!m.gameplay?.length && (
-                    <div className="mt-3 flex flex-wrap gap-1.5">
-                      {m.gameplay.map((g) => (
-                        <span
-                          key={`${m.id}-${g}`}
-                          className="rounded-md border border-white/10 px-1.5 py-0.5 text-xs opacity-80"
-                        >
-                          {g}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Bio */}
-                  {m.bio && (
-                    <p className="mt-3 text-sm opacity-80 line-clamp-3">
-                      {m.bio}
-                    </p>
-                  )}
                 </li>
               ))}
             </ul>
