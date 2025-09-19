@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script"; // ⬅️ AJOUT
 import type { ReactNode } from "react";
 import "./globals.css";
+import { Suspense } from "react";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import AnalyticsRouter from "@/components/sections/AnalyticsRouter";
@@ -66,7 +67,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <Header />
         <CookieBanner />
-        <AnalyticsRouter />
+        <Suspense fallback={null}>
+          <AnalyticsRouter />
+        </Suspense>
         <main className="w-full mx-auto max-w-6xl px-4 py-10 pb-[calc(4rem+env(safe-area-inset-bottom))]">
           {children}
         </main>
