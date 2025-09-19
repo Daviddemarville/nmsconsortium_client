@@ -19,5 +19,6 @@
     "key": "global-council",
     "label": "Global Council",
     "parent_id": 1
-  }
+  },
+  { "id": 12, "key": "diplomatie", "label": "Diplomatie", "parent_id": 1 }
 ]

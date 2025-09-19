@@ -126,5 +126,13 @@
     "level": 3,
     "parent_role_id": 3,
     "color": "#27ae60"
+  },
+  {
+    "id": 17,
+    "key": "Ambassadeur",
+    "label": "Ambassadeur",
+    "level": 3,
+    "parent_role_id": 2,
+    "color": "#00cec9"
   }
 ]

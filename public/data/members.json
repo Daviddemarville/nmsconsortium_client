@@ -4,7 +4,7 @@
     "pseudo": "Dems_DVT",
     "discord": "[NMS]Dems_DVT",
     "gameplay": ["Trading", "Minage", "Médical"],
-    "bio": "Venu d'une famille décimé par une attaque Vandull, recueilli par de Banu avec qui il vécu jusqu'a son retour dans l'UEE. En arrivant a la NMS, je prend vite du gallon et je deviens membre du GC, directeur de la publication du Nemesis Global News, medecin chez de l'AIOn et fondateur de la RTT.",
+    "bio": "Venu d'une famille décimée par une attaque Vanduul, recueilli par des Banu avec qui j’ai vécu jusqu’à mon retour dans l’UEE. À mon arrivée à la NMS, je prends vite du galon et deviens membre du GC, directeur de la publication du Nemesis Global News, médecin chez l’AION et fondateur de la RTT.",
     "opt_in": true,
     "assignments": [
       { "role_id": 2, "unit_id": 11, "primary": true },
@@ -18,7 +18,7 @@
     "pseudo": "Artémis GURNEY",
     "discord": "Amiral Artémis GURNEY",
     "gameplay": ["Minage", "Hauling", "Refueling"],
-    "bio": "Né sur Arémis, système Vega, bordure Vanduuls, fils de Martha ZILON Politicienne, et Thomas GURNEY général de l'UEE, Gurn fait de brillantes études à l'académie militaire. il gravit tous les échelons jusqu'au grade d'Amiral, puis se lance dans une carrière politique faite d'intrigues et de pouvoir,, jusqu'à sa retraite d'Amiral où il crée alors Nemesis logistics qui deviendra plus tard Nemesis Consortium, formée de multiples micro entreprises dans tous les secteurs d'activité.",
+    "bio": "Né sur Arémis, système Vega, en bordure Vanduul, fils de Martha ZILON, politicienne, et de Thomas GURNEY, général de l'UEE, Gurn fait de brillantes études à l'académie militaire. Il gravit tous les échelons jusqu'au grade d'Amiral, puis se lance dans une carrière politique faite d'intrigues et de pouvoir, jusqu'à sa retraite d'Amiral où il crée Nemesis Logistics, qui deviendra plus tard le Nemesis Consortium, formé de multiples micro-entreprises dans tous les secteurs d'activité.",
     "opt_in": true,
     "assignments": [
       { "role_id": 1, "unit_id": 1, "primary": true },
@@ -31,7 +31,7 @@
     "pseudo": "Talsedrin",
     "discord": "",
     "gameplay": ["Combat", "Industrie", "Commerce"],
-    "bio": "Joueur dans la trentaine, tant pilote d'escorte (niveau bleusaille) que vieux briscard du minage/salvage.",
+    "bio": "Joueur dans la trentaine, tant pilote d'escorte (niveau bleusaille) que vieux briscard du minage et du salvage.",
     "opt_in": true,
     "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
   },
@@ -39,8 +39,8 @@
     "id": 4,
     "pseudo": "Astral Orison",
     "discord": "Astral Orison",
-    "gameplay": ["Combat FPS", "Industrie", "Transport XL/XXL de minerais"],
-    "bio": "Salut j'ai toujours étais farmeur, allez cherche de quoi fournir les construction et équipement c'est mon dada. Ensuite je ramène tout ca a bon port pour prendre mon fusil puis allé tapé du pirate.",
+    "gameplay": ["Combat FPS", "Industrie", "Transport"],
+    "bio": "Salut, j'ai toujours été farmeur, aller chercher de quoi fournir les constructions et équipements, c'est mon dada. Ensuite je ramène tout ça à bon port pour prendre mon fusil puis aller taper du pirate.",
     "opt_in": true,
     "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
   },
@@ -57,8 +57,8 @@
     "id": 6,
     "pseudo": "Craysus",
     "discord": "",
-    "gameplay": ["Argent", "Argent", "Argent"],
-    "bio": "Responsable de la Nemesis Intergalactic Business Bank (NI2B), j'aime l'argent sous toute ses formes. Je traque chaque début de mois vos cotisations, mais je me noie dans l'alcool dès que je doit dépenser le moindre crédit.",
+    "gameplay": ["Argent", "AEUC", "Brouzouf"],
+    "bio": "Responsable de la Nemesis Intergalactic Business Bank (NI2B), j'aime l'argent sous toutes ses formes. Je traque chaque début de mois vos cotisations, mais je me noie dans l'alcool dès que je dois dépenser le moindre crédit.",
     "opt_in": true,
     "assignments": [{ "role_id": 3, "unit_id": 3, "primary": true }]
   },
@@ -79,7 +79,7 @@
     "pseudo": "Mamie_Lapoudre",
     "discord": "Mamie_Lapoudre",
     "gameplay": ["Combat", "Logistique", "Ingénierie"],
-    "bio": "Bonjour, je me présente Mamie, nom de jeune fille Lapoudre. Ayant grandi dans des chambres à Dilithium et autres conduits thermiques, j'éprouve une forte connexion avec les vaisseaux et leurs composent, allant jusqu'à les humaniser. J'aimerai beaucoup intégrer la Guilde des Ingénieurs et ainsi permettre aux vaisseaux de la flotte Nemesis une pérennité dans le temps et l'espace.",
+    "bio": "Bonjour, je me présente, Mamie, nom de jeune fille Lapoudre. Ayant grandi dans des chambres à Dilithium et autres conduits thermiques, j'éprouve une forte connexion avec les vaisseaux et leurs composants, allant jusqu'à les humaniser. J'aimerais beaucoup intégrer la Guilde des Ingénieurs et ainsi permettre aux vaisseaux de la flotte Nemesis une pérennité dans le temps.",
     "opt_in": true,
     "assignments": [
       { "role_id": 8, "unit_id": 5, "primary": false },
@@ -103,7 +103,49 @@
     "pseudo": "BASTIEN08",
     "discord": "BASTIEN08",
     "gameplay": ["Combat", "Salvage", "Commerce"],
-    "bio": "Joueur depuis environ 3 ans je suis axé sur l'industriel (salvage en premier choix et minage en second) mais aussi en transport et commerce. Bon tireur pour du combat j'aime me joindre à la corpo qui est très dynamique dans toutes les missions organisées.",
+    "bio": "Joueur depuis environ 3 ans, je suis axé sur l'industriel (salvage en premier choix et minage en second), mais aussi sur le transport et le commerce. Bon tireur en combat, j'aime me joindre à la corpo qui est très dynamique dans toutes les missions organisées.",
+    "opt_in": true,
+    "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
+  },
+  {
+    "id": 11,
+    "pseudo": "Malhaee",
+    "discord": "Malhaee",
+    "gameplay": ["Ingénierie", "Logistique"],
+    "bio": "Originaire de Levski dans le système Nyx, Malhae grandit dans un environnement où l’ingénierie était une nécessité vitale, apprenant très tôt à réparer et bricoler avec les moyens du bord. Quand la rébellion éclata à Nyx, il choisit l’exil et trouva refuge à Stanton, où il rejoignit la Némésis Consortium. Malhae y fonda la Guilde des Ingénieurs, un collectif dédié à la maintenance de la flotte, à la standardisation des modifications de vaisseaux et au partage des connaissances.",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 2, "unit_id": 11, "primary": true },
+      { "role_id": 3, "unit_id": 7, "primary": false }
+    ]
+  },
+  {
+    "id": 12,
+    "pseudo": "SilverAkiro",
+    "discord": "Ambassadeur SilverAkiro",
+    "gameplay": ["Combat"],
+    "bio": "",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 17, "unit_id": 12, "primary": true },
+      { "role_id": 7, "unit_id": 5, "primary": false }
+    ]
+  },
+  {
+    "id": 13,
+    "pseudo": "AlvAr3n",
+    "discord": "",
+    "gameplay": ["Combat", "Salvage", "Minage"],
+    "bio": "J’ai été abandonné par ma mère dans un recoin sombre et sale d’Orbituary à l’âge de 3 ans et je ne sais pas pour quelle raison. Depuis, tout le monde me connaît dans cette station, j’y ai même établi mon QG. Enfant, je me nourrissais d’Aloprat vivants ou de nouilles Cafari que je volais sur les étals. Les vieux marchands m’appelaient : « Ah, l’vaurien ! ». Au fil du temps, ça s’est transformé en Alvarein, puis en Alwarèn. J’ai appris à grandir seul, à m’enrichir pas très légalement et à me battre tel un Spartiate pour ma survie dans les couloirs d’Orbituary, jusqu’à ce que je croise l’Amiral Gurn en essayant de lui faire les poches dans un bar sans éclairage et qu’il me propose un poste à la NSF.",
+    "opt_in": true,
+    "assignments": [{ "role_id": 8, "unit_id": 5, "primary": true }]
+  },
+  {
+    "id": 14,
+    "pseudo": "major_alexis",
+    "discord": "major_alexis",
+    "gameplay": ["Transport", "Industrie", "Logistique"],
+    "bio": "Joueur sans prise de tête, fun et toujours prêt à aider les autres (quand j’ai le temps).",
     "opt_in": true,
     "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
   }
