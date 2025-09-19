@@ -11,7 +11,7 @@ type Corpo = {
 
 const CORPOS: Corpo[] = [
   { name: "NASA", slug: "nasa", logo: "/images/corpos/nasa.png" },
-  { name: "CORS", slug: "cors", logo: "/images/corpos/core.png" },
+  { name: "CORE", slug: "cors", logo: "/images/corpos/core.png" },
   { name: "NSF", slug: "nsf", logo: "/images/corpos/nsf.png" },
   { name: "PULSE", slug: "pulse", logo: "/images/corpos/pulse.png" },
   { name: "RTT", slug: "rtt", logo: "/images/corpos/rtt.png" },

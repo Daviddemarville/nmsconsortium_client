@@ -137,7 +137,7 @@ export default function Hero() {
 
   // Fin d’anim du logo central → route /consortium
   const handleAnimationEnd = useCallback(() => {
-    if (leaving) router.push("/consortium");
+    if (leaving) router.push("/corpos");
   }, [leaving, router]);
 
   // Accessibilité clavier : Enter / Espace

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Hero from "@/components/sections/Hero";
+import DiscordButton from "@/components/ui/DiscordButton";
 import ReferralCTA from "@/components/ui/ReferralCTA";
 
 export default function HomePage() {
@@ -45,7 +46,7 @@ export default function HomePage() {
             Bienvenue au Nemesis Consortium
           </h1>
           <p className="mt-4 leading-relaxed">
-            <a href="/consortium" className="hover:text-nms-gold">
+            <a href="/corpos" className="hover:text-nms-gold">
               NMS CONSORTIUM
             </a>{" "}
             réunit ses corpos filles :
@@ -100,14 +101,11 @@ export default function HomePage() {
           </p>
 
           {/* Bouton Discord */}
-          <a
-            href="https://discord.gg/FYmSmhRjW9"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center justify-center rounded-full bg-nms-gold text-nms-dark px-5 py-2.5 font-semibold hover:opacity-90 transition"
-          >
-            DISCORD NEMESIS
-          </a>
+          <DiscordButton
+            inviteUrl="https://discord.gg/FYmSmhRjW9"
+            location="accueil-page"
+            className="bg-nms-gold text-nms-dark font-semibold hover:opacity-90 transition"
+          />
 
           {/* Code de parrainage */}
           <div className="mt-6 flex justify-center">

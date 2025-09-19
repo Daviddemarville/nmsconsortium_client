@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import CommunityAttribution from "@/components/ui/CommunityAttribution";
 import SocialLinks from "@/components/ui/SocialLinks";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Footer() {
   return (
@@ -13,7 +16,7 @@ export default function Footer() {
               © {new Date().getFullYear()} Nemesis Consortium — Tous droits
               réservés
             </div>
-            <div>v0 - p3</div>
+            <div>v0 - p4</div>
           </div>
 
           {/* Bloc centre gauche: navigation footer */}
@@ -23,15 +26,37 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-nms-gold transition"
+              onClick={() =>
+                trackEvent("click_outbound_discord", { location: "footer" })
+              }
             >
               Discord
             </a>
-            <Link href="/contact" className="hover:text-nms-gold transition">
+
+            <Link
+              href="/contact"
+              className="hover:text-nms-gold transition"
+              onClick={() =>
+                trackEvent("nav_click", {
+                  label: "Contact",
+                  href: "/contact",
+                  section: "footer",
+                })
+              }
+            >
               Contact
             </Link>
+
             <Link
               href="/mentions-legales"
               className="hover:text-nms-gold transition"
+              onClick={() =>
+                trackEvent("nav_click", {
+                  label: "Mentions légales",
+                  href: "/mentions-legales",
+                  section: "footer",
+                })
+              }
             >
               Mentions légales
             </Link>
@@ -39,7 +64,7 @@ export default function Footer() {
 
           {/* Bloc centre droit : réseaux sociaux */}
           <div className="flex justify-center items-center gap-6">
-            <SocialLinks />
+            <SocialLinks location="footer" />
           </div>
           {/* Bloc droit : attribution */}
           <div className="flex justify-center items-center gap-6">

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Suspense, useState } from "react";
 import IntegrationSection from "@/components/sections/IntegrationSection";
 import MembersList from "@/components/sections/MembersList";
+import ContactButton from "@/components/ui/ContactButton";
+import DiscordButton from "@/components/ui/DiscordButton";
 
 export default function MembresPage() {
   const [counts, setCounts] = useState({ total: 0, filtered: 0 });
@@ -62,22 +64,16 @@ export default function MembresPage() {
           ou envoie-nous un message via le formulaire de contact.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href="https://discord.gg/FYmSmhRjW9"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Rejoindre le Discord Némésis"
-            className="inline-flex items-center justify-center rounded-full bg-nms-gold text-nms-dark px-5 py-2.5 font-semibold hover:opacity-90 transition"
-          >
-            DISCORD NÉMÉSIS
-          </a>
-          <Link
-            href="/contact"
-            aria-label="Postuler au consortium via le formulaire de contact"
-            className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 font-semibold hover:bg-white/15 transition"
-          >
-            Postuler / Nous contacter
-          </Link>
+          <DiscordButton
+            inviteUrl="https://discord.gg/FYmSmhRjW9"
+            location="membres-page"
+            className="bg-nms-gold text-nms-dark font-semibold hover:opacity-90 transition"
+          />
+
+          <ContactButton
+            location="membres-page"
+            className=" bg-white/10  hover:bg-white/15 transition"
+          />
         </div>
       </section>
 

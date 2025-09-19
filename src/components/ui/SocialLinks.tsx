@@ -1,13 +1,10 @@
 "use client";
 
 import { FaDiscord, FaFacebook, FaTiktok, FaYoutube } from "react-icons/fa";
+import { trackEvent } from "@/lib/analytics";
 
 const socials = [
-  {
-    name: "Discord",
-    href: "https://discord.gg/FYmSmhRjW9",
-    icon: FaDiscord,
-  },
+  { name: "Discord", href: "https://discord.gg/FYmSmhRjW9", icon: FaDiscord },
   {
     name: "Facebook",
     href: "https://www.facebook.com/nmslgts",
@@ -25,7 +22,14 @@ const socials = [
   },
 ];
 
-export default function SocialLinks() {
+type SocialLinksProps = {
+  /** Où se trouve ce bloc ? (footer, header, sidebar, page-x, …) */
+  location?: string;
+};
+
+export default function SocialLinks({
+  location = "social_links",
+}: SocialLinksProps) {
   return (
     <div className="flex items-center gap-2 md:gap-4">
       {socials.map(({ name, href, icon: Icon }) => (
@@ -36,6 +40,17 @@ export default function SocialLinks() {
           rel="noopener noreferrer"
           aria-label={name}
           className="hover:text-nms-gold transition text-xl md:text-lg p-2"
+          onClick={() => {
+            if (name === "Discord") {
+              trackEvent("click_outbound_discord", { location });
+            } else {
+              trackEvent("click_outbound_social", {
+                network: name,
+                href,
+                location,
+              });
+            }
+          }}
         >
           <Icon />
         </a>
