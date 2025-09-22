@@ -1,0 +1,93 @@
+{
+  "consortium": {
+    "tagline": "Présentation officielle",
+    "sections": [
+      {
+        "id": "modele",
+        "title": "Modèle d’organisation",
+        "body_md": "Nemesis Consortium est structuré sur le principe des « poupées russes ».\n\nIl existe deux configurations : celle qui prévaut actuellement, et celle qui pourrait être adaptée en fonction de l’évolution du jeu."
+      },
+      {
+        "id": "config-actuelle",
+        "title": "Configuration actuelle",
+        "body_md": "A : Configuration actuelle :\n\n- Nemesis Consortium est bâtie comme une holding avec des « micro-entreprises » bien identifiées, ayant une certaine autonomie (choix du nom, de l’activité, etc.).\n- Un organe central décisionnaire organise, manage et gère la corpo : le **GLOBAL COUNCIL**.\n- Tout autour gravitent deux types de structures :\n\n### 1) Entreprises « publiques » : AION et NSF\n\n- **AION** : équipes **MEDIC** pour assurer les soins lors de tous types d’opérations (industrielles ou combat).\n- **NSF** (*Nemesis Security Forces*) : organe de défense de Nemesis Consortium. Composée de membres aguerris au combat spatial et/ou au sol, elle assure la sécurisation des opérations industrielles, des convois, etc.\n\n### 2) Entreprises privées (micro-entreprises)\n\n- Laissées à la liberté de chaque membre de Nemesis Consortium de « monter » sa petite société privée (pour un vrai gameplay, pour le fun ou pour le RP), d’y embaucher d’autres membres, de choisir un nom, un logo, un slogan — bref, **se faire connaître**.\n- Les micro-entreprises privées sont amenées à **collaborer** selon leurs spécificités et compétences (ex. : une micro-entreprise de minage peut s’appuyer sur une micro-entreprise spécialisée dans le transport commercial pour vendre ses minerais raffinés).\n- Le Global Council peut lancer des **contrats** sous la forme d’**appels d’offres** que les micro-entreprises acceptent pour obtenir des gains.\n\nAutres structures internes au Global Council :\n\n- Banque communautaire\n- Service de presse\n- Représentation diplomatique\n- Création d’événements et d’activités"
+      },
+      {
+        "id": "config-future",
+        "title": "Configuration future (guildes)",
+        "body_md": "B : Configuration future :\n\nSelon l’évolution du jeu, si un système de **guildes** est mis en place et proposé aux corpos, il sera nécessaire — afin de bénéficier des « bonus de guildes » — que la corpo soit affiliée à la guilde correspondante.\n\nPour que Nemesis Consortium bénéficie de **tous les bonus**, des **corpos filles** sont mises en place (6 corpos filles pour 6 guildes), chacune affiliée à une guilde spécifique :\n\n- **RTT** — Recovery, Transport & Trading *(affiliée à Interstellar Transport Guild)*\n- **CORE** — Construction, Organisation, Réparation, Exploitation *(affiliée à « United Resources Workers »)*\n- **NASA** — Nemesis Aerospace Science Academy *(affiliée à « Academy of Sciences »)*\n- **PULSE** — Performance Unie et Leadership pour le Sport et l’Excellence *(affiliée à « Imperial Sport Federation »)*\n- **ECLIPSE** — « non communiqué » *(affiliée à « The Council »)*\n- **NSF** — Nemesis Security Forces *(affiliée à « Mercenary Guild »)*\n\nChaque membre de Nemesis Consortium qui souhaitera se spécialiser dans un type de gameplay pourra **adhérer à la corpo fille** qui lui correspond le mieux, tout en restant affilié au Consortium.\n\nChaque micro-entreprise sera **représentée** dans la corpo fille correspondant à son gameplay (par exemple : une micro-entreprise de minage se retrouvera dans **CORE**, affiliée à la guilde « United Resources Workers »)."
+      },
+      {
+        "id": "valeurs",
+        "title": "Valeurs & esprit",
+        "body_md": "Pour résumer, Nemesis Consortium est **structurée pour s’adapter** au jeu tel qu’il est accessible sur le moment, et **évoluer** afin de permettre à chacun de ses membres de bénéficier des meilleurs avantages et d’une qualité de jeu optimale.\n\nSon organisation originale en **micro-entreprise**, en plus d’ajouter un côté RP appréciable, permet à chaque membre d’avoir sa **propre aventure** et de faire valoir une **identité propre**. Idéal pour les « groupes de potes » qui veulent conserver une identité tout en rejoignant un groupe organisé et structuré, afin de travailler en synergie, collaborer avec tous et partager des projets communs.\n\nOffrant **tous les types de gameplay** — de l’industriel au commerce, en passant par le militaire —, elle permet à chaque joueur de trouver sa place au sein d’une organisation où chaque partie est importante, et où chacun participe à la prospérité commune de la corpo, à son rythme, selon ses envies et ses compétences.\n\n**L’entraide, la camaraderie, la bonne humeur et la convivialité** sont nos valeurs incontournables. Chaque joueur, même nouvel arrivant, a son mot à dire, sa pierre à ajouter à l’édifice ; tous peuvent s’exprimer, créer, proposer et organiser des choses.\n\n**BIENVENUE CHEZ NEMESIS CONSORTIUM !!**\n\n*Amiral Artémis GURNEY*"
+      }
+    ],
+    "links": {
+      "members_page": "/membres",
+      "consortium": "/consortium"
+    }
+  },
+  "corpos": {
+    "nsf": {
+      "label": "NSF",
+      "unit_id": 5,
+      "tagline": "Branche sécurité & opérations tactiques",
+      "description_md": "…texte long spécifique NSF…",
+      "links": {
+        "members_page": "/membres?unit=5",
+        "consortium": "/corpos/nsf"
+      }
+    },
+    "rtt": {
+      "label": "RTT",
+      "unit_id": 6,
+      "tagline": "Recovery, Transport & Trading",
+      "description_md": "…texte long spécifique RTT…",
+      "links": {
+        "members_page": "/membres?unit=6",
+        "consortium": "/corpos/rtt"
+      }
+    },
+    "core": {
+      "label": "CORE",
+      "unit_id": 7,
+      "tagline": "Ingénierie & maintenance flotte",
+      "description_md": "…texte long spécifique CORE…",
+      "links": {
+        "members_page": "/membres?unit=7",
+        "consortium": "/corpos/core"
+      }
+    },
+    "nasa": {
+      "label": "NASA",
+      "unit_id": 8,
+      "tagline": "Aéronautique & sciences",
+      "description_md": "…texte long spécifique NASA…",
+      "links": {
+        "members_page": "/membres?unit=8",
+        "consortium": "/corpos/nasa"
+      }
+    },
+    "pulse": {
+      "label": "PULSE",
+      "unit_id": 9,
+      "tagline": "Sport & performance",
+      "description_md": "…texte long spécifique PULSE…",
+      "links": {
+        "members_page": "/membres?unit=9",
+        "consortium": "/corpos/pulse"
+      }
+    },
+    "eclipse": {
+      "label": "ECLIPSE",
+      "unit_id": 10,
+      "tagline": "Conseil / opérations spéciales",
+      "description_md": "…texte long spécifique ECLIPSE…",
+      "links": {
+        "members_page": "/membres?unit=10",
+        "consortium": "/corpos/eclipse"
+      }
+    }
+  }
+}

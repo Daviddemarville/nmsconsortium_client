@@ -1,0 +1,15 @@
+{
+  "latest": [
+    {
+      "id": "ngn-2025-09-01",
+      "title": "Édition 42",
+      "img": "/images/ngn/42.jpg",
+      "href": "/ngn/42"
+    },
+    {
+      "id": "ngn-2025-08-15",
+      "title": "Édition 41",
+      "img": "/images/ngn/41.jpg"
+    }
+  ]
+}

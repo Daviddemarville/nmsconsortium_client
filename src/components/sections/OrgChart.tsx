@@ -114,18 +114,44 @@ export default function OrgChart({
     return map;
   }, [units]);
 
-  // --- NOUVEL ORDRE D’UNITÉS ---
-  // 11 d’abord, puis toutes les autres par id croissant, en excluant 1
+  // --- ORDRE D'AFFICHAGE DES UNITEES DANS LE COMPOSANT ---
+  // IDs d’unités à ne jamais afficher (ex. 1 = Consortium, 14 = LTI, 15 = HSC, 16 = GARC)
+  const EXCLUDED_UNIT_IDS_ARRAY = [1, 14, 15, 16];
+  const excludedIds = useMemo(
+    () => new Set<number>(EXCLUDED_UNIT_IDS_ARRAY),
+    [],
+  );
+
+  // IDs prioritaires (dans l'ordre souhaité d'affichage)
+  const PRIORITY_UNIT_IDS = [17, 11]; // ex: 17 = Fondateur, 11 = Global Council
+
+  // Map (id -> rang de priorité) pour un tri rapide
+  const priorityRank = useMemo(() => {
+    const m = new Map<number, number>();
+    PRIORITY_UNIT_IDS.forEach((id, idx) => {
+      m.set(id, idx);
+    });
+    return m;
+  }, []);
+
   const visibleUnits = useMemo(() => {
     if (!units.length) return [];
-    const list = units.filter((u) => u.id !== 1);
+
+    const list = units.filter((u) => !excludedIds.has(u.id));
+
     list.sort((a, b) => {
-      const ka = a.id === 11 ? 0 : a.id;
-      const kb = b.id === 11 ? 0 : b.id;
-      return ka - kb;
+      const ra = priorityRank.get(a.id) ?? Number.POSITIVE_INFINITY;
+      const rb = priorityRank.get(b.id) ?? Number.POSITIVE_INFINITY;
+
+      // 1) d'abord ceux qui sont dans PRIORITY_UNIT_IDS (ordre du tableau)
+      if (ra !== rb) return ra - rb;
+
+      // 2) sinon, tri standard par id croissant
+      return a.id - b.id;
     });
+
     return list;
-  }, [units]);
+  }, [units, excludedIds, priorityRank]);
   // ------------------------------
 
   // Membres filtrés opt-in si demandé
@@ -211,7 +237,7 @@ export default function OrgChart({
                           title={`Niveau ${r.level}`}
                           className="inline-flex items-center rounded-full px-2 py-0.5 text-xs ring-1"
                           style={{
-                            background: r.color ? `${r.color}20` : undefined,
+                            background: r.color ? `${r.color}20` : undefined, // #RRGGBBAA (alpha 0x20)
                             color: r.color ?? "inherit",
                             borderColor: r.color ?? "rgba(255,255,255,0.15)",
                           }}

@@ -29,7 +29,7 @@
     "label": "Amiral",
     "level": 2,
     "parent_role_id": 2,
-    "color": "#0b2242"
+    "color": "#d4ac0d"
   },
   {
     "id": 4,
@@ -134,5 +134,13 @@
     "level": 3,
     "parent_role_id": 2,
     "color": "#00cec9"
+  },
+  {
+    "id": 18,
+    "key": "coordinateur",
+    "label": "Coordinateur",
+    "level": 3,
+    "parent_role_id": 2,
+    "color": "#6c5ce7"
   }
 ]

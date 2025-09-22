@@ -8,9 +8,11 @@
     "opt_in": true,
     "assignments": [
       { "role_id": 2, "unit_id": 11, "primary": true },
-      { "role_id": 3, "unit_id": 2, "primary": false },
-      { "role_id": 4, "unit_id": 4, "primary": false },
-      { "role_id": 3, "unit_id": 6, "primary": false }
+      { "role_id": 3, "unit_id": 2, "primary": true },
+      { "role_id": 4, "unit_id": 4, "primary": true },
+      { "role_id": 3, "unit_id": 6, "primary": true },
+      { "role_id": 3, "unit_id": 14, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
     ]
   },
   {
@@ -21,9 +23,10 @@
     "bio": "Né sur Arémis, système Vega, en bordure Vanduul, fils de Martha ZILON, politicienne, et de Thomas GURNEY, général de l'UEE, Gurn fait de brillantes études à l'académie militaire. Il gravit tous les échelons jusqu'au grade d'Amiral, puis se lance dans une carrière politique faite d'intrigues et de pouvoir, jusqu'à sa retraite d'Amiral où il crée Nemesis Logistics, qui deviendra plus tard le Nemesis Consortium, formé de multiples micro-entreprises dans tous les secteurs d'activité.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 1, "unit_id": 1, "primary": true },
-      { "role_id": 2, "unit_id": 11, "primary": false },
-      { "role_id": 14, "unit_id": 5, "primary": false }
+      { "role_id": 1, "unit_id": 17, "primary": true },
+      { "role_id": 2, "unit_id": 11, "primary": true },
+      { "role_id": 14, "unit_id": 5, "primary": true },
+      { "role_id": 3, "unit_id": 16, "primary": true }
     ]
   },
   {
@@ -70,8 +73,10 @@
     "bio": "Superbigou est le fondateur et dirigeant de la Happy Scrap Collectons (HSC), créée en 2954. À la tête de cette compagnie de salvage, il met son expertise et sa rigueur au service de la récupération et de la valorisation des épaves spatiales.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 3, "unit_id": 7, "primary": false },
-      { "role_id": 2, "unit_id": 11, "primary": true }
+      { "role_id": 3, "unit_id": 7, "primary": true },
+      { "role_id": 2, "unit_id": 11, "primary": true },
+      { "role_id": 3, "unit_id": 15, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
     ]
   },
   {
@@ -82,8 +87,9 @@
     "bio": "Bonjour, je me présente, Mamie, nom de jeune fille Lapoudre. Ayant grandi dans des chambres à Dilithium et autres conduits thermiques, j'éprouve une forte connexion avec les vaisseaux et leurs composants, allant jusqu'à les humaniser. J'aimerais beaucoup intégrer la Guilde des Ingénieurs et ainsi permettre aux vaisseaux de la flotte Nemesis une pérennité dans le temps.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 8, "unit_id": 5, "primary": false },
-      { "role_id": 2, "unit_id": 11, "primary": true }
+      { "role_id": 8, "unit_id": 5, "primary": true },
+      { "role_id": 2, "unit_id": 11, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
     ]
   },
   {
@@ -94,8 +100,8 @@
     "bio": "Né sur MicroTech d’un père ouvrier de Hurston, il a juré de combattre l’injustice et l’esclavage moderne. Ancien militaire devenu mercenaire stratège, il dirige aujourd’hui sa propre flotte de soutien, bâtissant un empire privé au service de la liberté.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 9, "unit_id": 5, "primary": false },
-      { "role_id": 5, "unit_id": 1, "primary": true }
+      { "role_id": 9, "unit_id": 5, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
     ]
   },
   {
@@ -116,19 +122,21 @@
     "opt_in": true,
     "assignments": [
       { "role_id": 2, "unit_id": 11, "primary": true },
-      { "role_id": 3, "unit_id": 7, "primary": false }
+      { "role_id": 3, "unit_id": 7, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
     ]
   },
   {
     "id": 12,
     "pseudo": "SilverAkiro",
-    "discord": "Ambassadeur SilverAkiro",
-    "gameplay": ["Combat"],
-    "bio": "",
+    "discord": "[NMS]Ambassadeur SilverAkiro",
+    "gameplay": ["Combat", "Piraterie", "Leader Ultime"],
+    "bio": "Né orphelin dans les débris d’une station oubliée, SilverAkiro apprit très tôt à voler, se battre et pirater pour survivre. Sa transformation de genre ne fut pas un choix identitaire, mais une stratégie de survie, un moyen de s’adapter et de déjouer un monde impitoyable. Sa rencontre avec Artemis Gurney changea son destin : il rejoignit la NMS, gravit les échelons et devint le leader redouté de la NSF. Charismatique en public, stratège dans l’ombre, il mène guerres et intrigues avec une double couronne Colonel et Ambassadeur. Héros et rebelle, il reste au fond cet enfant des ruines, cherchant encore à surmonter tous les obstacles et à ne jamais redevenir invisible.",
     "opt_in": true,
     "assignments": [
       { "role_id": 17, "unit_id": 12, "primary": true },
-      { "role_id": 7, "unit_id": 5, "primary": false }
+      { "role_id": 7, "unit_id": 5, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
     ]
   },
   {
@@ -138,7 +146,10 @@
     "gameplay": ["Combat", "Salvage", "Minage"],
     "bio": "J’ai été abandonné par ma mère dans un recoin sombre et sale d’Orbituary à l’âge de 3 ans et je ne sais pas pour quelle raison. Depuis, tout le monde me connaît dans cette station, j’y ai même établi mon QG. Enfant, je me nourrissais d’Aloprat vivants ou de nouilles Cafari que je volais sur les étals. Les vieux marchands m’appelaient : « Ah, l’vaurien ! ». Au fil du temps, ça s’est transformé en Alvarein, puis en Alwarèn. J’ai appris à grandir seul, à m’enrichir pas très légalement et à me battre tel un Spartiate pour ma survie dans les couloirs d’Orbituary, jusqu’à ce que je croise l’Amiral Gurn en essayant de lui faire les poches dans un bar sans éclairage et qu’il me propose un poste à la NSF.",
     "opt_in": true,
-    "assignments": [{ "role_id": 8, "unit_id": 5, "primary": true }]
+    "assignments": [
+      { "role_id": 8, "unit_id": 5, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
+    ]
   },
   {
     "id": 14,
@@ -148,5 +159,52 @@
     "bio": "Joueur sans prise de tête, fun et toujours prêt à aider les autres (quand j’ai le temps).",
     "opt_in": true,
     "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
+  },
+  {
+    "id": 15,
+    "pseudo": "TheNepharite",
+    "discord": "TheNepharite",
+    "gameplay": ["Logistique", "Industrie", "Sécurité"],
+    "bio": "J’ai longtemps navigué hors des lois, là où l’on survit plus qu’on ne vit. Le recyclage m’a offert une seconde chance, la rigueur d’un métier honnête. Aujourd’hui, je rends ce que j’ai pris, au service de la Nemesis et des miens.",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 5, "unit_id": 1, "primary": false },
+      { "role_id": 10, "unit_id": 5, "primary": true }
+    ]
+  },
+  {
+    "id": 16,
+    "pseudo": "corif",
+    "discord": "corif",
+    "gameplay": ["Logistique", "Industrie"],
+    "bio": "Le mec qui n'a pas de chance avec les ATLS,",
+    "opt_in": true,
+    "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
+  },
+  {
+    "id": 17,
+    "pseudo": "Hiboulet",
+    "discord": "Hiboulet",
+    "gameplay": ["Minage", "Logistique", "Ingénierie"],
+    "bio": "Originaire de la Terre, il rejoignit les étoiles en effectuant son service dans l’armée. Après plusieurs années passées à piloter des Starfarer au sein d’un escadron de ravitaillement, il termina sa carrière militaire avec une solde confortable, prêt à entamer une nouvelle vie — celle de prospecteur et mineur indépendant. Après quelques mois de pérégrinations à travers les systèmes de l’Empire, il tomba sur une offre intrigante émise par une entreprise : NMS...",
+    "opt_in": true,
+    "assignments": [
+      { "role_id": 2, "unit_id": 11, "primary": true },
+      { "role_id": 18, "unit_id": 13, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
+    ]
+  },
+  {
+    "id": 18,
+    "pseudo": "",
+    "discord": "",
+    "gameplay": ["", "", ""],
+    "bio": "",
+    "opt_in": false,
+    "assignments": [
+      { "role_id": 4, "unit_id": 4, "primary": false },
+      { "role_id": 2, "unit_id": 11, "primary": true },
+      { "role_id": 5, "unit_id": 1, "primary": false }
+    ]
   }
 ]

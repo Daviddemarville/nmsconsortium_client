@@ -1,0 +1,28 @@
+{
+  "consortium": {
+    "title": "Préface du Consortium",
+    "intro": "Le Consortium Nemesis est né d’une alliance improbable entre pionniers de l’industrie spatiale et vétérans des guerres contre les Vanduul. Sa mission initiale fut de rassembler des forces disparates autour d’un idéal commun : prospérité, résilience et indépendance. Aujourd’hui, le Consortium s’impos",
+    "body": "Le Consortium Nemesis est né d’une alliance improbable entre pionniers de l’industrie spatiale et vétérans des guerres contre les Vanduul. Sa mission initiale fut de rassembler des forces disparates autour d’un idéal commun : prospérité, résilience et indépendance. Aujourd’hui, le Consortium s’impose comme une structure fédératrice, réunissant des corpos filles, des micro-entreprises et des freelances sous une même bannière. Sa diplomatie, son armée et sa banque en font une puissance montante dont l’influence dépasse déjà les frontières de Stanton.",
+    "quote": "« Unis dans l’adversité, nous forgeons notre avenir. »"
+  },
+  "corpos": {
+    "nsf": {
+      "title": "Préface de la NSF",
+      "intro": "La Nemesis Security Force (NSF) est le bras armé du Consortium. Constituée de pilotes d’élite et de fantassins aguerris, elle assure la sécurité des routes commerciales, l’escorte des convois stratégiques et la défense des installations. La NSF est reconnue pour sa discipline implacable, son équipem",
+      "body": "La Nemesis Security Force (NSF) est le bras armé du Consortium. Constituée de pilotes d’élite et de fantassins aguerris, elle assure la sécurité des routes commerciales, l’escorte des convois stratégiques et la défense des installations. La NSF est reconnue pour sa discipline implacable, son équipement de pointe et la loyauté de ses soldats. De la simple patrouille aux opérations de grande envergure, chaque mission est menée avec rigueur et efficacité, inspirant respect et crainte dans toute la galaxie.",
+      "quote": "« La discipline est notre arme la plus redoutable. »"
+    },
+    "aion": {
+      "title": "Préface de l’AION",
+      "intro": "L’AION représente l’unité médicale du Consortium. Ses équipes soignent les blessés, soutiennent les opérations en zone de guerre et développent des protocoles de résurrection fiables. Son expertise est recherchée bien au-delà des frontières de la corpo, car elle combine savoir scientifique, technolo",
+      "body": "L’AION représente l’unité médicale du Consortium. Ses équipes soignent les blessés, soutiennent les opérations en zone de guerre et développent des protocoles de résurrection fiables. Son expertise est recherchée bien au-delà des frontières de la corpo, car elle combine savoir scientifique, technologies avancées et un véritable sens du devoir. L’AION se positionne comme un pilier de stabilité, offrant à chaque membre la certitude qu’aucune mission ne sera entreprise sans un filet de sécurité médical solide.",
+      "quote": "« Là où d’autres abandonnent, nous soignons. »"
+    },
+    "rtt": {
+      "title": "Préface de la RTT",
+      "intro": "La RTT (Réseau de Transport et de Trading) orchestre les échanges commerciaux et logistiques au sein du Consortium. Sa flotte diversifiée assure le transport de marchandises, l’extraction de ressources et la distribution vers les différents pôles d’activité. La RTT est le moteur économique qui alime",
+      "body": "La RTT (Réseau de Transport et de Trading) orchestre les échanges commerciaux et logistiques au sein du Consortium. Sa flotte diversifiée assure le transport de marchandises, l’extraction de ressources et la distribution vers les différents pôles d’activité. La RTT est le moteur économique qui alimente l’ensemble de la structure. Chaque convoi qu’elle organise est une démonstration de coordination et de fiabilité, garantissant que les intérêts du Consortium sont toujours approvisionnés en ressources vitales.",
+      "quote": "« Sans logistique, aucune victoire n’est possible. »"
+    }
+  }
+}

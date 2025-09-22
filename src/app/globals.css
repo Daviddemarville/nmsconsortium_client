@@ -250,3 +250,24 @@ body {
   animation: flyToDock var(--fly-duration) cubic-bezier(0.2, 0.7, 0.2, 1)
     forwards;
 }
+
+/* ======================================================
+   Scrollbar custom pour le datapad 
+   ======================================================*/
+.datapad-scroll {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #22d3ee33 transparent;
+}
+.datapad-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.datapad-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.datapad-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(#22d3ee, #0ea5e9);
+  border-radius: 8px;
+}
+.datapad-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#67e8f9, #22d3ee);
+}
