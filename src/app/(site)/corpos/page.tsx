@@ -5,6 +5,7 @@ import Image from "next/image";
 import BioDataPadHUD from "@/components/sections/BioDataPadHUD";
 import FactBlock from "@/components/sections/FactBlock";
 import MembersListCompact from "@/components/sections/MembersListCompact";
+import Ni2bCard from "@/components/sections/Ni2bCard";
 
 type LoreEntry = {
   title: string;
@@ -64,7 +65,7 @@ export default async function Consortium() {
           />
         </div>
       </section>
-      <section className="bg-black/40 pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16">
+      <section className=" pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16">
         <FactBlock pick="consortium">
           {/* Ex: liste synthétique des membres du consortium (unitId=1) */}
           <MembersListCompact
@@ -74,6 +75,9 @@ export default async function Consortium() {
             limit={null} // optionnel: limiter le nb affiché
           />
         </FactBlock>
+      </section>
+      <section className="pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16">
+        <Ni2bCard apiUrl="/api/ni2b" className="mt-5" />
       </section>
 
       {/* ============== GUIDE D'UTILISATION ==============

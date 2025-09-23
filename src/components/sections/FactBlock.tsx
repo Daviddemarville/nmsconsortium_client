@@ -1,7 +1,7 @@
-// src/components/sections/FactBlock.tsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { trackEvent, trackLinkClick } from "@/lib/analytics";
 
 /* ========= Types ========= */
 
@@ -19,6 +19,7 @@ type ConsortiumLike = {
   links?: {
     members_page?: string;
     consortium?: string;
+    rsi?: string; // lien externe RSI
   };
 };
 
@@ -30,14 +31,11 @@ type CorpoFile = {
 type PickProp = "consortium" | { corpoKey: string };
 
 type Props = {
-  /** /data/corpo.json par défaut, mais peut pointer vers /data/ngn.json ou /data/ni2b.json */
-  dataUrl?: string;
-  /** Sélectionne la section à afficher quand on lit corpo.json */
-  pick?: PickProp; // "consortium" (defaut) ou { corpoKey: "nsf" }
+  dataUrl?: string; // /data/corpo.json par défaut (ou /data/ngn.json /data/ni2b.json)
+  pick?: PickProp; // "consortium" (defaut) ou { corpoKey: "nsf" } quand dataUrl=corpo.json
   title?: string; // Titre UI
   className?: string;
-  /** Slot pour injecter la liste compacte des membres APRÈS le texte */
-  children?: React.ReactNode;
+  children?: React.ReactNode; // Slot: liste des membres APRÈS le texte
 };
 
 /* ========= Composant ========= */
@@ -52,10 +50,9 @@ export default function FactBlock({
   const [data, setData] = useState<ConsortiumLike | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
-  // Clé de fetch stable (évite l’avertissement “deps size changed”)
+  // clé de sélection pour corpo.json
   const pickKey =
     typeof pick === "string" ? pick : (pick?.corpoKey ?? "consortium");
-  const fetchKey = `${dataUrl}::${pickKey}`;
 
   useEffect(() => {
     let alive = true;
@@ -67,7 +64,6 @@ export default function FactBlock({
 
         let section: ConsortiumLike | null = null;
 
-        // corpo.json (avec consortium/corpos)
         if (
           raw &&
           typeof raw === "object" &&
@@ -79,20 +75,20 @@ export default function FactBlock({
               ? (json.consortium ?? null)
               : (json.corpos?.[pickKey] ?? null);
         } else {
-          // Fichiers dédiés (ngn.json / ni2b.json) → le root EST la section
-          section = raw as ConsortiumLike;
+          section = raw as ConsortiumLike; // fichiers dédiés (ngn/ni2b)
         }
 
         if (!section) throw new Error("Section introuvable");
         if (alive) setData(section);
-      } catch (e: any) {
-        if (alive) setErr(e?.message ?? "Erreur de chargement");
+      } catch (e: unknown) {
+        const msg = e instanceof Error ? e.message : String(e);
+        if (alive) setErr(msg || "Erreur de chargement");
       }
     })();
     return () => {
       alive = false;
     };
-  }, [fetchKey]); // taille du tableau constante
+  }, [dataUrl, pickKey]);
 
   // Hooks toujours au top-level
   const descMd = data?.description_md ?? "";
@@ -102,11 +98,14 @@ export default function FactBlock({
   const descriptionVNode = useMemo(() => {
     // utilisé uniquement quand il n’y a pas de sections[]
     if (Array.isArray(descParas) && descParas.length > 0) {
+      const counts = new Map<string, number>();
       return (
         <article className="prose prose-invert max-w-none prose-p:my-3 prose-li:my-1">
-          {descParas.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          {descParas.map((p) => {
+            const c = (counts.get(p) ?? 0) + 1;
+            counts.set(p, c);
+            return <p key={`${p.slice(0, 24)}-${c}`}>{p}</p>;
+          })}
         </article>
       );
     }
@@ -119,7 +118,6 @@ export default function FactBlock({
   if (err) {
     return (
       <section
-        role="region"
         aria-labelledby="factblock-title"
         className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 ${className}`}
       >
@@ -136,7 +134,6 @@ export default function FactBlock({
   if (!data) {
     return (
       <section
-        role="region"
         aria-labelledby="factblock-title"
         className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 ${className}`}
       >
@@ -158,7 +155,6 @@ export default function FactBlock({
 
   return (
     <section
-      role="region"
       aria-labelledby="factblock-title"
       className={`rounded-2xl bg-black/30 text-white p-6 md:p-10 shadow-lg ${className}`}
     >
@@ -182,38 +178,60 @@ export default function FactBlock({
             <nav className="rounded-xl bg-white/5 border border-white/10 p-4">
               <h3 className="text-sm font-semibold mb-2">Sommaire</h3>
               <ul className="text-sm flex flex-wrap gap-3">
-                {sections.map((s, i) =>
-                  s?.title ? (
-                    <li key={s.id ?? i}>
-                      <a
-                        href={`#${s.id ?? `sec-${i}`}`}
-                        className="underline opacity-90 hover:opacity-100"
-                      >
-                        {s.title}
-                      </a>
-                    </li>
-                  ) : null,
-                )}
+                {(() => {
+                  const counts = new Map<string, number>();
+                  return sections.map((s, i) => {
+                    if (!s?.title) return null;
+                    const keyBase = s.id ?? s.title;
+                    const c = (counts.get(keyBase) ?? 0) + 1;
+                    counts.set(keyBase, c);
+                    const safeKey = s.id ?? `${s.title}-${c}`;
+                    const anchor = `#${s.id ?? `sec-${i}`}`;
+                    return (
+                      <li key={safeKey}>
+                        <a
+                          href={anchor}
+                          className="underline opacity-90 hover:opacity-100"
+                          onClick={() =>
+                            trackEvent("toc_click", {
+                              section_id: s.id ?? `sec-${i}`,
+                              section_title: s.title,
+                              location: "factblock_toc",
+                            })
+                          }
+                        >
+                          {s.title}
+                        </a>
+                      </li>
+                    );
+                  });
+                })()}
               </ul>
             </nav>
           )}
 
           {/* Sections → sinon description_md/paragraphs */}
           {sections.length > 0 ? (
-            sections.map((s, i) => (
-              <article
-                key={s.id ?? i}
-                id={s.id ?? `sec-${i}`}
-                className="scroll-mt-28"
-              >
-                {s.title && (
-                  <h3 className="text-xl md:text-2xl font-semibold">
-                    {s.title}
-                  </h3>
-                )}
-                {s.body_md && <MarkdownLite text={s.body_md} />}
-              </article>
-            ))
+            (() => {
+              const counts = new Map<string, number>();
+              return sections.map((s, i) => {
+                const keyBase = s?.id ?? s?.title ?? "sec";
+                const c = (counts.get(keyBase) ?? 0) + 1;
+                counts.set(keyBase, c);
+                const safeKey = s?.id ?? `${s?.title ?? "sec"}-${c}`;
+                const anchorId = s?.id ?? `sec-${i}`;
+                return (
+                  <article key={safeKey} id={anchorId} className="scroll-mt-28">
+                    {s?.title && (
+                      <h3 className="text-xl md:text-2xl font-semibold">
+                        {s.title}
+                      </h3>
+                    )}
+                    {s?.body_md && <MarkdownLite text={s.body_md} />}
+                  </article>
+                );
+              });
+            })()
           ) : (
             <div>{descriptionVNode}</div>
           )}
@@ -224,13 +242,22 @@ export default function FactBlock({
       {children && <div className="mt-8">{children}</div>}
 
       {/* 3) Footer minimal */}
-      {(links?.members_page || links?.consortium) && (
+      {(links?.members_page || links?.consortium || links?.rsi) && (
         <footer className="mt-10 flex flex-wrap gap-3">
           {links?.members_page && (
-            <A href={links.members_page}>Voir la liste complète des membres</A>
+            <A href={links.members_page} label="members_list">
+              Voir la liste complète des membres
+            </A>
           )}
           {links?.consortium && (
-            <A href={links.consortium}>Découvrir le Consortium / Rejoindre</A>
+            <A href={links.consortium} label="consortium_page">
+              Découvrir le Consortium
+            </A>
+          )}
+          {links?.rsi && (
+            <A href={links.rsi} label="rsi_profile">
+              Nous retrouver sur le site de RSI
+            </A>
           )}
         </footer>
       )}
@@ -241,31 +268,39 @@ export default function FactBlock({
 /* ========= Sous-composants ========= */
 
 function MarkdownLite({ text }: { text: string }) {
-  // Découpe simple : titres (#, ##, ###), listes (- ou •), paragraphes
+  // Titres (#, ##, ###), listes (- ou •), paragraphes
   const blocks = text
     .replace(/\r\n/g, "\n")
     .split(/\n{1,}/)
     .filter(Boolean);
-
-  // On clone le tableau pour pouvoir itérer et “consommer” les items de liste
   const parts = [...blocks];
 
   const nodes: React.ReactNode[] = [];
+
   for (let i = 0; i < parts.length; i++) {
-    const line = parts[i]?.trim();
+    const raw = parts[i];
+    const line = raw?.trim();
     if (!line) continue;
+
+    // Spacer explicite : une ligne contenant exactement "[br]"
+    if (line === "[br]") {
+      nodes.push(<div key={`sp-${i}`} className="h-6" aria-hidden />);
+      continue;
+    }
 
     // Titres
     if (/^###\s+/.test(line)) {
-      nodes.push(<h4 key={`h4-${i}`}>{line.replace(/^###\s+/, "")}</h4>);
+      nodes.push(
+        <h4 key={`h4-${line}-${i}`}>{line.replace(/^###\s+/, "")}</h4>,
+      );
       continue;
     }
     if (/^##\s+/.test(line)) {
-      nodes.push(<h3 key={`h3-${i}`}>{line.replace(/^##\s+/, "")}</h3>);
+      nodes.push(<h3 key={`h3-${line}-${i}`}>{line.replace(/^##\s+/, "")}</h3>);
       continue;
     }
     if (/^#\s+/.test(line)) {
-      nodes.push(<h2 key={`h2-${i}`}>{line.replace(/^#\s+/, "")}</h2>);
+      nodes.push(<h2 key={`h2-${line}-${i}`}>{line.replace(/^#\s+/, "")}</h2>);
       continue;
     }
 
@@ -280,16 +315,21 @@ function MarkdownLite({ text }: { text: string }) {
       }
       nodes.push(
         <ul key={`ul-${i}`} className="list-disc pl-6">
-          {items.map((it, k) => (
-            <li key={k}>{it}</li>
-          ))}
+          {(() => {
+            const counts = new Map<string, number>();
+            return items.map((it) => {
+              const c = (counts.get(it) ?? 0) + 1;
+              counts.set(it, c);
+              return <li key={`${it}-${c}`}>{it}</li>;
+            });
+          })()}
         </ul>,
       );
       continue;
     }
 
     // Paragraphe
-    nodes.push(<p key={`p-${i}`}>{line}</p>);
+    nodes.push(<p key={`p-${line}-${i}`}>{line}</p>);
   }
 
   return (
@@ -299,11 +339,42 @@ function MarkdownLite({ text }: { text: string }) {
   );
 }
 
-function A({ href, children }: { href: string; children: React.ReactNode }) {
+function A({
+  href,
+  children,
+  className = "",
+  location = "factblock_footer",
+  label,
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+  location?: string; // ex: "factblock_footer", "header", etc.
+  label?: string; // ex: "members_list", "consortium_page", "rsi_profile"
+}) {
+  const siteDomain = process.env.NEXT_PUBLIC_SITE_DOMAIN; // ex: "nemesis.example.com"
+  const isExternal =
+    /^https?:\/\//i.test(href) &&
+    (siteDomain ? !href.includes(siteDomain) : true);
+
+  const handleClick = () => {
+    trackLinkClick({
+      href,
+      label:
+        label ??
+        (typeof children === "string" ? (children as string) : undefined),
+      location,
+      outbound: isExternal,
+    });
+  };
+
   return (
     <a
       href={href}
-      className="inline-flex items-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
+      onClick={handleClick}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      className={`inline-flex items-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40 ${className}`}
     >
       {children}
     </a>

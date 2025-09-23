@@ -1,9 +1,6 @@
-// src/components/sections/MembersListCompact.tsx
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-
-/* ========= Types ========= */
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type Assignment = {
   role_id: number;
@@ -24,7 +21,7 @@ type Role = {
   id: number;
   key: string;
   label: string;
-  level: number; // plus petit = plus haut dans la hiérarchie
+  level: number; // plus petit = plus haut
   parent_role_id: number | null;
   color?: string;
 };
@@ -37,31 +34,18 @@ type Unit = {
 };
 
 type Props = {
-  /** URLs des sources JSON (par défaut le dossier /public/data) */
   membersUrl?: string; // default: /data/members.json
   rolesUrl?: string; // default: /data/roles.json
   unitsUrl?: string; // default: /data/units.json
-
-  /** Filtrage optionnel (ne garder que ces unités et/ou rôles) */
   includeUnits?: number[] | null;
   includeRoles?: number[] | null;
-
-  /** Priorités (appliquées AVANT le tri final) */
-  unitPriority?: number[]; // ex: [17, 1]  → 17 d'abord, puis 1, puis le reste
-  rolePriority?: number[]; // ex: [14, 7, 8] → Amiral, Colonel, Capitaine…
-
-  /** Tri final à appliquer après priorités */
+  unitPriority?: number[];
+  rolePriority?: number[];
   sort?: "alpha" | "role" | "unit";
-
-  /** Limite de résultats (null = pas de limite) */
   limit?: number | null;
-
-  /** Présentation */
-  title?: string; // ex: "Membres"
-  className?: string; // classes conteneur
+  title?: string;
+  className?: string;
 };
-
-/* ========= Composant ========= */
 
 export default function MembersListCompact({
   membersUrl = "/data/members.json",
@@ -99,13 +83,14 @@ export default function MembersListCompact({
           rRes.json(),
           uRes.json(),
         ]);
-
         if (!alive) return;
+
         setMembers((mData as Member[]).filter((m) => m.opt_in));
         setRoles(rData as Role[]);
         setUnits(uData as Unit[]);
-      } catch (e: any) {
-        if (alive) setErr(e?.message ?? "Erreur de chargement");
+      } catch (e: unknown) {
+        const msg = e instanceof Error ? e.message : String(e);
+        if (alive) setErr(msg || "Erreur de chargement");
       }
     })();
     return () => {
@@ -113,35 +98,41 @@ export default function MembersListCompact({
     };
   }, [membersUrl, rolesUrl, unitsUrl]);
 
-  /* ======== Pré-calculs : hiérarchies et index ======== */
+  /* ======== Index hiérarchiques ======== */
 
   const roleIndexById = useMemo(() => {
-    // Ordonner par level croissant (0 = top) puis id pour stabilité
     const ordered = [...roles].sort((a, b) =>
       a.level === b.level ? a.id - b.id : a.level - b.level,
     );
     const map = new Map<number, number>();
-    ordered.forEach((r, i) => map.set(r.id, i));
+    ordered.forEach((r, i) => {
+      map.set(r.id, i);
+    });
     return map;
   }, [roles]);
 
   const unitIndexById = useMemo(() => {
-    // Ordonner par id croissant pour stabilité (ou autre logique si besoin)
     const ordered = [...units].sort((a, b) => a.id - b.id);
     const map = new Map<number, number>();
-    ordered.forEach((u, i) => map.set(u.id, i));
+    ordered.forEach((u, i) => {
+      map.set(u.id, i);
+    });
     return map;
   }, [units]);
 
   const rolePriorityIndex = useMemo(() => {
     const map = new Map<number, number>();
-    rolePriority.forEach((id, i) => map.set(id, i));
+    rolePriority.forEach((id, i) => {
+      map.set(id, i);
+    });
     return map;
   }, [rolePriority]);
 
   const unitPriorityIndex = useMemo(() => {
     const map = new Map<number, number>();
-    unitPriority.forEach((id, i) => map.set(id, i));
+    unitPriority.forEach((id, i) => {
+      map.set(id, i);
+    });
     return map;
   }, [unitPriority]);
 
@@ -165,58 +156,60 @@ export default function MembersListCompact({
     return list;
   }, [members, includeUnits, includeRoles]);
 
-  /* ======== Métriques par membre ======== */
+  /* ======== Métriques par membre (memoized) ======== */
 
-  function computeMemberMetrics(m: Member) {
-    const asg = m.assignments ?? [];
-    // Rôle hiérarchiquement "le plus haut" (index le plus petit)
-    let bestRoleRank = Number.POSITIVE_INFINITY;
-    let bestRoleId: number | null = null;
+  const computeMemberMetrics = useCallback(
+    (m: Member) => {
+      const asg = m.assignments ?? [];
 
-    for (const a of asg) {
-      const idx = roleIndexById.get(a.role_id);
-      if (idx !== undefined && idx < bestRoleRank) {
-        bestRoleRank = idx;
-        bestRoleId = a.role_id;
+      // Rôle le plus haut (index le plus faible)
+      let bestRoleRank = Number.POSITIVE_INFINITY;
+      let bestRoleId: number | null = null;
+      for (const a of asg) {
+        const idx = roleIndexById.get(a.role_id);
+        if (idx !== undefined && idx < bestRoleRank) {
+          bestRoleRank = idx;
+          bestRoleId = a.role_id;
+        }
       }
-    }
 
-    // Unité la "première" selon l'ordre units
-    let bestUnitRank = Number.POSITIVE_INFINITY;
-    let bestUnitId: number | null = null;
-
-    for (const a of asg) {
-      const idx = unitIndexById.get(a.unit_id);
-      if (idx !== undefined && idx < bestUnitRank) {
-        bestUnitRank = idx;
-        bestUnitId = a.unit_id;
+      // Unité prioritaire selon unitIndex
+      let bestUnitRank = Number.POSITIVE_INFINITY;
+      let bestUnitId: number | null = null;
+      for (const a of asg) {
+        const idx = unitIndexById.get(a.unit_id);
+        if (idx !== undefined && idx < bestUnitRank) {
+          bestUnitRank = idx;
+          bestUnitId = a.unit_id;
+        }
       }
-    }
 
-    // Clés de priorité
-    const unitPrio =
-      Math.min(
-        ...asg
-          .map((a) => unitPriorityIndex.get(a.unit_id))
-          .filter((v): v is number => typeof v === "number"),
-      ) ?? Number.POSITIVE_INFINITY;
+      // Clés de priorité
+      const unitPrio =
+        Math.min(
+          ...asg
+            .map((a) => unitPriorityIndex.get(a.unit_id))
+            .filter((v): v is number => typeof v === "number"),
+        ) ?? Number.POSITIVE_INFINITY;
 
-    const rolePrio =
-      Math.min(
-        ...asg
-          .map((a) => rolePriorityIndex.get(a.role_id))
-          .filter((v): v is number => typeof v === "number"),
-      ) ?? Number.POSITIVE_INFINITY;
+      const rolePrio =
+        Math.min(
+          ...asg
+            .map((a) => rolePriorityIndex.get(a.role_id))
+            .filter((v): v is number => typeof v === "number"),
+        ) ?? Number.POSITIVE_INFINITY;
 
-    return {
-      bestRoleRank,
-      bestRoleId,
-      bestUnitRank,
-      bestUnitId,
-      unitPrio,
-      rolePrio,
-    };
-  }
+      return {
+        bestRoleRank,
+        bestRoleId,
+        bestUnitRank,
+        bestUnitId,
+        unitPrio,
+        rolePrio,
+      };
+    },
+    [roleIndexById, unitIndexById, rolePriorityIndex, unitPriorityIndex],
+  );
 
   /* ======== Tri combiné ======== */
 
@@ -233,53 +226,41 @@ export default function MembersListCompact({
       // 2) Priorité rôles
       if (A.rolePrio !== B.rolePrio) return A.rolePrio - B.rolePrio;
 
-      // 3) Tri final selon le mode choisi
+      // 3) Tri final
       if (sort === "role") {
-        // plus petit bestRoleRank = rôle plus élevé
-        if (A.bestRoleRank !== B.bestRoleRank) {
+        if (A.bestRoleRank !== B.bestRoleRank)
           return A.bestRoleRank - B.bestRoleRank;
-        }
-        // fallback alpha
         return a.pseudo.localeCompare(b.pseudo);
       }
 
       if (sort === "unit") {
-        if (A.bestUnitRank !== B.bestUnitRank) {
+        if (A.bestUnitRank !== B.bestUnitRank)
           return A.bestUnitRank - B.bestUnitRank;
-        }
-        // fallback alpha
         return a.pseudo.localeCompare(b.pseudo);
       }
 
-      // sort === "alpha"
+      // alpha
       return a.pseudo.localeCompare(b.pseudo);
     });
 
     return limit ? list.slice(0, limit) : list;
-  }, [
-    filtered,
-    sort,
-    limit,
-    roleIndexById,
-    unitIndexById,
-    rolePriorityIndex,
-    unitPriorityIndex,
-  ]);
+  }, [filtered, sort, limit, computeMemberMetrics]);
 
   /* ======== Rendu ======== */
 
   if (err) {
     return (
-      <div className={`rounded-2xl bg-black/30 p-4 text-white ${className}`}>
+      <section
+        className={`rounded-2xl bg-black/30 p-4 text-white ${className}`}
+      >
         <h3 className="text-lg font-semibold mb-2">{title}</h3>
         <p className="text-sm text-red-400">Erreur de chargement : {err}</p>
-      </div>
+      </section>
     );
   }
 
   return (
-    <div
-      role="region"
+    <section
       aria-label={title}
       className={`rounded-2xl bg-black/30 p-4 text-white ${className}`}
     >
@@ -300,6 +281,6 @@ export default function MembersListCompact({
           ))}
         </ul>
       )}
-    </div>
+    </section>
   );
 }
