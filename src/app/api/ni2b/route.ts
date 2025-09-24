@@ -1,33 +1,32 @@
 // src/app/api/ni2b/route.ts
-import { readFile } from "node:fs/promises"; // biome: use node: protocol
-import path from "node:path"; // biome: use node: protocol
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { NextResponse } from "next/server";
-
-type Ni2bSheet = {
-  id: string;
-  tab?: string;
-  gid?: string | number;
-  balance_cell: string;
-  updated_cell: string;
-};
 
 type Ni2bMeta = {
   title?: string;
   description_md?: string;
   signature?: string;
-  balance_auec?: number;
-  updated_at?: string;
-  sheet_url?: string;
-  sheet?: Ni2bSheet;
+  balance_auec?: number | null;
+  updated_at?: string | null;
   portrait_url?: string;
+  vault_image_url?: string;
 };
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const dataUrl = url.searchParams.get("dataUrl") || "/data/ni2b_meta.json";
-  const debug = url.searchParams.get("debug") === "1";
+  const allowDebug = process.env.NODE_ENV !== "production";
+  const debug = allowDebug && url.searchParams.get("debug") === "1";
+
+  // ENV (prioritaires)
+  const SHEET_ID = process.env.NI2B_SHEET_ID;
+  const GID = process.env.NI2B_SHEET_GID;
+  const BAL_RANGE = process.env.NI2B_BALANCE_RANGE;
+  const UPD_RANGE = process.env.NI2B_UPDATED_RANGE;
 
   try {
+    // 1) Métadonnées locales (titre, texte, visuels…)
     const filePath = path.join(
       process.cwd(),
       "public",
@@ -36,31 +35,25 @@ export async function GET(req: Request) {
     const raw = await readFile(filePath, "utf-8");
     const meta = JSON.parse(raw) as Ni2bMeta;
 
+    // 2) Valeurs dynamiques (balance/date) via Google Sheet
     let balance = meta.balance_auec ?? null;
     let updatedISO = meta.updated_at ?? null;
 
     const dbg: Record<string, unknown> = {};
     let usedSheet = false;
 
-    if (
-      meta.sheet?.id &&
-      meta.sheet.balance_cell &&
-      meta.sheet.updated_cell &&
-      (meta.sheet.gid || meta.sheet.tab)
-    ) {
+    if (SHEET_ID && GID && BAL_RANGE && UPD_RANGE) {
       try {
         const bal = await fetchGvizSingleCell({
-          id: meta.sheet.id,
-          gid: meta.sheet.gid,
-          tab: meta.sheet.tab,
-          cell: meta.sheet.balance_cell,
+          id: SHEET_ID,
+          gid: GID,
+          cell: BAL_RANGE,
           debug,
         });
         const upd = await fetchGvizSingleCell({
-          id: meta.sheet.id,
-          gid: meta.sheet.gid,
-          tab: meta.sheet.tab,
-          cell: meta.sheet.updated_cell,
+          id: SHEET_ID,
+          gid: GID,
+          cell: UPD_RANGE,
           debug,
         });
 
@@ -74,7 +67,6 @@ export async function GET(req: Request) {
           balance = balNum;
           usedSheet = true;
         }
-
         const updISO = toISODateLoose(upd.value);
         if (updISO) {
           updatedISO = updISO;
@@ -82,7 +74,7 @@ export async function GET(req: Request) {
         }
       } catch (e) {
         if (debug) dbg.sheet_error = (e as Error).message ?? String(e);
-        // fallbacks JSON conservés
+        // fallback JSON conservé
       }
     }
 
@@ -109,27 +101,22 @@ export async function GET(req: Request) {
   }
 }
 
-/* ===== Helpers ===== */
+/* ================= Helpers ================= */
 
 async function fetchGvizSingleCell(opts: {
   id: string;
   cell: string;
-  tab?: string;
   gid?: string | number;
   debug?: boolean;
 }): Promise<{ value: string; debug?: Record<string, unknown> }> {
-  const { id, cell, tab, gid, debug } = opts;
+  const { id, cell, gid, debug } = opts;
   const base = `https://docs.google.com/spreadsheets/d/${encodeURIComponent(id)}/gviz/tq?tqx=out:json`;
-  const qp =
-    gid != null
-      ? `${base}&gid=${encodeURIComponent(String(gid))}&range=${encodeURIComponent(cell)}`
-      : `${base}&sheet=${encodeURIComponent(tab ?? "")}&range=${encodeURIComponent(cell)}`;
+  const qp = `${base}&gid=${encodeURIComponent(String(gid ?? ""))}&range=${encodeURIComponent(cell)}`;
 
   const resp = await fetch(qp, { cache: "no-store" });
   if (!resp.ok) throw new Error(`Sheet HTTP ${resp.status}`);
   const text = await resp.text();
 
-  // extraction robuste entre setResponse( … )
   const start = text.indexOf("setResponse(");
   if (start === -1) throw new Error("gviz wrapper not found");
   const open = start + "setResponse(".length;
@@ -178,16 +165,14 @@ function parseNumberLoose(val: string): number | null {
 }
 
 function toISODateLoose(val: string): string | null {
-  // gviz: Date(YYYY,MM,DD,hh,mm,ss)
   const m1 = val.match(
     /^Date\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+),\s*(\d+),\s*(\d+))?\)$/,
   );
   if (m1) {
     const [, y, m, d, hh = "0", mi = "0", ss = "0"] = m1;
-    const js = new Date(Date.UTC(+y, +m, +d, +hh, +mi, +ss)); // mois 0-based
+    const js = new Date(Date.UTC(+y, +m, +d, +hh, +mi, +ss)); // gviz: mois 0-based
     return js.toISOString();
   }
-  // Serial date Sheets
   if (/^\d+(\.\d+)?$/.test(val)) {
     const serial = Number(val);
     if (Number.isFinite(serial)) {
@@ -196,16 +181,14 @@ function toISODateLoose(val: string): string | null {
       return new Date(base + ms).toISOString();
     }
   }
-  // ISO / natif
   const d1 = new Date(val);
   if (!Number.isNaN(d1.getTime())) return d1.toISOString();
-  // FR "dd/mm/yyyy hh:mm"
   const m2 = val.match(
     /^(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})(?:[ T](\d{1,2}):(\d{2}))?$/,
   );
   if (m2) {
     const [, dd, mm, yyyy, hh = "00", mi = "00"] = m2;
-    const y = Number(yyyy.length === 2 ? `20${yyyy}` : yyyy); // template literal
+    const y = Number(yyyy.length === 2 ? `20${yyyy}` : yyyy);
     const js = new Date(
       Date.UTC(y, Number(mm) - 1, Number(dd), Number(hh), Number(mi)),
     );

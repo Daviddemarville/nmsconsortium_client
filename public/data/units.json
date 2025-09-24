@@ -70,5 +70,6 @@
     "label": "Gurn & Roses Consortium (GARC)",
     "parent_id": 7
   },
-  { "id": 17, "key": "founder", "label": "FONDATEUR", "parent_id": 1 }
+  { "id": 17, "key": "founder", "label": "FONDATEUR", "parent_id": 1 },
+  { "id": 18, "key": "", "label": "", "parent_id": 1 }
 ]

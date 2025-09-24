@@ -19,10 +19,34 @@
       "quote": "« Là où d’autres abandonnent, nous soignons. »"
     },
     "rtt": {
-      "title": "Préface de la RTT",
-      "intro": "La RTT (Réseau de Transport et de Trading) orchestre les échanges commerciaux et logistiques au sein du Consortium. Sa flotte diversifiée assure le transport de marchandises, l’extraction de ressources et la distribution vers les différents pôles d’activité. La RTT est le moteur économique qui alime",
-      "body": "La RTT (Réseau de Transport et de Trading) orchestre les échanges commerciaux et logistiques au sein du Consortium. Sa flotte diversifiée assure le transport de marchandises, l’extraction de ressources et la distribution vers les différents pôles d’activité. La RTT est le moteur économique qui alimente l’ensemble de la structure. Chaque convoi qu’elle organise est une démonstration de coordination et de fiabilité, garantissant que les intérêts du Consortium sont toujours approvisionnés en ressources vitales.",
-      "quote": "« Sans logistique, aucune victoire n’est possible. »"
+      "title": "Préface de RTT",
+      "intro": "Recovery, Transport & Trading est la colonne logistique du Consortium. De la récupération à l’acheminement, RTT transforme l’effort collectif en valeur concrète.",
+      "body": "RTT coordonne les opérations de récupération, de remorquage, de transport et de négoce. Ses équipages planifient les routes, optimisent les cargaisons et sécurisent les deals pour maximiser les profits du groupe. Qu’il s’agisse d’extraire des cargaisons d’épaves, d’organiser un convoi inter-système ou de conclure une vente au meilleur marché, RTT agit avec précision et fiabilité, afin que chaque ressource récoltée par le Consortium arrive à bon port.",
+      "quote": "« Le profit suit la discipline logistique. »"
+    },
+    "core": {
+      "title": "Préface de CORE",
+      "intro": "Construction, Organisation, Réparation, Exploitation : CORE est l’ingénierie du Consortium, garante de la disponibilité des moyens et de la résilience des opérations.",
+      "body": "CORE construit, entretient et répare l’infrastructure matérielle du Consortium : vaisseaux, outillages, abris, plateformes et réseaux. Des ateliers mobiles aux chantiers d’assemblage, les équipes CORE interviennent vite et bien, assurant une flotte opérationnelle et une logistique irréprochable. Grâce à des procédures maîtrisées et un sens aigu de la sécurité, CORE permet aux autres unités d’opérer au meilleur niveau, partout et durablement.",
+      "quote": "« Bâtir, réparer, repartir. »"
+    },
+    "nasa": {
+      "title": "Préface de la NASA",
+      "intro": "Nemesis Aerospace Science Academy cultive la curiosité, la méthode et la transmission. C’est le pôle sciences, exploration et formation avancée du Consortium.",
+      "body": "La NASA explore, cartographie et étudie. Elle forme pilotes et spécialistes aux techniques de navigation, d’analyse et de recherche appliquée. De la reconnaissance de territoires à l’étude de phénomènes rares, en passant par l’essai de nouveaux procédés, la NASA éclaire les décisions stratégiques du Consortium. Son exigence pédagogique et scientifique fait grandir les compétences individuelles et la maîtrise collective.",
+      "quote": "« Observer, comprendre, avancer. »"
+    },
+    "pulse": {
+      "title": "Préface de PULSE",
+      "intro": "PULSE incarne l’esprit de performance : préparation, coordination, dépassement. Du sport aux compétitions, elle canalise l’énergie du groupe vers l’excellence.",
+      "body": "PULSE structure l’entraînement, la condition et l’esprit d’équipe. Qu’il s’agisse de courses, d’épreuves tactiques, d’événements internes ou inter-organisations, ses cadres conçoivent des programmes et des formats qui stimulent l’engagement et la progression. PULSE valorise la rigueur autant que le plaisir de jouer ensemble, pour des performances durables et partagées.",
+      "quote": "« La performance est un état d’esprit. »"
+    },
+    "eclipse": {
+      "title": "Préface d’ECLIPSE",
+      "intro": "ECLIPSE est le cercle du conseil et des opérations spéciales : discret, précis, orienté résultats. Là où la lumière ne porte pas, elle construit des issues.",
+      "body": "ECLIPSE traite les dossiers sensibles : négociations délicates, renseignements, opérations à faible signature et actions d’influence. Ses opérateurs conjuguent analyse, patience et maîtrise technique afin de produire des effets concrets avec un minimum d’exposition. ECLIPSE agit dans le strict cadre fixé par le Global Council, au service des intérêts du Consortium.",
+      "quote": "« L’ombre cache la lumière des résultats. »"
     }
   }
 }

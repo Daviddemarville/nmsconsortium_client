@@ -1,15 +1,307 @@
 {
-  "latest": [
+  "title": "Nemesis Global News",
+  "description_md": "Le Nemesis Global News (NGN) est le service de presse du Consortium, fournissant des informations, des analyses et des reportages sur les événements galactiques.\n\n- Journalistes expérimentés\n- Couverture mondiale\n- Reportages en temps réel\n[br]\nVotre source d'information fiable dans un univers en constante évolution.\n[br]\nRejoignez-nous pour découvrir la vérité derrière les nouvelles.\n[br]\nNos editions sont entièrement independante sous la non censure de notre Amiral Adoré!",
+  "portrait_url": "/images/ngn_logo.png",
+  "editions": [
     {
-      "id": "ngn-2025-09-01",
-      "title": "Édition 42",
-      "img": "/images/ngn/42.jpg",
-      "href": "/ngn/42"
+      "id": "ed-1",
+      "title": "Édition 1",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/964936841864302622/journal_160452corrige.jpg?ex=68d4cfb6&is=68d37e36&hm=ddd15cffa7f28a41898215b297a6ef249fd2cd8471e8d1218a99550989a05a7a&=&format=webp&width=550&height=779",
+      "href": ""
     },
     {
-      "id": "ngn-2025-08-15",
+      "id": "ed-2",
+      "title": "Édition 2",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/967422389866594354/journal_240452corrige.jpg?ex=68d548cf&is=68d3f74f&hm=3b5aea1be308e3586eb4653f55b678c42fda1cca975c8581a0e26733ea60d2ae&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-3",
+      "title": "Édition 3",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/968278765522268180/edition_special_27042952_corrige.jpg?ex=68d51a9f&is=68d3c91f&hm=45ff04b2396c30454960b7071955ea5614c96d28f0038725892af676a2be52fe&=&format=webp&width=550&height=778",
+      "href": ""
+    },
+    {
+      "id": "ed-4",
+      "title": "Édition 4",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/970307977112350740/journal_01052952_corrige.jpg?ex=68d53c39&is=68d3eab9&hm=cc512cd0fd66bc96ff90b6dbd6feac5b7da3e5835ae582446510edc9affbc979&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-5",
+      "title": "Édition 5",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/972884973323444234/journal_08052952_corrige.jpg?ex=68d4b8fc&is=68d3677c&hm=7e20f2022efb28a5ab202f7c21cab1ac6b21c19a1a41044c02ebfe967c592e9d&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-6",
+      "title": "Édition 6",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/974794101637656596/journal_15052952.jpg?ex=68d51380&is=68d3c200&hm=4e1141e6faaf09feee25cf11b5d1173f577a720cf414d99ae9d5f7f11d9dd80e&=&format=webp&width=551&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-7",
+      "title": "Édition 7",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/977909932944945232/journal_22052952_corrige.jpg?ex=68d53498&is=68d3e318&hm=d12665c9a238e53f1520a2ba063653b24ecc5410f17b13d2f7b7aae3c3b8e3b4&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-8",
+      "title": "Édition 8",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/980063479278997544/journal_29052952.jpg?ex=68d5213e&is=68d3cfbe&hm=f916c76c3c2ee5cb4f44be8a9f15610d045c4a7a30cd0655287b80ca7430e40f&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-9",
+      "title": "Édition 9",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/983056501973352478/journal_05062952.jpg?ex=68d4cff6&is=68d37e76&hm=099e59df5da54bc34564b9223f134aa798e1d4d521772db56168b83c2907073d&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-10",
+      "title": "Édition 10",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/985207840778108949/journal_11062952.jpg?ex=68d4ba8d&is=68d3690d&hm=ee2ce94f78a9f2f1056903d3cd742d985e378592d8063dee36f08bf934a35518&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-11",
+      "title": "Édition 11",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/987764660692475914/journal_18062952_corrige.jpg?ex=68d4cd46&is=68d37bc6&hm=15e38672f4327154fa4ba9bc8047e474b2fe2dc05e4543d9d56ab6aa55528967&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-12",
+      "title": "Édition 12",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/990626975070715944/journal_26062952_corrige.jpg?ex=68d4ab03&is=68d35983&hm=9e387fa84813ddab85f3d943930f123963a79d3fdf975da7c54eb3488de9749f&=&format=webp&width=548&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-13",
+      "title": "Édition 13",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/993178975729885305/journal_03072952.jpg?ex=68d4b940&is=68d367c0&hm=342fb14c6b40370d5296dfc4b7df57350474906e5f06a58d488c8bbff4b47181&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-14",
+      "title": "Édition 14",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/995780157501620384/journal_10072952.jpg?ex=68d4f54a&is=68d3a3ca&hm=3ee9e8ed54b06cf2f8b4a0684ef2bf316ddb65c09465ff79b32ce9c8cf9fe683&=&format=webp&width=549&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-15",
+      "title": "Édition 15",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/997957136824930324/journal_16072952.jpg?ex=68d4f7c2&is=68d3a642&hm=5ec79cf984d5fda086eef6a1749fe4ac977725185a626e61f8ecb5c0f3afd266&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-16",
+      "title": "Édition 16",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1005824090277433516/journal_07082952.jpg?ex=68d53e2e&is=68d3ecae&hm=b31ae34dd02883831705944a62f3cf03f1a5f398e934577da8e99c5b15997362&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-17",
+      "title": "Édition 17",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1008419507578089632/journal_14082952.jpg?ex=68d4cc1a&is=68d37a9a&hm=5562247ee7169b7ebd8086e45e96d082fc8a3d2f9354d15e6f80398e028b4769&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-18",
+      "title": "Édition 18",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1013133155059896320/journal_27082952.jpg?ex=68d4ce87&is=68d37d07&hm=47f9373806cc6dc42848c6b6bd97182fffd4702d8c209f929a50b68d58cf2647&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-19",
+      "title": "Édition 19",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1015947736476028958/journal_04092952.jpg?ex=68d5288f&is=68d3d70f&hm=0f8ff5be292ac618838931717826e70a04b9eb8040d7903b8e7e91865214d80a&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-20",
+      "title": "Édition 20",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1015947736476028958/journal_04092952.jpg?ex=68d5288f&is=68d3d70f&hm=0f8ff5be292ac618838931717826e70a04b9eb8040d7903b8e7e91865214d80a&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-21",
+      "title": "Édition 21",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1021053380912746626/journal_18092952.jpg?ex=68d54690&is=68d3f510&hm=109f6f041dfaa70db9c24fae344099550f935b421e436d0008a1c8b71cf17615&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-22",
+      "title": "Édition 22",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1023672932297355315/journal_25092952.jpg?ex=68d4eaf5&is=68d39975&hm=beb051add22cf5287a99da7c6afcdf970f3358f74bef3b906986e69b6c670176&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-23",
+      "title": "Édition 23",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1026103690425274458/journal_02102952.jpg?ex=68d53107&is=68d3df87&hm=2fab663df6f6790dc8d18359da7c13958ac5354a1927bf527361b6b889ab6f9a&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-24",
+      "title": "Édition 24",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1028310197451628625/journal_08102952.jpg?ex=68d54f00&is=68d3fd80&hm=8e948cb39d5b49cebf0bb3f9bdbbe7b54812df8c885dbf1dc73f771d96349d37&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-25",
+      "title": "Édition 25",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1031287136311324713/journal_16102952.jpg?ex=68d4eebd&is=68d39d3d&hm=11445f1853119d2901e0bc24ece3dba4e0f5cb273402f4bd1dd2d9099ba9f5e1&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-26",
+      "title": "Édition 26",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1033750517563789382/journal_23102952.jpg?ex=68d55331&is=68d401b1&hm=ff5b070aabc26c9cfbfc361dde867bb0ea89bd8be0bd5c9ed4b2d4b5d2910b08&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-27",
+      "title": "Édition 27",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1036216056173318204/journal_30102952.jpg?ex=68d510e7&is=68d3bf67&hm=bdd1029901f9c3329775b0d5af066a2956d3449443a23072e9e94f9a9d279213&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-28",
+      "title": "Édition 28",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1038870623679684618/journal_06112952.jpg?ex=68d4d5e9&is=68d38469&hm=d660df59b00441c39df1f40e78908c9012b223f8b50383b4c0ed8144c54bfd05&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-29",
+      "title": "Édition 29",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1042484366569381939/journal_15112952.jpg?ex=68d4cc79&is=68d37af9&hm=2a4e733d8577368d06e190bc32833ac6f4203a82da8bd82528a54faf06abf02b&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-30",
+      "title": "Édition 30",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1047263187139035137/journal_26112952.jpg?ex=68d50b99&is=68d3ba19&hm=2ad1bc0cc3dbf41e0571c2c271c7945297654fce3bd18b928c79b28aff6c3e56&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-31",
+      "title": "Édition 31",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1051271368190197850/journal_10122952.jpg?ex=68d52001&is=68d3ce81&hm=161835b08f1c9e25527ff6bc99eed082b270862f85885406f510f593113ef4e7&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-32",
+      "title": "Édition 32",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1053695619753062400/journal_17122952.jpg?ex=68d4b744&is=68d365c4&hm=1689929ea5c7eadc205c311d6a624c247a1c49f2e6e1fcd4b69bb5ba11fbceb0&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-33",
+      "title": "Édition 33",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1056929945017917511/journal_25122952.jpg?ex=68d546b7&is=68d3f537&hm=624344538a0f67d94e4250218cee2e0eee2441cb695490e4c4b97eec625d9164&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-34",
+      "title": "Édition 34",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1063900412463296623/journal_14012953.jpg?ex=68d4ed38&is=68d39bb8&hm=685530c2eee5b2e94b1f45c780c6b0cfe123f1a6124fed3e89ff386bc565fd3c&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-35",
+      "title": "Édition 35",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1104718355014889472/journal_07052953.jpg?ex=68d51b24&is=68d3c9a4&hm=8250cdf646658bbe4b1dd2364cae7923e835ff5b4011f6a75aec55139c720ef4&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-36",
+      "title": "Édition 36",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1107750595567304764/journal_14052953.jpg?ex=68d4ee62&is=68d39ce2&hm=cb9424ef369e244da31a1ee7e4524980b5bf84ce05371a0a0ecf18025836bc92&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-37",
+      "title": "Édition 37",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1196095861231452200/140124.jpg?ex=68d54f13&is=68d3fd93&hm=0c360173d33811892e10ab644e856bce115aed189c70537b1066181b09657dcd&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-38",
+      "title": "Édition 38",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1198862055143391283/NEMESIS_GLOBAL_NEWS_Cyclone_Corrige_2.jpg?ex=68d4d34b&is=68d381cb&hm=8f1ad5fff136d344361200a89aaa331620c37cfda11e5b0030928c734c32f1ae&=&format=webp&width=554&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-39",
+      "title": "Édition 39",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1203654100009357352/290124.jpg?ex=68d51ebc&is=68d3cd3c&hm=f70f8c83f0dcda41a07e9c543a7010906497bf1cbf25bcc807bc0e85de62f656&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-40",
+      "title": "Édition 40",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1203654149753937940/040224.jpg?ex=68d51ec8&is=68d3cd48&hm=6d30d69b292d4e24f53abc574275c849101ef80c9972b3f12abdb9effc433078&=&format=webp&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-41",
       "title": "Édition 41",
-      "img": "/images/ngn/41.jpg"
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1210330290610765864/190224.jpg?ex=68d504ac&is=68d3b32c&hm=6432f1eef9aa48851daf5f6c6a9b7af55ac7a7ea96fcecf807625177d7933a61&=&format=webp&width=550&height=778",
+      "href": ""
+    },
+    {
+      "id": "ed-42",
+      "title": "Édition 42",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1212673076471398451/9c7d5a26-33f5-4f8c-a39d-3f793ea95876.png?ex=68d4f8cf&is=68d3a74f&hm=ecc984a111ffea12480bf65bfd926ff6de78fc8ea07ca0d48f4a77081556500a&=&format=webp&quality=lossless&width=550&height=779",
+      "href": ""
+    },
+    {
+      "id": "ed-43",
+      "title": "Édition 43",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1214288932414554182/040324.jpg?ex=68d4eaf1&is=68d39971&hm=0f00b758524cf28f76a30722ea94700153c1a7b67b8dc6761749d3ab9f08e6b0&=&format=webp&width=550&height=778",
+      "href": ""
+    },
+    {
+      "id": "ed-44",
+      "title": "Édition 44",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1221099347546996828/230324.jpg?ex=68d54de3&is=68d3fc63&hm=0ca1af146643c2af01a6d2d2ca5b749b571db1ae0cfb4c0a30de278f0a877577&=&format=webp&width=550&height=778",
+      "href": ""
+    },
+    {
+      "id": "ed-45",
+      "title": "Édition 45",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1224435913749434428/300324.jpg?ex=68d4eb0e&is=68d3998e&hm=ec7ec7ab29cabcaab61005e3959976e6c7f3b2e5761b4bbda0a8175c3efa7166&=&format=webp&width=550&height=778",
+      "href": ""
+    },
+    {
+      "id": "ed-46",
+      "title": "Édition 46",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1228047237670764575/070424.jpg?ex=68d4df5d&is=68d38ddd&hm=7fe250bdeca0074e56d162300a4b68c99becbfb3ab35b31db50c9f559b07a83d&=&format=webp&width=309&height=438",
+      "href": ""
+    },
+    {
+      "id": "ed-47",
+      "title": "Édition 47",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1233793688753147914/270424.jpg?ex=68d4af2a&is=68d35daa&hm=a6e07df432efd0311b7cb7376908f37ff59b29a6ee8c86a409cd0d44e6cd93ad&=&format=webp&width=550&height=778",
+      "href": ""
+    },
+    {
+      "id": "ed-48",
+      "title": "Édition 48",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1236314471727632394/040524.jpg?ex=68d54913&is=68d3f793&hm=f96cc6436eba8ceae3b3b0467dde1d0e5689255449a3d18bd3edea7fe441bd88&=&format=webp&width=550&height=778",
+      "href": ""
+    },
+    {
+      "id": "ed-49",
+      "title": "Édition 49",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1241710807734292593/170524.jpg?ex=68d5244e&is=68d3d2ce&hm=5f5785abee2064384c38e0fed7873684ce8cf1b5988a68164df5511713429f5f&=&format=webp&width=550&height=778",
+      "href": ""
+    },
+    {
+      "id": "ed-50",
+      "title": "Édition 50",
+      "cover": "https://media.discordapp.net/attachments/961645523612364811/1273726030669938860/150824.jpg?ex=68d4f00e&is=68d39e8e&hm=86d9c302b35878fec9e57b8441de88206f924662320a0e0e325df5154ea3b13d&=&format=webp&width=550&height=778",
+      "href": ""
     }
   ]
 }

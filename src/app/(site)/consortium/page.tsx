@@ -42,7 +42,7 @@ export default function Corpos() {
         <div className="mt-6 flex flex-wrap gap-3">
           <DiscordButton
             inviteUrl="https://discord.gg/FYmSmhRjW9"
-            location="footer"
+            location="consortium-page"
             className="bg-nms-gold text-nms-dark font-semibold hover:opacity-90 transition"
           />
 

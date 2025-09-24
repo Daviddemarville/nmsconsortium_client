@@ -1,17 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { trackLinkClick } from "@/lib/analytics";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Ni2bMeta = {
   title?: string;
   description_md?: string;
   signature?: string;
-  balance_auec?: number;
-  updated_at?: string; // ISO
-  sheet_url?: string;
+  balance_auec?: number | null;
+  updated_at?: string | null;
   portrait_url?: string;
+  vault_image_url?: string;
+  vault_image_alt?: string;
 };
 
 type Props = {
@@ -44,23 +44,11 @@ export default function Ni2bCard({
     };
   }, [apiUrl]);
 
-  // helpers de formatage
-  const formatAmount = (n: unknown) => {
-    const num = typeof n === "number" ? n : Number(n);
-    if (!Number.isFinite(num)) return "—";
-    try {
-      return `${new Intl.NumberFormat("fr-FR").format(num)} aUEC`; // biome: template literal
-    } catch {
-      return `${num} aUEC`;
-    }
-  };
-
-  // AFFICHER UNIQUEMENT LA DATE (pas l'heure)
-  const formatUpdatedDateOnly = (iso: unknown) => {
-    if (!iso || typeof iso !== "string" || iso.trim() === "") return "—";
+  const formatDateOnly = (iso?: string | null) => {
+    if (!iso) return "—";
     try {
       const d = new Date(iso);
-      if (Number.isNaN(d.getTime())) return iso; // brut si non parsable
+      if (Number.isNaN(d.getTime())) return iso;
       return d.toLocaleDateString("fr-FR", {
         timeZone: "Europe/Paris",
         year: "numeric",
@@ -101,7 +89,7 @@ export default function Ni2bCard({
             <div className="h-5 w-40 bg-white/10 rounded" />
             <div className="mt-3 h-8 w-48 bg-white/10 rounded" />
             <div className="mt-3 h-4 w-36 bg-white/10 rounded" />
-            <div className="mt-4 h-9 w-44 bg-white/10 rounded" />
+            <div className="mt-4 h-24 w-full bg-white/10 rounded" />
           </div>
         </div>
       </section>
@@ -112,14 +100,15 @@ export default function Ni2bCard({
     title = "NI2B — Banque communautaire du Consortium",
     description_md = "",
     signature,
-    sheet_url,
     portrait_url,
+    vault_image_url,
+    vault_image_alt,
     balance_auec,
     updated_at,
   } = meta;
 
-  const amount = formatAmount(balance_auec);
-  const updatedLabel = formatUpdatedDateOnly(updated_at);
+  const balanceValue: number =
+    typeof balance_auec === "number" ? balance_auec : 0;
 
   return (
     <section
@@ -163,33 +152,147 @@ export default function Ni2bCard({
             Solde NI2B
           </div>
           <div className="mt-2 text-3xl font-semibold tabular-nums">
-            {amount}
+            <CountUpNumber value={balanceValue} />
+            <span className="ml-2">aUEC</span>
           </div>
           <div className="mt-1 text-xs text-white/60">
-            Mise à jour : {updatedLabel}
+            Mise à jour : {formatDateOnly(updated_at)}
           </div>
 
-          {sheet_url && (
-            <a
-              href={sheet_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                trackLinkClick({
-                  href: sheet_url,
-                  label: "ni2b_sheet",
-                  location: "ni2b_card",
-                  outbound: true,
-                })
-              }
-              className="mt-5 inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm font-medium transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
-            >
-              Ouvrir le registre (Google Sheet)
-            </a>
+          {vault_image_url && (
+            <div className="mt-5 relative w-full h-28 md:h-36 rounded-lg overflow-hidden border border-white/10 bg-white/5">
+              <Image
+                src={vault_image_url}
+                alt={
+                  vault_image_alt ?? "Porte de coffre-fort (illustration NI2B)"
+                }
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
+                priority={false}
+              />
+              <div
+                className="absolute inset-0 bg-black/25 md:bg-black/20"
+                aria-hidden
+              />
+            </div>
           )}
         </aside>
       </div>
     </section>
+  );
+}
+
+/* ================= Count-up animé et accessible ================= */
+function CountUpNumber({
+  value,
+  duration = 5500,
+}: {
+  value: number;
+  duration?: number;
+}) {
+  const [display, setDisplay] = useState<number>(0); // valeur initiale neutre (9 chiffres)
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const toRef = useRef<number>(value);
+  const inViewRef = useRef<boolean>(false);
+  const displayRef = useRef<number>(0);
+
+  const formatter = useMemo(() => new Intl.NumberFormat("fr-FR"), []);
+  const prefersReducedMotion = useMemo(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+
+  useEffect(() => {
+    displayRef.current = display;
+  }, [display]);
+
+  const cancelAnim = useCallback(() => {
+    if (rafRef.current != null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+  }, []);
+
+  const startAnim = useCallback(() => {
+    cancelAnim();
+    const start = performance.now();
+    const from = displayRef.current;
+    const to = toRef.current ?? 0;
+
+    const easeOutQuad = (t: number) => 1 - (1 - t) * (1 - t);
+
+    const step = (now: number) => {
+      const elapsed = Math.min(1, (now - start) / duration);
+      const k = easeOutQuad(elapsed);
+      const curr = Math.round(from + (to - from) * k);
+      setDisplay(curr);
+      if (elapsed < 1) rafRef.current = requestAnimationFrame(step);
+      else rafRef.current = null;
+    };
+
+    if (prefersReducedMotion) {
+      setDisplay(to);
+      return;
+    }
+    rafRef.current = requestAnimationFrame(step);
+  }, [cancelAnim, duration, prefersReducedMotion]);
+
+  // si la prop change, update la cible et relance si déjà visible
+  useEffect(() => {
+    toRef.current = value ?? 0;
+    if (prefersReducedMotion || inViewRef.current) startAnim();
+  }, [value, prefersReducedMotion, startAnim]);
+
+  // observe l’entrée en vue + check immédiat
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setDisplay(value ?? 0);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+
+    // ✅ check immédiat si déjà dans le viewport
+    if (typeof window !== "undefined") {
+      const rect = el.getBoundingClientRect();
+      const vh =
+        window.innerHeight || document.documentElement.clientHeight || 0;
+      const inViewport = rect.top < vh && rect.bottom > 0;
+      if (inViewport && !inViewRef.current) {
+        inViewRef.current = true;
+        startAnim();
+      }
+    }
+
+    // ✅ observe les entrées dans le viewport (élément bloc)
+    if (typeof IntersectionObserver !== "undefined") {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting && !inViewRef.current) {
+              inViewRef.current = true;
+              startAnim();
+              break;
+            }
+          }
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -10% 0px" },
+      );
+      io.observe(el);
+      return () => io.disconnect();
+    }
+  }, [prefersReducedMotion, startAnim, value]);
+
+  useEffect(() => cancelAnim, [cancelAnim]);
+
+  // A11y : zone live + équivalent texte caché
+  return (
+    <span ref={ref} aria-live="polite" className="inline-block align-middle">
+      <span className="sr-only">{`${value} aUEC`}</span>
+      {formatter.format(display)}
+    </span>
   );
 }
 
@@ -211,7 +314,6 @@ function MarkdownLite({ text }: { text: string }) {
       nodes.push(<div key={`sp-${i}`} className="h-6" aria-hidden />);
       continue;
     }
-
     if (/^###\s+/.test(line)) {
       nodes.push(
         <h4 key={`h4-${line}-${i}`}>{line.replace(/^###\s+/, "")}</h4>,

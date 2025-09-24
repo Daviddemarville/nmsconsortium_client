@@ -2,15 +2,9 @@
   "title": "Nemesis Intergalactic Business Bank (NI2B)",
   "description_md": "### Pourquoi la NI2B ?\n[br]\nLa NI2B centralise la trésorerie communautaire pour soutenir les projets du Consortium (achats groupés, logistique, entraînements, événements) et sécuriser un fonds d’urgence en cas de besoin.\n\n### Cotisation mensuelle\nChaque membre peut verser une petite cotisation mensuelle (montant communiqué sur Discord et dans le registre) afin d’alimenter la caisse commune de manière régulière.\n\n### Pourquoi donner ?\n- Mutualisation des moyens pour monter plus vite des opérations utiles à tous.\n- Stabilité financière pour couvrir les imprévus.\n- Transparence : chaque entrée/sortie est suivie dans le Google Sheet.\n\n### Redistribution\nLes dépenses et redistributions suivent des règles claires (validées par le GC) et restent publiques : remboursements de logistique, primes d’événement, achats stratégiques, etc. Référez-vous au registre pour le détail poste par poste.\n\n[br]\n\nMerci à tous pour votre confiance et votre participation.",
   "signature": "Craysus — Trésorier NI2B",
-  "balance_auec": 9999999999,
+  "balance_auec": 123456789,
   "updated_at": "2955-09-18T10:00:00Z",
-  "sheet_url": "https://docs.google.com/spreadsheets/d/1hR6h68oRG6M8FkO8NndwlNTathSBM079UQDf68jcR1c/edit",
-  "sheet": {
-    "id": "1hR6h68oRG6M8FkO8NndwlNTathSBM079UQDf68jcR1c",
-    "tab": "",
-    "gid": "1096787829",
-    "balance_cell": "J6",
-    "updated_cell": "C5"
-  },
-  "portrait_url": "/images/craysus.jpg"
+  "portrait_url": "/images/craysus.jpg",
+  "vault_image_url": "/images/ni2b_vault.webp",
+  "vault_image_alt": "Porte de coffre-fort industrielle"
 }

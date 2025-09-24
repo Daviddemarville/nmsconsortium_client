@@ -35,9 +35,13 @@
       "unit_id": 5,
       "tagline": "Branche sécurité & opérations tactiques",
       "description_md": "…texte long spécifique NSF…",
+      "pres_synthese": "Le constat est simple : dans l’espace, personne ne vous entend crier. La sécurité est donc primordiale pour assurer la pérennité des opérations industrielles et commerciales. C’est pourquoi Nemesis Consortium a créé sa propre force de sécurité, la NSF (Nemesis Security Forces).\n\nComposée de membres aguerris au combat spatial et/ou au sol, la NSF assure la sécurisation des opérations industrielles, des convois, etc. Elle peut également être engagée pour des missions de protection rapprochée, d’escorte ou d’intervention tactique.\n\nLa NSF fonctionne comme une unité militaire, avec une hiérarchie claire et des procédures strictes. Les membres de la NSF sont formés régulièrement pour maintenir un haut niveau de compétence et d’efficacité.\n\nEn rejoignant la NSF, vous intégrez une équipe soudée, prête à relever tous les défis pour garantir la sécurité de Nemesis Consortium et de ses membres.",
+      "portrait_url": "/images/corpos/nsf.png",
+      "illustration_url": "https://media.discordapp.net/attachments/688370506885627907/1417634885065244724/ScreenShot-2025-09-17_09-07-59-530.jpg?ex=68d5161e&is=68d3c49e&hm=d8fced7e294a83075a9b8630c58392a87c71db6112f983ab4a9ce458679ea100&=&format=webp&width=1154&height=649",
       "links": {
-        "members_page": "/membres?unit=5",
-        "consortium": "/corpos/nsf"
+        "members_page": "/membres",
+        "consortium": "/corpos",
+        "details": "/corpos/nsf"
       }
     },
     "rtt": {
@@ -45,9 +49,13 @@
       "unit_id": 6,
       "tagline": "Recovery, Transport & Trading",
       "description_md": "…texte long spécifique RTT…",
+      "pres_synthese": "Présentation synthétique RTT pour la carte…",
+      "portrait_url": "/images/corpos/rtt.png",
+      "illustration_url": "/images/corpos/rtt_bg.jpg",
       "links": {
-        "members_page": "/membres?unit=6",
-        "consortium": "/corpos/rtt"
+        "members_page": "/membres",
+        "consortium": "/corpos",
+        "details": "/corpos/rtt"
       }
     },
     "core": {
@@ -55,9 +63,13 @@
       "unit_id": 7,
       "tagline": "Ingénierie & maintenance flotte",
       "description_md": "…texte long spécifique CORE…",
+      "pres_synthese": "Présentation synthétique CORE pour la carte…",
+      "portrait_url": "/images/corpos/core.png",
+      "illustration_url": "/images/corpos/core_bg.jpg",
       "links": {
-        "members_page": "/membres?unit=7",
-        "consortium": "/corpos/core"
+        "members_page": "/membres",
+        "consortium": "/corpos",
+        "details": "/corpos/core"
       }
     },
     "nasa": {
@@ -65,9 +77,13 @@
       "unit_id": 8,
       "tagline": "Aéronautique & sciences",
       "description_md": "…texte long spécifique NASA…",
+      "pres_synthese": "Présentation synthétique NASA pour la carte…",
+      "portrait_url": "/images/corpos/nasa.png",
+      "illustration_url": "/images/corpos/nasa_bg.jpg",
       "links": {
-        "members_page": "/membres?unit=8",
-        "consortium": "/corpos/nasa"
+        "members_page": "/membres",
+        "consortium": "/corpos",
+        "details": "/corpos/nasa"
       }
     },
     "pulse": {
@@ -75,9 +91,13 @@
       "unit_id": 9,
       "tagline": "Sport & performance",
       "description_md": "…texte long spécifique PULSE…",
+      "pres_synthese": "Présentation synthétique PULSE pour la carte…",
+      "portrait_url": "/images/corpos/pulse.png",
+      "illustration_url": "/images/corpos/pulse_bg.jpg",
       "links": {
-        "members_page": "/membres?unit=9",
-        "consortium": "/corpos/pulse"
+        "members_page": "/membres",
+        "consortium": "/corpos",
+        "details": "/corpos/pulse"
       }
     },
     "eclipse": {
@@ -85,9 +105,13 @@
       "unit_id": 10,
       "tagline": "Conseil / opérations spéciales",
       "description_md": "…texte long spécifique ECLIPSE…",
+      "pres_synthese": "Présentation synthétique ECLIPSE pour la carte…",
+      "portrait_url": "/images/corpos/eclipse.png",
+      "illustration_url": "/images/corpos/eclipse_bg.jpg",
       "links": {
-        "members_page": "/membres?unit=10",
-        "consortium": "/corpos/eclipse"
+        "members_page": "/membres",
+        "consortium": "/corpos",
+        "details": "/corpos/eclipse"
       }
     }
   }
