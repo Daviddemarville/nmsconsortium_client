@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import BioDataPadHUD from "@/components/sections/BioDataPadHUD";
 import FactBlock from "@/components/sections/FactBlock";
-import MembersListCompact from "@/components/sections/MembersListCompact";
+
 import ContactButton from "@/components/ui/ContactButton";
 import DiscordButton from "@/components/ui/DiscordButton";
 
@@ -60,7 +60,6 @@ export default async function Core() {
               appLabel: "DATAPAD",
               version: "v1.3",
               date: "24/09/2955",
-              
             }}
             width={420}
             height={640}
@@ -69,21 +68,26 @@ export default async function Core() {
         </div>
       </section>
 
-      {/* Avertissement */  }
-        <section className="bg-black/30 text-shadow-black mt-10 p-2 rounded-2xl border-2 border-red-500">
-         <h2>Avertissement</h2>
-         <p>L'organisation que vous retrouvez sur cette page, représente notre vision de la corpo à la sortie de Star Citizen 1.0</p>
-         <p>Nous nous sommes basé sur les informations reçus lors de la citizencon de 2024 et l'organisation est suceptible dévoluer en fonction des annonces des développeurs dans le future.</p>
-        </section>
+      {/* Avertissement */}
+      <section className="bg-black/30 text-shadow-black mt-10 p-2 rounded-2xl border-2 border-red-500">
+        <h2>Avertissement</h2>
+        <p>
+          L'organisation que vous retrouvez sur cette page, représente notre
+          vision de la corpo à la sortie de Star Citizen 1.0
+        </p>
+        <p>
+          Nous nous sommes basé sur les informations reçus lors de la citizencon
+          de 2024 et l'organisation est suceptible dévoluer en fonction des
+          annonces des développeurs dans le future.
+        </p>
+      </section>
 
       {/* ECLIPSE : Présentation factuelle */}
       <section
         id="pres_officiel"
         className="pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16"
       >
-        <FactBlock pick={{ corpoKey: "eclipse" }}>
-          
-        </FactBlock>
+        <FactBlock pick={{ corpoKey: "eclipse" }}></FactBlock>
       </section>
 
       {/* Boutons rejoindre */}

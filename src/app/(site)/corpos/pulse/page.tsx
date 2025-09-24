@@ -60,7 +60,6 @@ export default async function Core() {
               appLabel: "DATAPAD",
               version: "v1.3",
               date: "24/09/2955",
-              
             }}
             width={420}
             height={640}
@@ -69,12 +68,19 @@ export default async function Core() {
         </div>
       </section>
 
-      {/* Avertissement */  }
-        <section className="bg-black/30 text-shadow-black mt-10 p-2 rounded-2xl border-2 border-red-500">
-         <h2>Avertissement</h2>
-         <p>L'organisation que vous retrouvez sur cette page, représente notre vision de la corpo à la sortie de Star Citizen 1.0</p>
-         <p>Nous nous sommes basé sur les informations reçus lors de la citizencon de 2024 et l'organisation est suceptible dévoluer en fonction des annonces des développeurs dans le future.</p>
-        </section>
+      {/* Avertissement */}
+      <section className="bg-black/30 text-shadow-black mt-10 p-2 rounded-2xl border-2 border-red-500">
+        <h2>Avertissement</h2>
+        <p>
+          L'organisation que vous retrouvez sur cette page, représente notre
+          vision de la corpo à la sortie de Star Citizen 1.0
+        </p>
+        <p>
+          Nous nous sommes basé sur les informations reçus lors de la citizencon
+          de 2024 et l'organisation est suceptible dévoluer en fonction des
+          annonces des développeurs dans le future.
+        </p>
+      </section>
 
       {/* PULSE : Présentation factuelle */}
       <section
@@ -83,7 +89,7 @@ export default async function Core() {
       >
         <FactBlock pick={{ corpoKey: "pulse" }}>
           <MembersListCompact
-            unitPriority={[9]} 
+            unitPriority={[9]}
             rolePriority={[3, 5]}
             sort="alpha"
             limit={null}
