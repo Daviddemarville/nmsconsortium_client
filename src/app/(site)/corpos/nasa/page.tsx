@@ -1,4 +1,4 @@
-// src/app/(site)/corpos/core/page.tsx
+// src/app/(site)/corpos/nasa/page.tsx
 
 import { headers } from "next/headers";
 import Image from "next/image";
@@ -37,15 +37,15 @@ export default async function Core() {
 
   return (
     <>
-      {/* CORE : Présentation RP */}
+      {/* NASA : Présentation RP */}
       <section
         id="pres_rp"
         className="flex flex-col md:flex-row items-center md:items-start md:justify-evenly gap-10"
       >
         <div>
           <Image
-            src="/images/corpos/core.png"
-            alt="Logo de CORE"
+            src="/images/corpos/nasa.png"
+            alt="Logo de NASA"
             width={200}
             height={200}
             className="w-32 md:w-48 h-auto"
@@ -55,7 +55,7 @@ export default async function Core() {
 
         <div>
           <BioDataPadHUD
-            data={biorp.corpos.core}
+            data={biorp.corpos.nasa}
             meta={{
               appLabel: "DATAPAD",
               version: "v1.3",
@@ -82,14 +82,14 @@ export default async function Core() {
         </p>
       </section>
 
-      {/* CORE : Présentation factuelle */}
+      {/* NASA : Présentation factuelle */}
       <section
         id="pres_officiel"
         className="pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16"
       >
-        <FactBlock pick={{ corpoKey: "core" }}>
+        <FactBlock pick={{ corpoKey: "nasa" }}>
           <MembersListCompact
-            unitPriority={[7]} // CORE en tête (7), puis Ambassade (17), puis Consortium (1)
+            unitPriority={[8]}
             rolePriority={[3, 5]}
             sort="alpha"
             limit={null}
@@ -113,11 +113,11 @@ export default async function Core() {
         <div className="mt-6 flex flex-wrap gap-3">
           <DiscordButton
             inviteUrl="https://discord.gg/FYmSmhRjW9"
-            location="core-page"
+            location="nasa-page"
             className="bg-nms-gold text-nms-dark font-semibold hover:opacity-90 transition"
           />
           <ContactButton
-            location="core-page"
+            location="nasa-page"
             className="bg-white/10 hover:bg-white/15 transition"
           />
         </div>
