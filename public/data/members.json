@@ -196,6 +196,17 @@
   },
   {
     "id": 18,
+    "pseudo": "Zedwwin",
+    "discord": "zedx_",
+    "gameplay": ["Exploration", "Industrie", "Combat"],
+    "bio": "Pas un simple Citizen, Zedwwin c'est un aventurier. Il adore expérimenter de nouvelles choses et pour cela il n'hésite pas à chercher dans des systèmes lointain des ressources rares. Mr Jones n'a qu'a bien se tenir.",
+    "opt_in": true,
+    "assignments": [      
+      { "role_id": 5, "unit_id": 1, "primary": false }
+    ]
+  },
+  {
+    "id": 19,
     "pseudo": "",
     "discord": "",
     "gameplay": ["", "", ""],
