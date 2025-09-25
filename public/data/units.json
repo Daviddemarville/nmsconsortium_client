@@ -51,7 +51,7 @@
     "parent_id": 1
   },
   { "id": 12, "key": "diplomatie", "label": "Diplomatie", "parent_id": 1 },
-  { "id": 13, "key": "canada", "label": "Canada", "parent_id": 1 },
+  { "id": 13, "key": "canada", "label": "Coordination Canada", "parent_id": 1 },
   {
     "id": 14,
     "key": "lti",

@@ -7,6 +7,7 @@ import FactBlock from "@/components/sections/FactBlock";
 import MembersListCompact from "@/components/sections/MembersListCompact";
 import ContactButton from "@/components/ui/ContactButton";
 import DiscordButton from "@/components/ui/DiscordButton";
+import WarningBanner from "@/components/ui/WarningBanner";
 
 type LoreEntry = {
   title: string;
@@ -40,7 +41,7 @@ export default async function Core() {
       {/* NASA : Présentation RP */}
       <section
         id="pres_rp"
-        className="flex flex-col md:flex-row items-center md:items-start md:justify-evenly gap-10"
+        className="scroll-mt-[calc(var(--nav-h,56px)+40px)] flex flex-col md:flex-row items-center md:items-start md:justify-evenly gap-10"
       >
         <div>
           <Image
@@ -69,23 +70,12 @@ export default async function Core() {
       </section>
 
       {/* Avertissement */}
-      <section className="bg-black/30 text-shadow-black mt-10 p-2 rounded-2xl border-2 border-red-500">
-        <h2>Avertissement</h2>
-        <p>
-          L'organisation que vous retrouvez sur cette page, représente notre
-          vision de la corpo à la sortie de Star Citizen 1.0
-        </p>
-        <p>
-          Nous nous sommes basé sur les informations reçus lors de la citizencon
-          de 2024 et l'organisation est suceptible dévoluer en fonction des
-          annonces des développeurs dans le future.
-        </p>
-      </section>
+      <WarningBanner />
 
       {/* NASA : Présentation factuelle */}
       <section
         id="pres_officiel"
-        className="pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16"
+        className="scroll-mt-[calc(var(--nav-h,56px)+40px)] pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16"
       >
         <FactBlock pick={{ corpoKey: "nasa" }}>
           <MembersListCompact
@@ -101,7 +91,7 @@ export default async function Core() {
       <section
         id="rejoindre"
         aria-labelledby="rejoindre-title"
-        className="bg-black/30 p-6 rounded-lg mt-4"
+        className="scroll-mt-[calc(var(--nav-h,56px)+40px)] bg-black/30 p-6 rounded-lg mt-4"
       >
         <h2 id="rejoindre-title" className="text-2xl font-semibold">
           Rejoindre le consortium

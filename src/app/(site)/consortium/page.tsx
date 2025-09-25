@@ -18,7 +18,7 @@ export default function Corpos() {
       {/* Organigramme */}
       <section
         aria-label="Organigramme du consortium Némésis"
-        className="bg-black/30 p-6 rounded-lg mt-4"
+        className=" mt-4"
       >
         <h2 id="rejoindre-title" className="text-2xl font-semibold">
           Organigramme du Consortium
