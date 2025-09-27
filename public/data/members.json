@@ -211,8 +211,8 @@
     "bio": "Ismat, dont les exploits dans les guerres spatiales sont devenus légendes, atterrit sur une station minière éloignée pour une réparation d’urgence. Il découvre une opération de minage dirigée par des travailleurs déterminés et, intrigué par leur ténacité, leur offre son aide. Avec ses compétences tactiques et son expérience, il transforme cette équipe hétéroclite de mineurs en une force efficace. Leur succès fait d’Ismat un héros, et la direction de Némésis Logistique le nomme Général. Ensemble, ils repoussent les menaces, sécurisent leur place dans l’économie galactique, et Ismat trouve enfin une famille parmi les étoiles.",
     "opt_in": true,
     "assignments": [
-      { "role_id": 4, "unit_id": 4, "primary": false },
       { "role_id": 2, "unit_id": 11, "primary": true },
+      { "role_id": 9, "unit_id": 5, "primary": true },
       { "role_id": 5, "unit_id": 1, "primary": false }
     ]
   },
