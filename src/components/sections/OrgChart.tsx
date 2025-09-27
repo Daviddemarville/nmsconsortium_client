@@ -226,21 +226,21 @@ export default function OrgChart({
   return (
     <div className={`space-y-8 ${className}`}>
       <GroupBlock
-        title="Fondateur & Global Council"
+        title=""
         entries={group1}
         unitById={unitById}
         stampEnabled={STAMP.g1.enabled}
         stampText={STAMP.g1.text}
       />
       <GroupBlock
-        title="Diplomatie & Coordination CANAD"
+        title=""
         entries={group2}
         unitById={unitById}
         stampEnabled={STAMP.g2.enabled}
         stampText={STAMP.g2.text}
       />
       <GroupBlock
-        title="NSF · AION · NI2B · NGN"
+        title=""
         entries={group3}
         unitById={unitById}
         stampEnabled={STAMP.g3.enabled}
