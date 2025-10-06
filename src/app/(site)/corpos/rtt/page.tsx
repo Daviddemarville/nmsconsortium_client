@@ -78,12 +78,7 @@ export default async function Core() {
         className="scroll-mt-[calc(var(--nav-h,56px)+40px)] pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16"
       >
         <FactBlock pick={{ corpoKey: "rtt" }}>
-          <MembersListCompact
-            unitPriority={[6]}
-            rolePriority={[3, 5]}
-            sort="alpha"
-            limit={null}
-          />
+          
         </FactBlock>
       </section>
 

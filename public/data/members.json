@@ -52,7 +52,7 @@
     "pseudo": "mavrick21206",
     "discord": "mavrick21206",
     "gameplay": ["Exploration", "Logistique", "Industrie"],
-    "bio": "",
+    "bio": "Ancien employer de chez Covalex en tant que pilote de transport pour n’importe quel vaisseau de l’intrépide jusqu’au Hull C avoir aussi reçu une formation dans le salvage et le minage aérien et sol, mais également une spécialisation dans exploration planétaire",
     "opt_in": true,
     "assignments": [{ "role_id": 5, "unit_id": 1, "primary": true }]
   },
@@ -166,7 +166,7 @@
     "discord": "TheNepharite",
     "gameplay": ["Logistique", "Industrie", "Sécurité"],
     "bio": "J’ai longtemps navigué hors des lois, là où l’on survit plus qu’on ne vit. Le recyclage m’a offert une seconde chance, la rigueur d’un métier honnête. Aujourd’hui, je rends ce que j’ai pris, au service de la Nemesis et des miens.",
-    "opt_in": true,
+    "opt_in": false,
     "assignments": [
       { "role_id": 5, "unit_id": 1, "primary": false },
       { "role_id": 10, "unit_id": 5, "primary": true }
@@ -228,5 +228,5 @@
       { "role_id": 2, "unit_id": 11, "primary": true },
       { "role_id": 5, "unit_id": 1, "primary": false }
     ]
-  } 
+  }
 ]

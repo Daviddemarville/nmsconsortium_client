@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import BioDataPadHUD from "@/components/sections/BioDataPadHUD";
 import FactBlock from "@/components/sections/FactBlock";
-import MembersListCompact from "@/components/sections/MembersListCompact";
 import ContactButton from "@/components/ui/ContactButton";
 import DiscordButton from "@/components/ui/DiscordButton";
 import WarningBanner from "@/components/ui/WarningBanner";
@@ -78,12 +77,7 @@ export default async function Core() {
         className="scroll-mt-[calc(var(--nav-h,56px)+40px)] pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16"
       >
         <FactBlock pick={{ corpoKey: "core" }}>
-          <MembersListCompact
-            unitPriority={[7]} // CORE en tête (7), puis Ambassade (17), puis Consortium (1)
-            rolePriority={[3, 5]}
-            sort="alpha"
-            limit={null}
-          />
+          
         </FactBlock>
       </section>
 

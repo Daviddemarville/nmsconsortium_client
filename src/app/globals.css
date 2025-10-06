@@ -271,3 +271,19 @@ body {
 .datapad-scroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(#67e8f9, #22d3ee);
 }
+
+/* =========================================================
+   ANIMATIONS — SCANLINES (overlay style écran rétro)
+   ========================================================= */
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 4px;
+  }
+}
+
+.animate-scanlines {
+  animation: scanlines 0.25s linear infinite;
+}

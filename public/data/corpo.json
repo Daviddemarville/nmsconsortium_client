@@ -34,84 +34,82 @@
       "label": "NSF",
       "unit_id": 5,
       "tagline": "Branche sécurité & opérations tactiques",
-      "description_md": "…texte long spécifique NSF…",
+      "description_md": "La Nemesis Security Forces (NSF) est la branche de défense et d’opérations tactiques du Consortium. Placée sous le commandement direct de l’Amiral Artémis Gurney, elle assure la protection des intérêts industriels, économiques et humains du Nemesis Consortium à travers les systèmes connus.\n\nSa mission première est d’assurer la sécurité des convois, des installations et du personnel du Consortium face aux multiples menaces, qu’elles soient humaines, pirates ou xénomorphes. Présente sur tous les fronts, la NSF agit en prévention, en dissuasion et en intervention rapide afin de garantir la continuité des opérations industrielles et commerciales.\n\nLa chaîne de commandement repose sur une hiérarchie militaire rigoureuse, dirigée par un Colonel et soutenue par des Capitaines, Lieutenants et Sergents responsables des différentes unités et compagnies opérationnelles. Ce maillage structuré permet une coordination fluide entre la flotte spatiale, les troupes terrestres et les unités de soutien.\n\nL’organisation de la NSF s’articule autour de divisions spécialisées.\n\n---\n\n🛸 Divisions opérationnelles de la NSF\n\nLa Flotte navale Alecto \nRassemble les vaisseaux capitaux et leurs équipages, assurant la supériorité aérienne et le soutien orbital.\n\nL’Escadron Vega 2945 \nComposé de chasseurs d’élite, responsables des escortes, de la reconnaissance et de la chasse tactique.\n\nL’Unité Sigma \nForces terrestres spécialisées dans la reconnaissance, l’assaut et la sécurisation au sol.\n\nLe Soutien médical RapidRescue \nMédecins et paramédics militaires formés à l’urgence en environnement hostile, garants de la survie sur le terrain. \nIssus de la division médicale AION, ces spécialistes incarnent la coopération inter-corpos au sein du Consortium. \nIntégrés directement aux rangs de la NSF, ils apportent leur expertise chirurgicale et tactique pour stabiliser les blessés, sécuriser les zones d’évacuation et prolonger la vie là où tout semble perdu.\n\nAlliant discipline, technologie et esprit de corps, la NSF constitue le bouclier permanent du Consortium, défendant les valeurs, les membres et les ambitions de Némésis dans un univers en perpétuelle mutation.",
       "pres_synthese": "Le constat est simple : dans l’espace, personne ne vous entend crier. La sécurité est donc primordiale pour assurer la pérennité des opérations industrielles et commerciales. C’est pourquoi Nemesis Consortium a créé sa propre force de sécurité, la NSF (Nemesis Security Forces).\n\nComposée de membres aguerris au combat spatial et/ou au sol, la NSF assure la sécurisation des opérations industrielles, des convois, etc. Elle peut également être engagée pour des missions de protection rapprochée, d’escorte ou d’intervention tactique.\n\nLa NSF fonctionne comme une unité militaire, avec une hiérarchie claire et des procédures strictes. Les membres de la NSF sont formés régulièrement pour maintenir un haut niveau de compétence et d’efficacité.\n\nEn rejoignant la NSF, vous intégrez une équipe soudée, prête à relever tous les défis pour garantir la sécurité de Nemesis Consortium et de ses membres.",
       "portrait_url": "/images/corpos/nsf.png",
       "illustration_url": "https://media.discordapp.net/attachments/688370506885627907/1417634885065244724/ScreenShot-2025-09-17_09-07-59-530.jpg?ex=68d5161e&is=68d3c49e&hm=d8fced7e294a83075a9b8630c58392a87c71db6112f983ab4a9ce458679ea100&=&format=webp&width=1154&height=649",
       "links": {
         "members_page": "/membres",
         "consortium": "/corpos",
-        "details": "/corpos/nsf"
+        "rsi": "https://robertsspaceindustries.com/en/orgs/NMSSF"
       }
     },
     "rtt": {
       "label": "RTT",
       "unit_id": 6,
       "tagline": "Recovery, Transport & Trading",
-      "description_md": "…texte long spécifique RTT…",
-      "pres_synthese": "Présentation synthétique RTT pour la carte…",
+      "description_md": "La Némésis RTT (Recovery, Transport & Trading) est la filiale logistique et commerciale du Consortium. Elle a pour mission de transporter Nemesis toujours plus loin à travers les étoiles et de garantir la fluidité des échanges entre toutes les entités du groupe.\n\nIssue de la grande restructuration de Némésis Logistics, la RTT combine savoir-faire industriel, rigueur opérationnelle et vision stratégique. Elle conçoit des infrastructures de transport fiables, soutient les opérations galactiques et négocie l’achat comme la revente des ressources au profit du Consortium. En partenariat avec la Interstellar Transport Guild, elle veille à maintenir des standards élevés en matière de sécurité, de rapidité et d’efficacité.\n\nVéritable colonne vertébrale économique de Nemesis, la RTT s’appuie sur un réseau de micro-entreprises et de partenaires spécialisés pour assurer le déplacement de passagers, de cargaisons et de matières premières sur l’ensemble du territoire de l’UEE. Chaque trajet, chaque contrat est traité avec précision et professionnalisme, dans le respect des délais et des engagements.\n\nEn alliant ambition et performance, la Némésis RTT incarne le moteur et le poumon économique du Consortium, plaçant le commerce interstellaire au cœur de sa vision d’avenir.",
+      "pres_synthese": "Filiale logistique et commerciale du Consortium, la Némésis RTT relie les étoiles par le transport, le négoce et la maîtrise des routes interstellaires.",
       "portrait_url": "/images/corpos/rtt.png",
       "illustration_url": "/images/corpos/rtt_bg.jpg",
       "links": {
         "members_page": "/membres",
         "consortium": "/corpos",
-        "details": "/corpos/rtt"
+        "rsi": "https://robertsspaceindustries.com/en/orgs/NMSRTT"
       }
     },
     "core": {
       "label": "CORE",
       "unit_id": 7,
       "tagline": "Ingénierie & maintenance flotte",
-      "description_md": "…texte long spécifique CORE…",
-      "pres_synthese": "Présentation synthétique CORE pour la carte…",
+      "description_md": "La Némésis C.O.R.E. (Construction, Organisation, Réparation, Exploitation) est la filiale d’ingénierie et de maintenance du Consortium. Elle a pour mission de concevoir, construire et entretenir les infrastructures industrielles et spatiales indispensables aux opérations de Nemesis.\n\nGuidée par une vision d’excellence technique et de durabilité, la C.O.R.E. met son savoir-faire au service de la flotte, des chantiers orbitaux et des stations planétaires. Ses équipes interviennent sur la conception de structures, la réparation de vaisseaux, la gestion des ressources et l’exploitation des installations minières, garantissant la disponibilité et la performance du matériel du Consortium.\n\nEn partenariat avec la United Resource Workers Guild, la C.O.R.E. défend une ingénierie collaborative, responsable et tournée vers l’avenir. Chaque chantier, chaque réparation, chaque innovation renforce la résilience et l’autonomie du Consortium.\n\nPlus qu’une simple division technique, la Némésis C.O.R.E. incarne le moteur des progrès industriels de Nemesis, bâtissant les fondations d’une expansion interstellaire durable et prospère.",
+      "pres_synthese": "Pôle d’ingénierie du Consortium, la C.O.R.E. conçoit, construit et entretient les infrastructures et vaisseaux qui soutiennent l’expansion de Nemesis à travers la galaxie.",
       "portrait_url": "/images/corpos/core.png",
       "illustration_url": "/images/corpos/core_bg.jpg",
       "links": {
         "members_page": "/membres",
         "consortium": "/corpos",
-        "details": "/corpos/core"
+        "rsi": "https://robertsspaceindustries.com/en/orgs/NMSCORE"
       }
     },
     "nasa": {
       "label": "NASA",
       "unit_id": 8,
       "tagline": "Aéronautique & sciences",
-      "description_md": "…texte long spécifique NASA…",
-      "pres_synthese": "Présentation synthétique NASA pour la carte…",
+      "description_md": "La Nemesis Aerospace Science Academy (NASA) est le pôle scientifique et d’exploration du Consortium. Elle regroupe chercheurs, ingénieurs et pilotes dédiés à la découverte, à la recherche appliquée et à la formation technique avancée.\n\nSon champ d’action couvre la recherche fondamentale, l’étude de la faune et des environnements, le développement de technologies pharmaceutiques et alimentaires, ainsi que l’agriculture hydroponique et la biotechnologie. En parallèle, la NASA supervise les divisions AION (secours et médical) et ISX (exploration et reconnaissance), formant ainsi un réseau complet d’expertise au service du Consortium.\n\nGrâce à son approche rigoureuse et à ses programmes de formation, la NASA soutient la croissance scientifique et industrielle de Nemesis, tout en favorisant l’autonomie de ses corps opérationnels. Chaque découverte, chaque innovation contribue à renforcer la place du Consortium dans les domaines de la recherche et de l’aéronautique interstellaire.",
+      "pres_synthese": "Pôle scientifique et exploratoire du Consortium, la NASA coordonne la recherche, la formation et l’innovation à travers ses divisions AION et ISX.",
       "portrait_url": "/images/corpos/nasa.png",
       "illustration_url": "/images/corpos/nasa_bg.jpg",
       "links": {
         "members_page": "/membres",
         "consortium": "/corpos",
-        "details": "/corpos/nasa"
+        "rsi": "https://robertsspaceindustries.com/en/orgs/NMSNASA"
       }
     },
     "pulse": {
       "label": "PULSE",
       "unit_id": 9,
       "tagline": "Sport & performance",
-      "description_md": "…texte long spécifique PULSE…",
+      "description_md": "La P.U.L.S.E. (Performance Unifiée, Leadership, Sport & Excellence) constitue la branche sportive et de cohésion interne du Consortium. Placée sous la tutelle du Global Council et affiliée à la Imperial Sports Federation, elle encadre l’ensemble des activités sportives, compétitions et événements de loisirs organisés au sein du Consortium.\n\nSa mission est de promouvoir la performance, l’esprit d’équipe et le bien-être des membres à travers la pratique de disciplines variées, qu’elles soient physiques, techniques ou stratégiques. La PULSE coordonne les entraînements et tournois officiels dans des domaines tels que les courses gravlev, les compétitions de véhicules terrestres et spatiaux, les tournois de tir et de combat, ainsi que d’autres activités récréatives contribuant à la cohésion inter-corpos.\n\nChaque année, la PULSE supervise plusieurs événements d’envergure, dont le Winter Championship, compétition emblématique du Consortium. Organisé presque chaque hiver, ce championnat réunit les membres de la NMS et les corporations partenaires autour de cinq épreuves variées mêlant adresse, vitesse, coordination et endurance. Cet événement incarne la philosophie de la PULSE : rassembler par le sport, valoriser la compétence et renforcer les liens entre les divisions du Consortium.\n\nLa PULSE veille en coordination avec les autres branche de la Nemesis Consortium à l’organisation logistique, à la sécurité et à la promotion de ces événements, garantissant un cadre équitable, inclusif et conforme aux valeurs du Nemesis Consortium. À travers ses initiatives, elle contribue au rayonnement interne et externe de Némésis en plaçant la performance et l’excellence collective au cœur de sa démarche.",
       "pres_synthese": "Présentation synthétique PULSE pour la carte…",
       "portrait_url": "/images/corpos/pulse.png",
       "illustration_url": "/images/corpos/pulse_bg.jpg",
       "links": {
         "members_page": "/membres",
-        "consortium": "/corpos",
-        "details": "/corpos/pulse"
+        "consortium": "/corpos"        
       }
     },
     "eclipse": {
       "label": "ECLIPSE",
       "unit_id": 10,
       "tagline": "Conseil / opérations spéciales",
-      "description_md": "…texte long spécifique ECLIPSE…",
+      "description_md": "La Division ECLIPSE est une structure spéciale opérant sous la supervision indirecte du Global Council du Nemesis Consortium. Conçue pour évoluer dans les zones d’ombre du commerce galactique et des réseaux parallèles, elle agit comme un syndicat corsaire interstellaire, chargé d’observer, d’intervenir et d’influencer lorsque les méthodes conventionnelles atteignent leurs limites.\n\nECLIPSE est une organisation paramilitaire et autonome, fondée sur un modèle hybride mêlant renseignement, stratégie, opérations spéciales et logistique clandestine. Sa mission est d’assurer la sécurité économique et politique du Consortium en maintenant une veille active sur les marchés illégaux, les routes de contrebande et les circuits financiers non régulés. L’objectif : anticiper les menaces, contrôler les flux critiques et préserver les intérêts de Nemesis dans les environnements les plus instables.\n\nSon fonctionnement repose sur un réseau cellulaire hiérarchisé, garantissant l’efficacité et la discrétion de ses opérations. Chaque cellule agit de manière semi-indépendante tout en rendant compte à un commandement centralisé, responsable de la coordination des frappes, des alliances ponctuelles et des opérations d’influence. Cette organisation permet à ECLIPSE de frapper vite, précisément et sans exposition.\n\nLes effectifs d’ECLIPSE regroupent plusieurs corps spécialisés : des unités d’interception, des cellules de renseignement, des opérateurs de terrain et des équipes de soutien technique. Ensemble, ils forment une force polyvalente capable d’intervenir dans les domaines de la contrebande, de l’espionnage, du sabotage ou de la neutralisation de menaces ciblées. Certains de ses agents proviennent des milieux industriels, militaires ou criminels, choisis pour leurs compétences plutôt que pour leurs origines.\n\nECLIPSE maintient également un réseau d’entreprises sous couverture opérant dans le commerce, le transport ou la maintenance spatiale, servant de façade légale à ses activités. Ce maillage permet de financer et dissimuler ses opérations tout en contribuant à la stabilité globale du Consortium.\n\nEn résumé, ECLIPSE est le garant de la maîtrise de l’invisible : un outil de régulation et d’action dans les sphères où la diplomatie ne suffit plus. Agissant dans un cadre strict fixé par le Global Council, elle veille à ce que le Consortium conserve toujours une longueur d’avance — même dans l’obscurité.",
       "pres_synthese": "Présentation synthétique ECLIPSE pour la carte…",
       "portrait_url": "/images/corpos/eclipse.png",
       "illustration_url": "/images/corpos/eclipse_bg.jpg",
       "links": {
         "members_page": "/membres",
-        "consortium": "/corpos",
-        "details": "/corpos/eclipse"
+        "consortium": "/corpos"        
       }
     }
   }
