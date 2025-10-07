@@ -76,9 +76,7 @@ export default async function Core() {
         id="pres_officiel"
         className="scroll-mt-[calc(var(--nav-h,56px)+40px)] pt-2 pb-4 my-16 px-4 md:px-8 lg:px-16"
       >
-        <FactBlock pick={{ corpoKey: "nsf" }}>
-          
-        </FactBlock>
+        <FactBlock pick={{ corpoKey: "nsf" }}></FactBlock>
       </section>
 
       {/* Boutons rejoindre */}

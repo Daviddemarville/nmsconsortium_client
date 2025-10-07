@@ -37,7 +37,7 @@
       "description_md": "La Nemesis Security Forces (NSF) est la branche de défense et d’opérations tactiques du Consortium. Placée sous le commandement direct de l’Amiral Artémis Gurney, elle assure la protection des intérêts industriels, économiques et humains du Nemesis Consortium à travers les systèmes connus.\n\nSa mission première est d’assurer la sécurité des convois, des installations et du personnel du Consortium face aux multiples menaces, qu’elles soient humaines, pirates ou xénomorphes. Présente sur tous les fronts, la NSF agit en prévention, en dissuasion et en intervention rapide afin de garantir la continuité des opérations industrielles et commerciales.\n\nLa chaîne de commandement repose sur une hiérarchie militaire rigoureuse, dirigée par un Colonel et soutenue par des Capitaines, Lieutenants et Sergents responsables des différentes unités et compagnies opérationnelles. Ce maillage structuré permet une coordination fluide entre la flotte spatiale, les troupes terrestres et les unités de soutien.\n\nL’organisation de la NSF s’articule autour de divisions spécialisées.\n\n---\n\n🛸 Divisions opérationnelles de la NSF\n\nLa Flotte navale Alecto \nRassemble les vaisseaux capitaux et leurs équipages, assurant la supériorité aérienne et le soutien orbital.\n\nL’Escadron Vega 2945 \nComposé de chasseurs d’élite, responsables des escortes, de la reconnaissance et de la chasse tactique.\n\nL’Unité Sigma \nForces terrestres spécialisées dans la reconnaissance, l’assaut et la sécurisation au sol.\n\nLe Soutien médical RapidRescue \nMédecins et paramédics militaires formés à l’urgence en environnement hostile, garants de la survie sur le terrain. \nIssus de la division médicale AION, ces spécialistes incarnent la coopération inter-corpos au sein du Consortium. \nIntégrés directement aux rangs de la NSF, ils apportent leur expertise chirurgicale et tactique pour stabiliser les blessés, sécuriser les zones d’évacuation et prolonger la vie là où tout semble perdu.\n\nAlliant discipline, technologie et esprit de corps, la NSF constitue le bouclier permanent du Consortium, défendant les valeurs, les membres et les ambitions de Némésis dans un univers en perpétuelle mutation.",
       "pres_synthese": "Le constat est simple : dans l’espace, personne ne vous entend crier. La sécurité est donc primordiale pour assurer la pérennité des opérations industrielles et commerciales. C’est pourquoi Nemesis Consortium a créé sa propre force de sécurité, la NSF (Nemesis Security Forces).\n\nComposée de membres aguerris au combat spatial et/ou au sol, la NSF assure la sécurisation des opérations industrielles, des convois, etc. Elle peut également être engagée pour des missions de protection rapprochée, d’escorte ou d’intervention tactique.\n\nLa NSF fonctionne comme une unité militaire, avec une hiérarchie claire et des procédures strictes. Les membres de la NSF sont formés régulièrement pour maintenir un haut niveau de compétence et d’efficacité.\n\nEn rejoignant la NSF, vous intégrez une équipe soudée, prête à relever tous les défis pour garantir la sécurité de Nemesis Consortium et de ses membres.",
       "portrait_url": "/images/corpos/nsf.png",
-      "illustration_url": "https://media.discordapp.net/attachments/688370506885627907/1417634885065244724/ScreenShot-2025-09-17_09-07-59-530.jpg?ex=68d5161e&is=68d3c49e&hm=d8fced7e294a83075a9b8630c58392a87c71db6112f983ab4a9ce458679ea100&=&format=webp&width=1154&height=649",
+      "illustration_url": "/images/nsf.png",
       "links": {
         "members_page": "/membres",
         "consortium": "/corpos",
@@ -96,7 +96,7 @@
       "illustration_url": "/images/corpos/pulse_bg.jpg",
       "links": {
         "members_page": "/membres",
-        "consortium": "/corpos"        
+        "consortium": "/corpos"
       }
     },
     "eclipse": {
@@ -109,7 +109,7 @@
       "illustration_url": "/images/corpos/eclipse_bg.jpg",
       "links": {
         "members_page": "/membres",
-        "consortium": "/corpos"        
+        "consortium": "/corpos"
       }
     }
   }

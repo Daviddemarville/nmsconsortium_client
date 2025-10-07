@@ -160,7 +160,7 @@ export default function Ni2bCard({
           </div>
 
           {vault_image_url && (
-            <div className="mt-5 relative w-full h-28 md:h-36 rounded-lg overflow-hidden border border-white/10 bg-white/5">
+            <div className="mt-5 relative w-full h-48 md:h-56 rounded-lg overflow-hidden border border-white/10 bg-white/5">
               <Image
                 src={vault_image_url}
                 alt={

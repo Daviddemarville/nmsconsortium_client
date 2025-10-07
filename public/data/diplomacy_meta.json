@@ -1,6 +1,14 @@
 {
-  "title": "Cellule diplomatique — Nemesis Consortium",
-  "description_md": "### Mission\nAssurer les relations extérieures du Consortium, protéger nos intérêts et favoriser des coopérations durables avec les autres organisations.\n\n- Négociation d’accords et chartes\n- Médiation et résolution de conflits\n- Représentation officielle lors d’événements\n\n### Principes\n- Neutralité et courtoisie\n- Transparence des engagements\n- Respect des accords signés\n\n[br]\n### Procédures\n- Prise de contact via les canaux officiels\n- Validation par le Global Council quand nécessaire\n- Compte-rendu synthétique archivé (NGN / dossier interne)\n\n[br]\n### Portée\n- Alliances, trêves, accès aux infrastructures\n- Coopérations opérationnelles (escortes, entraînements, événements)\n\n[br]\nPour toute demande officielle : ouvrir un ticket **#diplomatie** sur Discord ou contacter un membre de la cellule.",
-  "portrait_url": "/images/diplomacy_logo.jpg",
-  "illustration_url": "https://media.discordapp.net/attachments/688370506885627907/1344210959303970816/ScreenShot-2025-02-25_22-06-38-41F.jpg?ex=68d4f082&is=68d39f02&hm=1397c8b2f8a1d240b93c04215b6ef1fe28fea151e02088037d892db40c615c73&=&format=webp&width=1551&height=649"
+  "diplomacy": {
+    "title": "Cellule diplomatique — Nemesis Consortium",
+    "description_md": "### Mission\nAssurer les relations extérieures du Consortium, protéger nos intérêts et favoriser des coopérations durables avec les autres organisations.\n\n- Négociation d’accords et de chartes\n- Médiation et résolution de conflits\n- Représentation officielle lors d’événements\n\n### Principes\n- Neutralité et courtoisie\n- Transparence des engagements\n- Respect des accords signés\n\n[br]\n### Procédures\n- Prise de contact via les canaux officiels\n- Validation par le Global Council lorsque nécessaire\n- Compte rendu synthétique archivé (NGN / dossier interne)\n\n[br]\n### Portée\n- Alliances, trêves, accès aux infrastructures\n- Coopérations opérationnelles (escortes, entraînements, événements)\n\n[br]\nPour toute demande officielle : inscrivez-vous sur notre Discord et présentez-vous. Un membre du GC ou notre diplomate prendra contact avec vous, vous attribuera le rôle approprié sur Discord et créera un canal pour nos échanges inter-corpo. Vous pouvez également contacter directement notre diplomate, ou passer par le formulaire de contact du site.",
+    "portrait_url": "/images/diplomacy_logo.jpg",
+    "illustration_url": "/images/diplomacy.jpg"
+  },
+  "regional_coordination": {
+    "title": "Coordination régionale — Nemesis Consortium",
+    "description_md": "### Mission\nOrganiser et animer des sessions par régions et fuseaux horaires afin que chacun puisse jouer aux meilleurs créneaux.\n\n- Animation de sessions régulières (opérations, raids, commerce, escorte, entraînements)\n- Mise en relation des membres d’un même fuseau (salons régionaux, rôles Discord)\n- Planification d’événements compatibles avec les prime times locaux\n- Relais terrain entre membres et état-major (remontées, besoins, disponibilités)\n\n[br]\n### Fonctionnement\n- Choisissez votre région et obtenez le rôle correspondant sur Discord\n- Consultez le calendrier régional et rejoignez une session\n- Proposez vos créneaux : un coordinateur vous aide à planifier\n- Court compte rendu après activité pour améliorer la suite\n\n[br]\n### Régions couvertes\n- Europe (UTC±0…+3)\n- Amériques (UTC−8…−3)\n- Asie–Pacifique (UTC+7…+11)\n\n[br]\nContact : via le salon #coordination ou le formulaire de contact du site.",
+    "portrait_url": "/images/coordination_logo.jpg",
+    "illustration_url": "/images/coordination_regional.jpg"
+  }
 }
