@@ -3,55 +3,255 @@
   "description_md": "Le Nemesis Global News (NGN) est le service de presse du Consortium, fournissant des informations, des analyses et des reportages sur les événements galactiques.\n\n- Journalistes expérimentés\n- Couverture mondiale\n- Reportages en temps réel\n[br]\nVotre source d'information fiable dans un univers en constante évolution.\n[br]\nRejoignez-nous pour découvrir la vérité derrière les nouvelles.\n[br]\nNos editions sont entièrement independante sous la non censure de notre Amiral Adoré!",
   "portrait_url": "/images/ngn_logo.png",
   "editions": [
-    { "id": "ed-1",  "title": "Édition 1",  "cover": "/images/ngn/2952/avril/journal_160452.jpg" },
-    { "id": "ed-2",  "title": "Édition 2",  "cover": "/images/ngn/2952/avril/journal_240452.jpg" },
-    { "id": "ed-3",  "title": "Édition 3",  "cover": "/images/ngn/2952/edition special/edition_special_27042952_corrige.jpg" },
-    { "id": "ed-4",  "title": "Édition 4",  "cover": "/images/ngn/2952/mai/journal_08052952.jpg" },
-    { "id": "ed-5",  "title": "Édition 5",  "cover": "/images/ngn/2952/mai/journal_15052952.jpg" },
-    { "id": "ed-6",  "title": "Édition 6",  "cover": "/images/ngn/2952/mai/journal_22052952_corrige.jpg" },
-    { "id": "ed-7",  "title": "Édition 7",  "cover": "/images/ngn/2952/mai/journal_29052952.jpg" },
-    { "id": "ed-8",  "title": "Édition 8",  "cover": "/images/ngn/2952/juin/journal_05062952.jpg" },
-    { "id": "ed-9",  "title": "Édition 9",  "cover": "/images/ngn/2952/juin/journal_11062952.jpg" },
-    { "id": "ed-10", "title": "Édition 10", "cover": "/images/ngn/2952/juin/journal_18062952_corrige.jpg" },
-    { "id": "ed-11", "title": "Édition 11", "cover": "/images/ngn/2952/juin/journal_26062952_corrige.jpg" },
-    { "id": "ed-12", "title": "Édition 12", "cover": "/images/ngn/2952/juillet/journal_03072952.jpg" },
-    { "id": "ed-13", "title": "Édition 13", "cover": "/images/ngn/2952/juillet/journal_10072952.jpg" },
-    { "id": "ed-14", "title": "Édition 14", "cover": "/images/ngn/2952/juillet/journal_16072952.jpg" },
-    { "id": "ed-15", "title": "Édition 15", "cover": "/images/ngn/2952/aout/journal_07082952.jpg" },
-    { "id": "ed-16", "title": "Édition 16", "cover": "/images/ngn/2952/aout/journal_14082952.jpg" },
-    { "id": "ed-17", "title": "Édition 17", "cover": "/images/ngn/2952/aout/journal_27082952.jpg" },
-    { "id": "ed-18", "title": "Édition 18", "cover": "/images/ngn/2952/septembre/journal_04092952.jpg" },
-    { "id": "ed-19", "title": "Édition 19", "cover": "/images/ngn/2952/septembre/journal_11092952.jpg" },
-    { "id": "ed-20", "title": "Édition 20", "cover": "/images/ngn/2952/septembre/journal_18092952.jpg" },
-    { "id": "ed-21", "title": "Édition 21", "cover": "/images/ngn/2952/septembre/journal_25092952.jpg" },
-    { "id": "ed-22", "title": "Édition 22", "cover": "/images/ngn/2952/octobre/journal_02102952.jpg" },
-    { "id": "ed-23", "title": "Édition 23", "cover": "/images/ngn/2952/octobre/journal_08102952.jpg" },
-    { "id": "ed-24", "title": "Édition 24", "cover": "/images/ngn/2952/octobre/journal_16102952.jpg" },
-    { "id": "ed-25", "title": "Édition 25", "cover": "/images/ngn/2952/octobre/journal_23102952.jpg" },
-    { "id": "ed-26", "title": "Édition 26", "cover": "/images/ngn/2952/octobre/journal_30102952.jpg" },
-    { "id": "ed-27", "title": "Édition 27", "cover": "/images/ngn/2952/novembre/journal_06112952.jpg" },
-    { "id": "ed-28", "title": "Édition 28", "cover": "/images/ngn/2952/novembre/journal_15112952.jpg" },
-    { "id": "ed-29", "title": "Édition 29", "cover": "/images/ngn/2952/novembre/journal_26112952.jpg" },
-    { "id": "ed-30", "title": "Édition 30", "cover": "/images/ngn/2952/decembre/journal_10122952.jpg" },
-    { "id": "ed-31", "title": "Édition 31", "cover": "/images/ngn/2952/decembre/journal_17122952.jpg" },
-    { "id": "ed-32", "title": "Édition 32", "cover": "/images/ngn/2952/decembre/journal_25122952.jpg" },
-    { "id": "ed-33", "title": "Édition 33", "cover": "/images/ngn/2953/Janvier/journal_14012953.jpg" },
-    { "id": "ed-34", "title": "Édition 34", "cover": "/images/ngn/2953/Mai/journal_07052953.jpg" },
-    { "id": "ed-35", "title": "Édition 35", "cover": "/images/ngn/2953/Mai/journal_14052953.jpg" },
-    { "id": "ed-36", "title": "Édition 36", "cover": "/images/ngn/2954/Janvier/journal_140124.jpg" },
-    { "id": "ed-37", "title": "Édition 37", "cover": "/images/ngn/2954/Janvier/journal_210124.jpg" },
-    { "id": "ed-38", "title": "Édition 38", "cover": "/images/ngn/2954/Janvier/journal_290124.jpg" },
-    { "id": "ed-39", "title": "Édition 39", "cover": "/images/ngn/2954/Fevrier/journal_040224.jpg" },
-    { "id": "ed-40", "title": "Édition 40", "cover": "/images/ngn/2954/Fevrier/journal_190224.jpg" },
-    { "id": "ed-41", "title": "Édition 41", "cover": "/images/ngn/2954/Mars/journal_040324.jpg" },
-    { "id": "ed-42", "title": "Édition 42", "cover": "/images/ngn/2954/Mars/journal_230324.jpg" },
-    { "id": "ed-43", "title": "Édition 43", "cover": "/images/ngn/2954/Mars/journal_300324.jpg" },
-    { "id": "ed-44", "title": "Édition 44", "cover": "/images/ngn/2954/Avril/journal_070424.jpg" },
-    { "id": "ed-45", "title": "Édition 45", "cover": "/images/ngn/2954/Avril/journal_270424.jpg" },
-    { "id": "ed-46", "title": "Édition 46", "cover": "/images/ngn/2954/Mai/journal_040524.jpg" },
-    { "id": "ed-47", "title": "Édition 47", "cover": "/images/ngn/2954/Mai/journal_170524.jpg" },
-    { "id": "ed-48", "title": "Édition 48", "cover": "/images/ngn/2954/Aout/journal_150824.jpg" },
-    { "id": "ed-49", "title": "Édition 49", "cover": "/images/ngn/2955/septembre/journal_270955.jpg" },
-    { "id": "ed-50", "title": "Édition 50", "cover": "/images/ngn/2955/octobre/journal_041055.jpg" }
+    {
+      "id": "ed-1",
+      "title": "Édition 1",
+      "cover": "/images/ngn/2952/avril/journal_160452.jpg"
+    },
+    {
+      "id": "ed-2",
+      "title": "Édition 2",
+      "cover": "/images/ngn/2952/avril/journal_240452.jpg"
+    },
+    {
+      "id": "ed-3",
+      "title": "Édition 3",
+      "cover": "/images/ngn/2952/edition special/edition_special_27042952_corrige.jpg"
+    },
+    {
+      "id": "ed-4",
+      "title": "Édition 4",
+      "cover": "/images/ngn/2952/mai/journal_08052952.jpg"
+    },
+    {
+      "id": "ed-5",
+      "title": "Édition 5",
+      "cover": "/images/ngn/2952/mai/journal_15052952.jpg"
+    },
+    {
+      "id": "ed-6",
+      "title": "Édition 6",
+      "cover": "/images/ngn/2952/mai/journal_22052952_corrige.jpg"
+    },
+    {
+      "id": "ed-7",
+      "title": "Édition 7",
+      "cover": "/images/ngn/2952/mai/journal_29052952.jpg"
+    },
+    {
+      "id": "ed-8",
+      "title": "Édition 8",
+      "cover": "/images/ngn/2952/juin/journal_05062952.jpg"
+    },
+    {
+      "id": "ed-9",
+      "title": "Édition 9",
+      "cover": "/images/ngn/2952/juin/journal_11062952.jpg"
+    },
+    {
+      "id": "ed-10",
+      "title": "Édition 10",
+      "cover": "/images/ngn/2952/juin/journal_18062952_corrige.jpg"
+    },
+    {
+      "id": "ed-11",
+      "title": "Édition 11",
+      "cover": "/images/ngn/2952/juin/journal_26062952_corrige.jpg"
+    },
+    {
+      "id": "ed-12",
+      "title": "Édition 12",
+      "cover": "/images/ngn/2952/juillet/journal_03072952.jpg"
+    },
+    {
+      "id": "ed-13",
+      "title": "Édition 13",
+      "cover": "/images/ngn/2952/juillet/journal_10072952.jpg"
+    },
+    {
+      "id": "ed-14",
+      "title": "Édition 14",
+      "cover": "/images/ngn/2952/juillet/journal_16072952.jpg"
+    },
+    {
+      "id": "ed-15",
+      "title": "Édition 15",
+      "cover": "/images/ngn/2952/aout/journal_07082952.jpg"
+    },
+    {
+      "id": "ed-16",
+      "title": "Édition 16",
+      "cover": "/images/ngn/2952/aout/journal_14082952.jpg"
+    },
+    {
+      "id": "ed-17",
+      "title": "Édition 17",
+      "cover": "/images/ngn/2952/aout/journal_27082952.jpg"
+    },
+    {
+      "id": "ed-18",
+      "title": "Édition 18",
+      "cover": "/images/ngn/2952/septembre/journal_04092952.jpg"
+    },
+    {
+      "id": "ed-19",
+      "title": "Édition 19",
+      "cover": "/images/ngn/2952/septembre/journal_11092952.jpg"
+    },
+    {
+      "id": "ed-20",
+      "title": "Édition 20",
+      "cover": "/images/ngn/2952/septembre/journal_18092952.jpg"
+    },
+    {
+      "id": "ed-21",
+      "title": "Édition 21",
+      "cover": "/images/ngn/2952/septembre/journal_25092952.jpg"
+    },
+    {
+      "id": "ed-22",
+      "title": "Édition 22",
+      "cover": "/images/ngn/2952/octobre/journal_02102952.jpg"
+    },
+    {
+      "id": "ed-23",
+      "title": "Édition 23",
+      "cover": "/images/ngn/2952/octobre/journal_08102952.jpg"
+    },
+    {
+      "id": "ed-24",
+      "title": "Édition 24",
+      "cover": "/images/ngn/2952/octobre/journal_16102952.jpg"
+    },
+    {
+      "id": "ed-25",
+      "title": "Édition 25",
+      "cover": "/images/ngn/2952/octobre/journal_23102952.jpg"
+    },
+    {
+      "id": "ed-26",
+      "title": "Édition 26",
+      "cover": "/images/ngn/2952/octobre/journal_30102952.jpg"
+    },
+    {
+      "id": "ed-27",
+      "title": "Édition 27",
+      "cover": "/images/ngn/2952/novembre/journal_06112952.jpg"
+    },
+    {
+      "id": "ed-28",
+      "title": "Édition 28",
+      "cover": "/images/ngn/2952/novembre/journal_15112952.jpg"
+    },
+    {
+      "id": "ed-29",
+      "title": "Édition 29",
+      "cover": "/images/ngn/2952/novembre/journal_26112952.jpg"
+    },
+    {
+      "id": "ed-30",
+      "title": "Édition 30",
+      "cover": "/images/ngn/2952/decembre/journal_10122952.jpg"
+    },
+    {
+      "id": "ed-31",
+      "title": "Édition 31",
+      "cover": "/images/ngn/2952/decembre/journal_17122952.jpg"
+    },
+    {
+      "id": "ed-32",
+      "title": "Édition 32",
+      "cover": "/images/ngn/2952/decembre/journal_25122952.jpg"
+    },
+    {
+      "id": "ed-33",
+      "title": "Édition 33",
+      "cover": "/images/ngn/2953/Janvier/journal_14012953.jpg"
+    },
+    {
+      "id": "ed-34",
+      "title": "Édition 34",
+      "cover": "/images/ngn/2953/Mai/journal_07052953.jpg"
+    },
+    {
+      "id": "ed-35",
+      "title": "Édition 35",
+      "cover": "/images/ngn/2953/Mai/journal_14052953.jpg"
+    },
+    {
+      "id": "ed-36",
+      "title": "Édition 36",
+      "cover": "/images/ngn/2954/Janvier/journal_140124.jpg"
+    },
+    {
+      "id": "ed-37",
+      "title": "Édition 37",
+      "cover": "/images/ngn/2954/Janvier/journal_210124.jpg"
+    },
+    {
+      "id": "ed-38",
+      "title": "Édition 38",
+      "cover": "/images/ngn/2954/Janvier/journal_290124.jpg"
+    },
+    {
+      "id": "ed-39",
+      "title": "Édition 39",
+      "cover": "/images/ngn/2954/Fevrier/journal_040224.jpg"
+    },
+    {
+      "id": "ed-40",
+      "title": "Édition 40",
+      "cover": "/images/ngn/2954/Fevrier/journal_190224.jpg"
+    },
+    {
+      "id": "ed-41",
+      "title": "Édition 41",
+      "cover": "/images/ngn/2954/Mars/journal_040324.jpg"
+    },
+    {
+      "id": "ed-42",
+      "title": "Édition 42",
+      "cover": "/images/ngn/2954/Mars/journal_230324.jpg"
+    },
+    {
+      "id": "ed-43",
+      "title": "Édition 43",
+      "cover": "/images/ngn/2954/Mars/journal_300324.jpg"
+    },
+    {
+      "id": "ed-44",
+      "title": "Édition 44",
+      "cover": "/images/ngn/2954/Avril/journal_070424.jpg"
+    },
+    {
+      "id": "ed-45",
+      "title": "Édition 45",
+      "cover": "/images/ngn/2954/Avril/journal_270424.jpg"
+    },
+    {
+      "id": "ed-46",
+      "title": "Édition 46",
+      "cover": "/images/ngn/2954/Mai/journal_040524.jpg"
+    },
+    {
+      "id": "ed-47",
+      "title": "Édition 47",
+      "cover": "/images/ngn/2954/Mai/journal_170524.jpg"
+    },
+    {
+      "id": "ed-48",
+      "title": "Édition 48",
+      "cover": "/images/ngn/2954/Aout/journal_150824.jpg"
+    },
+    {
+      "id": "ed-49",
+      "title": "Édition 49",
+      "cover": "/images/ngn/2955/septembre/journal_270955.jpg"
+    },
+    {
+      "id": "ed-50",
+      "title": "Édition 50",
+      "cover": "/images/ngn/2955/octobre/journal_041055.jpg"
+    }
   ]
 }

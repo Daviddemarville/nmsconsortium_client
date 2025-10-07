@@ -25,9 +25,9 @@ type Member = {
 type Role = { id: number; name: string };
 
 type Props = {
-  dataUrl?: string;     // "/data/diplomacy_meta.json" (nouveau shape avec { diplomacy, regional_coordination })
-  membersUrl?: string;  // "/data/members.json"
-  rolesUrl?: string;    // "/data/roles.json"
+  dataUrl?: string; // "/data/diplomacy_meta.json" (nouveau shape avec { diplomacy, regional_coordination })
+  membersUrl?: string; // "/data/members.json"
+  rolesUrl?: string; // "/data/roles.json"
   roleIds?: number[];
   roleIncludes?: string[]; // ex ["diplom", "ambass"]
   unitIds?: number[];
@@ -60,9 +60,12 @@ export default function DiplomacyCard({
           fetch(rolesUrl, { cache: "no-store" }),
         ]);
 
-        const raw = mRes.ok ? ((await mRes.json()) as RootData) : ({} as RootData);
-        const dipMeta: DiplomacyMeta = (raw?.diplomacy ?? raw) ?? {};
-        const regMeta: DiplomacyMeta | null = raw?.regional_coordination ?? null;
+        const raw = mRes.ok
+          ? ((await mRes.json()) as RootData)
+          : ({} as RootData);
+        const dipMeta: DiplomacyMeta = raw?.diplomacy ?? raw ?? {};
+        const regMeta: DiplomacyMeta | null =
+          raw?.regional_coordination ?? null;
 
         const mem = memRes.ok ? ((await memRes.json()) as Member[]) : [];
         const r = rRes.ok ? ((await rRes.json()) as Role[]) : [];
@@ -76,7 +79,9 @@ export default function DiplomacyCard({
         /* noop */
       }
     })();
-    return () => { alive = false; };
+    return () => {
+      alive = false;
+    };
   }, [dataUrl, membersUrl, rolesUrl]);
 
   const roleNameById = useMemo(() => {
@@ -89,7 +94,8 @@ export default function DiplomacyCard({
     return members
       .filter((m) => {
         const hasRoleId =
-          !roleIds?.length || (m.roles ?? []).some((id) => roleIds?.includes(id));
+          !roleIds?.length ||
+          (m.roles ?? []).some((id) => roleIds?.includes(id));
         const hasRoleName =
           !roleIncludes?.length ||
           (m.roles ?? []).some((id) => {
@@ -108,7 +114,9 @@ export default function DiplomacyCard({
 
   if (!meta) {
     return (
-      <section className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 ${className}`}>
+      <section
+        className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 ${className}`}
+      >
         Chargement…
       </section>
     );
@@ -122,7 +130,9 @@ export default function DiplomacyCard({
   } = meta;
 
   return (
-    <section className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 shadow-lg ${className}`}>
+    <section
+      className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 shadow-lg ${className}`}
+    >
       {/* === Section 1 : Diplomatie === */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2">
@@ -157,7 +167,10 @@ export default function DiplomacyCard({
               </h4>
               <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
                 {filtered.map((m) => (
-                  <li key={String(m.id ?? m.handle)} className="flex items-center gap-2">
+                  <li
+                    key={String(m.id ?? m.handle)}
+                    className="flex items-center gap-2"
+                  >
                     <span className="font-medium">{m.handle}</span>
                     <span className="text-white/60">—</span>
                     <span className="text-white/80 truncate">
@@ -211,7 +224,8 @@ export default function DiplomacyCard({
               )}
               <div>
                 <h3 className="text-xl md:text-2xl font-semibold">
-                  {regional.title ?? "Coordination régionale — Nemesis Consortium"}
+                  {regional.title ??
+                    "Coordination régionale — Nemesis Consortium"}
                 </h3>
                 <p className="mt-1 text-xs uppercase tracking-wide text-white/60">
                   Sessions par fuseau & animation
@@ -247,7 +261,10 @@ export default function DiplomacyCard({
 
 /* MarkdownLite (identique) */
 function MarkdownLite({ text }: { text: string }) {
-  const blocks = text.replace(/\r\n/g, "\n").split(/\n{1,}/).filter(Boolean);
+  const blocks = text
+    .replace(/\r\n/g, "\n")
+    .split(/\n{1,}/)
+    .filter(Boolean);
   const parts = [...blocks];
   const nodes: React.ReactNode[] = [];
   for (let i = 0; i < parts.length; i++) {
@@ -259,7 +276,9 @@ function MarkdownLite({ text }: { text: string }) {
       continue;
     }
     if (/^###\s+/.test(line)) {
-      nodes.push(<h4 key={`h4-${line}-${i}`}>{line.replace(/^###\s+/, "")}</h4>);
+      nodes.push(
+        <h4 key={`h4-${line}-${i}`}>{line.replace(/^###\s+/, "")}</h4>,
+      );
       continue;
     }
     if (/^##\s+/.test(line)) {

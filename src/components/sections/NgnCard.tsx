@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 /* =============== Types =============== */
@@ -27,7 +34,9 @@ type Member = {
 };
 
 // 🔁 Normalisation des données NGN + membres + rôles
-type RawMedia = { latest?: { id?: string; title?: string; img?: string; href?: string }[] };
+type RawMedia = {
+  latest?: { id?: string; title?: string; img?: string; href?: string }[];
+};
 
 type Role = { id: number; name: string };
 
@@ -71,7 +80,8 @@ function sanitizeDiscordUrl(u: string): string {
 function toCdnBase(u: string): string {
   try {
     const url = new URL(u);
-    if (url.hostname === "media.discordapp.net") url.hostname = "cdn.discordapp.com";
+    if (url.hostname === "media.discordapp.net")
+      url.hostname = "cdn.discordapp.com";
     return url.origin + url.pathname; // sans query
   } catch {
     return u;
@@ -119,39 +129,79 @@ export default function NgnCard({
         const mJson = (await mRes.json()) as NgnMeta | RawMedia;
 
         // 🔁 Editions: latest[].img -> cover
-        const normalizedEditions: Edition[] =
-          Array.isArray((mJson as RawMedia)?.latest)
-            ? ((mJson as RawMedia).latest ?? []).map((e) => ({
-                id: e.id,
-                title: e.title,
-                cover: e.img,
-                href: e.href,
-              }))
-            : Array.isArray((mJson as NgnMeta)?.editions)
+        const normalizedEditions: Edition[] = Array.isArray(
+          (mJson as RawMedia)?.latest,
+        )
+          ? ((mJson as RawMedia).latest ?? []).map((e) => ({
+              id: e.id,
+              title: e.title,
+              cover: e.img,
+              href: e.href,
+            }))
+          : Array.isArray((mJson as NgnMeta)?.editions)
             ? ((mJson as NgnMeta).editions ?? [])
             : [];
 
-        const memJson = memRes.ok ? ((await memRes.json()) as any[]) : [];
-        const rJson = rRes.ok ? ((await rRes.json()) as any[]) : [];
+        // Members JSON (sans any)
+        const memRaw: unknown = memRes.ok ? await memRes.json() : [];
+        const memArr: Array<Record<string, unknown>> = Array.isArray(memRaw)
+          ? (memRaw as Array<Record<string, unknown>>)
+          : [];
+
+        // Roles JSON (sans any)
+        const rolesRaw: unknown = rRes.ok ? await rRes.json() : [];
+        const rolesArr: Array<Record<string, unknown>> = Array.isArray(rolesRaw)
+          ? (rolesRaw as Array<Record<string, unknown>>)
+          : [];
 
         if (!alive) return;
+
         setMeta((mJson as NgnMeta) ?? {});
         setEditions(normalizedEditions);
 
-        // 👥 handle = pseudo
+        // 👥 handle = pseudo (fallback)
         setMembers(
-          (Array.isArray(memJson) ? memJson : []).map((m) => ({
-            ...m,
-            handle: m.handle ?? m.pseudo,
-          })) as Member[],
+          memArr.map((m) => {
+            const id =
+              typeof m.id === "number" || typeof m.id === "string"
+                ? m.id
+                : undefined;
+            const handle =
+              typeof m.handle === "string"
+                ? m.handle
+                : typeof m.pseudo === "string"
+                  ? (m.pseudo as string)
+                  : "";
+            const roles =
+              Array.isArray(m.roles) &&
+              (m.roles as unknown[]).every((x) => typeof x === "number")
+                ? (m.roles as number[])
+                : [];
+            const units =
+              Array.isArray(m.units) &&
+              (m.units as unknown[]).every((x) => typeof x === "number")
+                ? (m.units as number[])
+                : [];
+            return { id, handle, roles, units } as Member;
+          }),
         );
 
-        // 🏷️ roles: id -> label
+        // 🏷️ roles: id -> label/name
         setRoles(
-          (Array.isArray(rJson) ? rJson : []).map((r) => ({
-            id: r.id,
-            name: r.label ?? r.name,
-          })) as Role[],
+          rolesArr
+            .map((r) => {
+              const id = typeof r.id === "number" ? r.id : NaN;
+              const name =
+                typeof r.label === "string"
+                  ? (r.label as string)
+                  : typeof r.name === "string"
+                    ? (r.name as string)
+                    : "";
+              return Number.isFinite(id) && name
+                ? ({ id, name } as Role)
+                : null;
+            })
+            .filter(Boolean) as Role[],
         );
       } catch (e) {
         if (alive) setErr((e as Error).message || "Erreur de chargement");
@@ -181,7 +231,7 @@ export default function NgnCard({
           !roleIncludes || roleIncludes.length === 0
             ? true
             : (m.roles ?? []).some((rid) => {
-                const rn = roleNameById.get(rid as number) ?? "";
+                const rn = roleNameById.get(rid) ?? "";
                 return roleIncludes?.some((needle) =>
                   rn.toLowerCase().includes(needle.toLowerCase()),
                 );
@@ -198,16 +248,22 @@ export default function NgnCard({
 
   if (err) {
     return (
-      <section className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 ${className}`}>
+      <section
+        className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 ${className}`}
+      >
         <h3 className="text-xl font-semibold">Nemesis Global News</h3>
-        <p className="mt-2 text-sm text-red-400">Impossible de charger NGN ({err}).</p>
+        <p className="mt-2 text-sm text-red-400">
+          Impossible de charger NGN ({err}).
+        </p>
       </section>
     );
   }
 
   if (!meta) {
     return (
-      <section className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 ${className}`}>
+      <section
+        className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 ${className}`}
+      >
         <div className="animate-pulse grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-2 space-y-3">
             <div className="h-6 w-72 bg-white/10 rounded" />
@@ -227,7 +283,9 @@ export default function NgnCard({
   } = meta;
 
   return (
-    <section className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 shadow-lg ${className}`}>
+    <section
+      className={`rounded-2xl bg-black/30 text-white p-6 md:p-8 shadow-lg ${className}`}
+    >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Colonne texte */}
         <div className="md:col-span-2">
@@ -265,12 +323,15 @@ export default function NgnCard({
               </h4>
               <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
                 {filtered.map((m) => (
-                  <li key={String(m.id ?? m.handle)} className="flex items-center gap-2">
+                  <li
+                    key={String(m.id ?? m.handle)}
+                    className="flex items-center gap-2"
+                  >
                     <span className="font-medium">{m.handle}</span>
                     <span className="text-white/60">—</span>
                     <span className="text-white/80 truncate">
                       {(m.roles ?? [])
-                        .map((rid) => roleNameById.get(rid as number))
+                        .map((rid) => roleNameById.get(rid))
                         .filter(Boolean)
                         .join(" · ")}
                     </span>
@@ -294,14 +355,17 @@ export default function NgnCard({
 function EditionsCarousel({
   editions,
   intervalMs = 4000,
-}: { editions: Edition[]; intervalMs?: number }) {
+}: {
+  editions: Edition[];
+  intervalMs?: number;
+}) {
   const [idx, setIdx] = useState(0);
   const [hover, setHover] = useState(false);
   const [visible, setVisible] = useState(true);
   const [reduced, setReduced] = useState(false);
   const [zoomOpen, setZoomOpen] = useState(false);
 
-  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const wrapRef = useRef<HTMLElement | null>(null); // ← section
   const timerRef = useRef<number | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
@@ -339,6 +403,7 @@ function EditionsCarousel({
   }, []);
 
   // Autoplay + progress bar
+  /* biome-ignore lint/correctness/useExhaustiveDependencies: on relance volontairement l’effet à chaque changement d’idx pour réinitialiser la barre */
   useEffect(() => {
     if (len <= 1 || reduced || hover || !visible || zoomOpen) return;
     if (progressRef.current) {
@@ -350,7 +415,10 @@ function EditionsCarousel({
         progressRef.current.style.width = "100%";
       });
     }
-    timerRef.current = window.setTimeout(() => setIdx((i) => (i + 1) % len), intervalMs);
+    timerRef.current = window.setTimeout(
+      () => setIdx((i) => (i + 1) % len),
+      intervalMs,
+    );
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
       if (progressRef.current) {
@@ -398,7 +466,8 @@ function EditionsCarousel({
     let startX = 0,
       moved = false;
 
-    const isInteractive = (t: EventTarget | null) => t instanceof Element && !!(t as Element).closest("button, a");
+    const isInteractive = (t: EventTarget | null) =>
+      t instanceof Element && !!(t as Element).closest("button, a");
 
     const down = (e: PointerEvent) => {
       if (isInteractive(e.target)) return;
@@ -439,6 +508,18 @@ function EditionsCarousel({
     };
   }, [zoomOpen]);
 
+  const current = editions[idx];
+  const keyFor = (e: Edition) =>
+    e.id ?? e.cover ?? e.title ?? JSON.stringify(e);
+
+  // Sources d'image pour le zoom (avec fallback auto en cas de 404)
+  const zoomSources = useMemo(
+    () => buildZoomSources(current?.cover),
+    [current?.cover],
+  );
+  const [zoomSrcIdx, setZoomSrcIdx] = useState(0);
+  const zoomSrc = zoomSources[zoomSrcIdx] ?? PLACEHOLDER_DATA_URI;
+
   if (len === 0) {
     return (
       <div className="h-40 md:h-full grid place-items-center text-white/60 text-sm">
@@ -447,25 +528,12 @@ function EditionsCarousel({
     );
   }
 
-  const current = editions[idx];
-  const keyFor = (e: Edition) => e.id ?? e.cover ?? e.title ?? JSON.stringify(e);
-
-  // Sources d'image pour le zoom (avec fallback auto en cas de 404)
-  const zoomSources = useMemo(() => buildZoomSources(current?.cover), [current?.cover]);
-  const [zoomSrcIdx, setZoomSrcIdx] = useState(0);
-  useEffect(() => {
-    setZoomSrcIdx(0); // reset quand on change d'édition
-  }, [idx, current?.cover]);
-  const zoomSrc = zoomSources[zoomSrcIdx] ?? PLACEHOLDER_DATA_URI;
-
   return (
-    <div
+    <section
       ref={wrapRef}
-      role="group"
       aria-roledescription="carousel"
       aria-label="Éditions Nemesis Global News"
       aria-live="polite"
-      tabIndex={0}
       className="relative h-40 md:h-full outline-none"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -476,7 +544,10 @@ function EditionsCarousel({
       </div>
 
       {/* ambiance */}
-      <div className="absolute inset-0 bg-amber-900/10 mix-blend-multiply pointer-events-none" aria-hidden />
+      <div
+        className="absolute inset-0 bg-amber-900/10 mix-blend-multiply pointer-events-none"
+        aria-hidden
+      />
       <div
         className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:3px_3px] pointer-events-none"
         aria-hidden
@@ -500,12 +571,18 @@ function EditionsCarousel({
             priority={idx === 0}
           />
           <div className="pointer-events-none absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
-            <div className="text-xs uppercase tracking-wide text-white/80">Édition</div>
-            <div className="text-sm font-medium line-clamp-2">{current.title ?? "Numéro spécial"}</div>
+            <div className="text-xs uppercase tracking-wide text-white/80">
+              Édition
+            </div>
+            <div className="text-sm font-medium line-clamp-2">
+              {current.title ?? "Numéro spécial"}
+            </div>
           </div>
         </button>
       ) : (
-        <div className="h-full grid place-items-center">Édition sans visuel</div>
+        <div className="h-full grid place-items-center">
+          Édition sans visuel
+        </div>
       )}
 
       {/* Prev/Next */}
@@ -515,7 +592,10 @@ function EditionsCarousel({
             type="button"
             aria-label="Édition précédente"
             onPointerDown={(e) => e.stopPropagation()}
-            onClick={() => goto(idx - 1)}
+            onClick={() => {
+              setZoomSrcIdx(0);
+              setIdx((i) => (i - 1 + len) % len);
+            }}
             className="absolute left-1 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full
                        bg-black/40 hover:bg-black/60 backdrop-blur flex items-center justify-center
                        text-white focus:ring-2 ring-white/60 pointer-events-auto"
@@ -527,7 +607,10 @@ function EditionsCarousel({
             type="button"
             aria-label="Édition suivante"
             onPointerDown={(e) => e.stopPropagation()}
-            onClick={() => goto(idx + 1)}
+            onClick={() => {
+              setZoomSrcIdx(0);
+              setIdx((i) => (i + 1) % len);
+            }}
             className="absolute right-1 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full
                        bg-black/40 hover:bg-black/60 backdrop-blur flex items-center justify-center
                        text-white focus:ring-2 ring-white/60 pointer-events-auto"
@@ -544,7 +627,18 @@ function EditionsCarousel({
           role="dialog"
           aria-modal="true"
           aria-label={current.title ?? "Agrandissement de l’édition"}
-          onClick={() => setZoomOpen(false)}
+          onClick={(e) => {
+            if (e.currentTarget === e.target) setZoomOpen(false);
+          }}
+          onKeyDown={(e) => {
+            if (
+              e.currentTarget === e.target &&
+              (e.key === "Enter" || e.key === " ")
+            ) {
+              e.preventDefault();
+              setZoomOpen(false);
+            }
+          }}
         >
           {/* Bouton fermer */}
           <button
@@ -558,37 +652,53 @@ function EditionsCarousel({
                        text-white grid place-items-center focus:ring-2 ring-white/60"
             aria-label="Fermer l’aperçu"
           >
-            {/* croix minimaliste */}
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <title>Fermer</title>
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
 
-          {/* Conteneur image (stop propagation pour éviter de fermer en cliquant sur l'image) */}
-          <div className="absolute inset-0 p-4 md:p-8" onClick={(e) => e.stopPropagation()}>
+          {/* Conteneur image */}
+          <div className="absolute inset-0 p-4 md:p-8">
             <div className="relative h-full w-full">
-              {/* <img> natif avec cascade de fallbacks */}
-              <img
-                key={zoomSrc} // force le re-render si on change de source
+              <Image
+                key={zoomSrc}
                 src={zoomSrc}
                 alt={current.title ?? "Édition agrandie"}
-                className="h-full w-full object-contain"
+                fill
+                className="object-contain"
                 referrerPolicy="no-referrer"
-                onError={() => setZoomSrcIdx((i) => Math.min(i + 1, zoomSources.length - 1))}
+                unoptimized
+                onError={() =>
+                  setZoomSrcIdx((i) => Math.min(i + 1, zoomSources.length - 1))
+                }
+                priority
               />
             </div>
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }
 
 /* ===== Markdown lite ===== */
 function MarkdownLite({ text }: { text: string }) {
-  const blocks = text.replace(/\r\n/g, "\n").split(/\n{1,}/).filter(Boolean);
+  const blocks = text
+    .replace(/\r\n/g, "\n")
+    .split(/\n{1,}/)
+    .filter(Boolean);
   const parts = [...blocks];
-  const nodes: React.ReactNode[] = [];
+  const nodes: ReactNode[] = [];
   for (let i = 0; i < parts.length; i++) {
     const raw = parts[i];
     const line = raw?.trim();
@@ -598,7 +708,9 @@ function MarkdownLite({ text }: { text: string }) {
       continue;
     }
     if (/^###\s+/.test(line)) {
-      nodes.push(<h4 key={`h4-${line}-${i}`}>{line.replace(/^###\s+/, "")}</h4>);
+      nodes.push(
+        <h4 key={`h4-${line}-${i}`}>{line.replace(/^###\s+/, "")}</h4>,
+      );
       continue;
     }
     if (/^##\s+/.test(line)) {
@@ -633,5 +745,9 @@ function MarkdownLite({ text }: { text: string }) {
     }
     nodes.push(<p key={`p-${line}-${i}`}>{line}</p>);
   }
-  return <div className="prose prose-invert max-w-none prose-p:my-3 prose-li:my-1">{nodes}</div>;
+  return (
+    <div className="prose prose-invert max-w-none prose-p:my-3 prose-li:my-1">
+      {nodes}
+    </div>
+  );
 }
