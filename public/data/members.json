@@ -218,15 +218,23 @@
   },
   {
     "id": 20,
+    "pseudo": "Sebrag",
+    "discord": "Sebrag",
+    "gameplay": ["Commerce", "Logistique", "Industrie"],
+    "bio": "Né sur une planète oubliée aux confins du système Stanton, il n’a connu que la poussière des mines et le regard fatigué d’une mère esclave. Des fragments d’histoires murmurées sur un père disparu parmi les étoiles ont éveillé en lui la rage de bâtir son propre destin. Animé par une soif d’or et de liberté, il sillonne désormais la galaxie, décidé à amasser une fortune capable de racheter le passé et de libérer celle qui lui a donné la vie.",
+    "opt_in": true,
+    "assignments": [      
+      { "role_id": 5, "unit_id": 6, "primary": false },
+      { "role_id": 5, "unit_id": 1, "primary": true }
+    ]
+  },
+  {
+    "id": 21,
     "pseudo": "",
     "discord": "",
     "gameplay": ["", "", ""],
     "bio": "",
     "opt_in": false,
-    "assignments": [
-      { "role_id": 4, "unit_id": 4, "primary": false },
-      { "role_id": 2, "unit_id": 11, "primary": true },
-      { "role_id": 5, "unit_id": 1, "primary": false }
-    ]
+    "assignments": []
   }
 ]
