@@ -17,7 +17,7 @@ type NavItem = { href: string; label: string };
 const TOP_LEVEL: NavItem[] = [
   { href: "/", label: "Accueil" },
   { href: "/membres", label: "Membres" },
-  { href: "/consortium", label: "Qui sommes-nous" },
+  { href: "/consortium", label: "Qui sommes-nous?" },
   { href: "/corpos", label: "Consortium" }, // ← après celui-ci, on insère "Corpos filles"
   { href: "/contact", label: "Contact" },
 ];
