@@ -258,5 +258,15 @@
       "title": "Édition 51",
       "cover": "/images/ngn/2955/octobre/journal_111055.jpg"
     }
+    {,
+      "id": "ed-52",
+      "title": "Édition 52",
+      "cover": "/images/ngn/2955/octobre/journal_181055.jpg"
+    }
+    {
+      "id": "ed-53",
+      "title": "Édition 53",
+      "cover": "/images/ngn/2955/novembre/journal_161155.jpg"
+    }
   ]
 }
