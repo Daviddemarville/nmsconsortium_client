@@ -16,7 +16,7 @@ export default function Footer() {
               © {new Date().getFullYear()} Nemesis Consortium — Tous droits
               réservés
             </div>
-            <div>v0.8</div>
+            <div>v0.9</div>
           </div>
 
           {/* Bloc centre gauche: navigation footer */}
